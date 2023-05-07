@@ -1,8 +1,6 @@
 #![allow(dead_code)]
-/// NOTE: btreemap is better but not available in leet rust
 use std::{
-    collections::{HashMap, HashSet},
-    ops::{Deref, DerefMut},
+    collections::{BTreeMap, HashMap, HashSet},
     rc::Rc,
 };
 
@@ -11,30 +9,8 @@ type Word = Rc<String>;
 const NULL: Addr = 0;
 
 #[derive(Default, Debug)]
-struct Node<T> {
-    prev: Addr,
-    next: Addr,
-    value: T,
-}
-
-impl<T> Deref for Node<T> {
-    type Target = T;
-    fn deref(&self) -> &Self::Target {
-        &self.value
-    }
-}
-
-impl<T> DerefMut for Node<T> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.value
-    }
-}
-
-#[derive(Default, Debug)]
 struct AllOne {
-    head: Addr,
-    tail: Addr,
-    list: HashMap<Addr, Node<HashSet<Word>>>,
+    list: BTreeMap<Addr, HashSet<Word>>,
     word_map: HashMap<Word, Addr>,
 }
 
@@ -43,49 +19,9 @@ impl AllOne {
         Default::default()
     }
 
-    fn insert_word(&mut self, at: Addr, next: Addr, prev: Addr, word: Word) {
-        match self.list.entry(at) {
-            std::collections::hash_map::Entry::Occupied(mut node) => {
-                let node = node.get_mut();
-                node.insert(word);
-                if next != at {
-                    node.next = next;
-                }
-                if prev != at {
-                    node.prev = prev;
-                }
-            }
-            std::collections::hash_map::Entry::Vacant(node) => {
-                node.insert(Node {
-                    prev,
-                    next,
-                    value: std::iter::once(word).collect(),
-                });
-                if next != NULL {
-                    let mut next_node = self
-                        .list
-                        .get_mut(&next)
-                        .expect("next node should be valid is not null");
-                    next_node.prev = at;
-                } else {
-                    self.tail = at;
-                }
-                if prev != NULL {
-                    let prev_node = self
-                        .list
-                        .get_mut(&prev)
-                        .expect("previous node should be valid is not null");
-                    prev_node.next = at;
-                } else {
-                    self.head = at;
-                }
-            }
-        }
-    }
-
     fn inc(&mut self, key: String) {
-        let (word, new_addr) = if let Some(cur_addr) = self.word_map.get(&key) {
-            let cur_addr = *cur_addr;
+        let (word, new_addr) = if let Some(cur_addr) = self.word_map.remove(&key) {
+            let new_addr = cur_addr + 1;
             let cur_node = self
                 .list
                 .get_mut(&cur_addr)
@@ -93,31 +29,17 @@ impl AllOne {
             let word = cur_node
                 .take(&key)
                 .expect("word map should point to node which has the word.");
-            let next = cur_node.next;
-            let mut prev = cur_addr;
             if cur_node.is_empty() {
-                prev = cur_node.prev;
-                self.list.remove(&cur_addr).expect("should exists");
-                if prev == NULL {
-                    self.head = cur_addr + 1;
-                }
+                self.list.remove(&cur_addr);
             }
-            self.insert_word(cur_addr + 1, next, prev, word.clone());
-            (word, cur_addr + 1)
+            self.list.entry(new_addr).or_default().insert(word.clone());
+            (word, new_addr)
         } else {
+            let new_addr = 1;
             let word = Rc::new(key);
-            // self.insert_word(1, self.head, NULL, word.clone());
-            let node = self.list.entry(1).or_default();
-            node.insert(word.clone());
-            if self.head != 1 {
-                node.next = self.head;
-                self.head = 1;
-            }
-            (word, 1)
+            self.list.entry(new_addr).or_default().insert(word.clone());
+            (word, new_addr)
         };
-        if self.tail < new_addr {
-            self.tail = new_addr;
-        }
         self.word_map.insert(word, new_addr);
     }
 
@@ -130,33 +52,24 @@ impl AllOne {
         let word = cur_node
             .take(&key)
             .expect("word map should point to node with word");
-        let mut next = cur_addr;
-        let prev = cur_node.prev;
         if cur_node.is_empty() {
-            next = cur_node.next;
-            self.list.remove(&cur_addr).expect("should exists");
-            if next == NULL {
-                self.tail = cur_addr - 1;
-            }
+            self.list.remove(&cur_addr);
         }
         if cur_addr - 1 != NULL {
-            self.insert_word(cur_addr - 1, next, prev, word.clone());
+            self.list
+                .entry(cur_addr - 1)
+                .or_default()
+                .insert(word.clone());
             self.word_map.insert(word, cur_addr - 1);
-        } else {
-            self.head = next;
-            if prev == NULL && next != NULL {
-                self.list
-                    .get_mut(&next)
-                    .expect("next node should not be null")
-                    .prev = NULL
-            }
         }
     }
 
     fn get_max_key(&mut self) -> String {
         self.list
-            .get_mut(&self.tail)
-            .map(|node| {
+            .iter()
+            .rev()
+            .next()
+            .map(|(_, node)| {
                 node.iter()
                     .next()
                     .expect("node cannot be empty")
@@ -167,8 +80,9 @@ impl AllOne {
 
     fn get_min_key(&mut self) -> String {
         self.list
-            .get_mut(&self.head)
-            .map(|node| {
+            .iter()
+            .next()
+            .map(|(_, node)| {
                 node.iter()
                     .next()
                     .expect("node cannot be empty")
@@ -177,6 +91,7 @@ impl AllOne {
             .unwrap_or_default()
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -260,15 +175,15 @@ mod tests {
         all_one.inc("b".into());
         all_one.inc("c".into());
         all_one.inc("d".into());
-        dbg!("abcd once", &all_one.list, &all_one.head, &all_one.tail);
+        dbg!("abcd once", &all_one.list);
         all_one.inc("a".into());
-        dbg!("abcd twice", &all_one.list, &all_one.head, &all_one.tail);
+        dbg!("abcd twice", &all_one.list);
         all_one.inc("b".into());
-        dbg!("abcd twice", &all_one.list, &all_one.head, &all_one.tail);
+        dbg!("abcd twice", &all_one.list);
         all_one.inc("c".into());
-        dbg!("abcd twice", &all_one.list, &all_one.head, &all_one.tail);
+        dbg!("abcd twice", &all_one.list);
         all_one.inc("d".into());
-        dbg!("abcd twice", &all_one.list, &all_one.head, &all_one.tail);
+        dbg!("abcd twice", &all_one.list);
 
         all_one.inc("c".into());
         all_one.inc("d".into());
