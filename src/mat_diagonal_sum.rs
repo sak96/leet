@@ -4,12 +4,11 @@ impl Solution {
     pub fn diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
         let mut sum = 0;
         let len = mat.len();
-        #[allow(clippy::needless_range_loop)]
-        for i in 0..len {
+        for (i, row) in mat.into_iter().enumerate() {
             let j = len - i - 1;
-            sum += mat[i][i];
+            sum += row[i];
             if i != j {
-                sum += mat[i][j];
+                sum += row[j];
             }
         }
         sum
