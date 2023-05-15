@@ -1,43 +1,59 @@
 impl Solution {
     pub fn swap_nodes(mut head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-        let k = k as usize;
-        let mut fast = &head;
-        let mut slow = head.as_ref().expect("Constraint is n >= 1");
-
-        // Move fast ahead of slow by k
-        for _ in 0..k {
-            fast = &fast
-                .as_ref()
-                .expect("Based on constraint in question k <= n")
-                .next;
+        // find length
+        let mut len = 0;
+        let mut cur_ptr = head.as_ref();
+        while let Some(node) = cur_ptr {
+            len += 1;
+            cur_ptr = node.next.as_ref();
         }
 
-        // Move slow to k before the end
-        let mut second_index = 0; // TODO switch to 1 based indexing
-        while let Some(node) = fast {
-            fast = &node.next;
-            slow = slow
-                .next
-                .as_ref()
-                .expect("This is behind fast so must exist");
-            second_index += 1;
+        // no swap if longer
+        // k <= n hence below not applicable
+        // if len <= k {
+        //     return head;
+        // }
+
+        // get index of swapping
+        use std::cmp::Ordering;
+        let i = k - 1;
+        let j = len - k;
+        let (mut low, mut high) = match i.cmp(&j) {
+            Ordering::Less => (i, j),
+            Ordering::Greater => (j, i),
+            _ => return head,
+        };
+
+        // get first node
+        let mut left_part = &mut head;
+        while low > 0 {
+            left_part = &mut left_part.as_mut().unwrap().next;
+            low -= 1;
+            high -= 1;
         }
 
-        // Save value from 2nd node to update the first
-        let second_value = slow.val;
+        let mut right_part = left_part.as_mut().unwrap().next.take();
+        high -= 1;
 
-        // Walk the list again and update the nodes
-        let mut node = &mut head;
-        for _ in 0..k - 1 {
-            node = &mut node.as_mut().expect("k <= n by constraint").next;
-        }
-        let first_value = node.as_ref().expect("At first node").val;
-        node.as_mut().expect("At first node").val = second_value;
-        for _ in k - 1..second_index {
-            node = &mut node.as_mut().expect("k <= n by constraint").next;
-        }
-        node.as_mut().expect("At second node").val = first_value;
+        // get node two
+        {
+            let mut right_part = &mut right_part;
+            while high > 0 {
+                right_part = &mut right_part.as_mut().unwrap().next;
+                high -= 1;
+            }
 
+            // swap the values
+            std::mem::swap(
+                &mut left_part.as_mut().unwrap().val,
+                &mut right_part.as_mut().unwrap().val,
+            );
+        }
+
+        // assign right_part back
+        left_part.as_mut().unwrap().next = right_part;
+
+        // return
         head
     }
 }
