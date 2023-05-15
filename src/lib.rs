@@ -1,4 +1,5 @@
 pub mod all_one;
+pub mod brainpower;
 pub mod dota;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
