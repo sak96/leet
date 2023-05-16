@@ -5,35 +5,45 @@ impl Solution {
             return head;
         }
 
-        let mut ptr = &mut head;
-        // get k - 1 th nodes
-        for _ in 0..(k - 1) {
-            if let Some(node) = ptr {
-                ptr = &mut node.next;
-            } else {
-                return head;
+        // new list for output
+        let mut new_head = Box::new(ListNode { next: None, val: 0 });
+        let mut new_ptr = &mut new_head;
+
+        let rest = 'outer: loop {
+            let mut ptr = &mut head;
+            // get k - 1 th nodes
+            for _ in 0..(k - 1) {
+                if let Some(node) = ptr {
+                    ptr = &mut node.next;
+                } else {
+                    break 'outer head;
+                }
             }
-        }
 
-        // make sure k th node is valid
-        let rest = if let Some(ref mut node) = ptr {
-            node.next.take()
-        } else {
-            return head;
+            // break the node after k
+            let rest = if let Some(ref mut node) = ptr {
+                node.next.take()
+            } else {
+                break 'outer head;
+            };
+
+            // reverse the head
+            let mut rev_head: Option<Box<ListNode>> = None;
+            while let Some(mut node1) = head.take() {
+                head = node1.next.take();
+                node1.next = rev_head;
+                rev_head = Some(node1);
+            }
+            head = rest;
+
+            // move new_ptr to last node
+            new_ptr.next = rev_head;
+            while let Some(ref mut node) = new_ptr.next {
+                new_ptr = node;
+            }
         };
-
-        // reverse the reset of node
-        let mut new_head: Option<Box<ListNode>> = Self::reverse_k_group(rest, k);
-        dbg!(&new_head);
-
-        // attach the reverse nodes back to current
-        while let Some(mut node1) = head.take() {
-            head = node1.next.take();
-            node1.next = new_head;
-            new_head = Some(node1);
-        }
-
-        new_head
+        new_ptr.next = rest;
+        new_head.next.take()
     }
 }
 pub struct Solution;
