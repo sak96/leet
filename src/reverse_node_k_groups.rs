@@ -6,25 +6,28 @@ impl Solution {
         }
 
         // new list for output
-        let mut new_head = Box::new(ListNode { next: None, val: 0 });
-        let mut new_ptr = &mut new_head;
+        // TODO: is the fake node required?
+        let mut fake_head = Box::new(ListNode { next: None, val: 0 });
+        let mut last_ptr = &mut fake_head;
 
-        let rest = 'outer: loop {
+        loop {
             let mut ptr = &mut head;
             // get k - 1 th nodes
             for _ in 0..(k - 1) {
                 if let Some(node) = ptr {
                     ptr = &mut node.next;
                 } else {
-                    break 'outer head;
+                    last_ptr.next = head;
+                    return fake_head.next.take();
                 }
             }
 
             // break the node after k
-            let rest = if let Some(ref mut node) = ptr {
+            let next_head = if let Some(ref mut node) = ptr {
                 node.next.take()
             } else {
-                break 'outer head;
+                last_ptr.next = head;
+                return fake_head.next.take();
             };
 
             // reverse the head
@@ -34,16 +37,15 @@ impl Solution {
                 node1.next = rev_head;
                 rev_head = Some(node1);
             }
-            head = rest;
 
-            // move new_ptr to last node
-            new_ptr.next = rev_head;
-            while let Some(ref mut node) = new_ptr.next {
-                new_ptr = node;
+            // join reversed array and update last ptr
+            // update the next head
+            last_ptr.next = rev_head;
+            while let Some(ref mut node) = last_ptr.next {
+                last_ptr = node;
             }
-        };
-        new_ptr.next = rest;
-        new_head.next.take()
+            head = next_head;
+        }
     }
 }
 pub struct Solution;
