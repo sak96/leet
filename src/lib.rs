@@ -4,6 +4,7 @@ pub mod dota;
 pub mod good_string_count;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
+pub mod reverse_node_k_groups;
 pub mod spiral_mat;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
