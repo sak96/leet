@@ -1,5 +1,6 @@
 pub mod all_one;
 pub mod brainpower;
+pub mod bst_from_preorder;
 pub mod dota;
 pub mod good_string_count;
 pub mod helpers;
