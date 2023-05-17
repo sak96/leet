@@ -7,6 +7,7 @@ pub mod helpers;
 pub mod linked_list_twin_sum;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
+pub mod max_depth_binary_tree;
 pub mod reverse_node_k_groups;
 pub mod spiral_mat;
 pub mod swap_list_node;
