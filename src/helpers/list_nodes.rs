@@ -4,6 +4,7 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+
 impl ListNode {
     #[inline]
     pub fn new(val: i32) -> Self {
