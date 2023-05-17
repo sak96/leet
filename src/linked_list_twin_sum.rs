@@ -30,30 +30,7 @@ impl Solution {
 }
 
 pub struct Solution;
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    pub fn create_list(input: Vec<i32>) -> Option<Box<ListNode>> {
-        let mut head = None;
-        for val in input.into_iter().rev() {
-            head = Some(Box::new(ListNode { next: head, val }));
-        }
-        head
-    }
-
-    pub fn to_vec(mut head: Option<Box<ListNode>>) -> Vec<i32> {
-        let mut output = vec![];
-        while let Some(node) = head {
-            output.push(node.val);
-            head = node.next;
-        }
-        output
-    }
-}
+use crate::helpers::list_nodes::ListNode;
 
 #[cfg(test)]
 mod tests {
