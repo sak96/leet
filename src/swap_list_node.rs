@@ -2,7 +2,7 @@ impl Solution {
     pub fn swap_nodes(mut head: Option<Box<ListNode>>, mut k: i32) -> Option<Box<ListNode>> {
         let mut first_k_node = head.as_mut().unwrap() as *mut Box<ListNode>;
         // get first kth node
-        while k > 0 {
+        while k > 1 {
             first_k_node = unsafe { (*first_k_node).next.as_mut() }.unwrap();
             k -= 1;
         }
