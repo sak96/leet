@@ -1,11 +1,12 @@
 impl Solution {
-    pub fn swap_nodes(mut head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
+    pub fn swap_nodes(mut head: Option<Box<ListNode>>, mut k: i32) -> Option<Box<ListNode>> {
         let mut first_k_node = head.as_mut().unwrap() as *mut Box<ListNode>;
         // get first kth node
-        for _ in 1..k {
+        while k > 0 {
             unsafe {
                 first_k_node = (*first_k_node).next.as_mut().unwrap();
             }
+            k -= 1;
         }
 
         // get second kth node
