@@ -2,6 +2,7 @@ pub mod all_one;
 pub mod brainpower;
 pub mod dota;
 pub mod good_string_count;
+pub mod linked_list_twin_sum;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
 pub mod reverse_node_k_groups;
