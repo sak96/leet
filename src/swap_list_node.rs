@@ -3,9 +3,7 @@ impl Solution {
         let mut first_k_node = head.as_mut().unwrap() as *mut Box<ListNode>;
         // get first kth node
         while k > 0 {
-            unsafe {
-                first_k_node = (*first_k_node).next.as_mut().unwrap();
-            }
+            first_k_node = unsafe { (*first_k_node).next.as_mut() }.unwrap();
             k -= 1;
         }
 
