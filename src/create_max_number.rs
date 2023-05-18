@@ -28,54 +28,63 @@ impl Solution {
     ) -> &'a std::vec::Vec<i32> {
         let key = (nums1.len(), nums2.len(), k);
         if memory.contains_key(&key) {
+            // Dynamic programming 101
+            // NOTE: entry API has some issue with lifetime
+            //       hence using contains_key and get
             return memory.get(&key).unwrap();
         } else {
-            // no of drop allowed to select 1 element
             let mut ans = Vec::with_capacity(k);
+
+            // until all k elements are found.
             while k > 0 {
-                let drop_for_one = nums1.len() + nums2.len() - k;
-                if drop_for_one == 0 {
+                // number of drops
+                let drops = nums1.len() + nums2.len() - k;
+                if drops == 0 {
                     Self::merge(nums1, nums2, &mut ans);
                     break;
-                } else {
-                    let nums1_idx =
-                        Self::get_max_index(&nums1[..(drop_for_one + 1).min(nums1.len())]);
-                    let nums2_idx =
-                        Self::get_max_index(&nums2[..(drop_for_one + 1).min(nums2.len())]);
-                    match nums1_idx
-                        .and_then(|x| nums1.get(x))
-                        .cmp(&nums2_idx.and_then(|x| nums2.get(x)))
-                    {
-                        std::cmp::Ordering::Less => {
-                            let idx = nums2_idx.unwrap();
-                            ans.push(nums2[idx]);
-                            nums2 = &nums2[idx + 1..];
-                            k -= 1;
-                        }
-                        std::cmp::Ordering::Greater => {
-                            let idx = nums1_idx.unwrap();
-                            ans.push(nums1[idx]);
-                            nums1 = &nums1[idx + 1..];
-                            k -= 1;
-                        }
-                        std::cmp::Ordering::Equal => {
-                            let nums2_ = &nums2[nums2_idx.unwrap() + 1..];
-                            let nums1_ = &nums1[nums1_idx.unwrap() + 1..];
-                            ans.push(nums1[nums1_idx.unwrap()]);
+                }
 
-                            let len = ans.len();
-                            k -= 1;
-                            ans.extend(Self::max_number_dp(nums1_, nums2, k, memory));
-                            let nums = Self::max_number_dp(nums1, nums2_, k, memory);
-                            if &ans[len..] < nums {
-                                ans.truncate(len);
-                                ans.extend(nums);
-                            }
-                            break;
+                // Get max elements for slice in drops + 1 element
+                // which ever is max elements can be added to answer
+                let nums1_idx = Self::get_max_index(&nums1[..(drops + 1).min(nums1.len())]);
+                let nums2_idx = Self::get_max_index(&nums2[..(drops + 1).min(nums2.len())]);
+                match nums1_idx
+                    .and_then(|x| nums1.get(x))
+                    .cmp(&nums2_idx.and_then(|x| nums2.get(x)))
+                {
+                    std::cmp::Ordering::Less => {
+                        let idx = nums2_idx.unwrap();
+                        ans.push(nums2[idx]);
+                        nums2 = &nums2[idx + 1..];
+                        k -= 1;
+                    }
+                    std::cmp::Ordering::Greater => {
+                        let idx = nums1_idx.unwrap();
+                        ans.push(nums1[idx]);
+                        nums1 = &nums1[idx + 1..];
+                        k -= 1;
+                    }
+                    std::cmp::Ordering::Equal => {
+                        // if both are each check both solution
+                        ans.push(nums1[nums1_idx.unwrap()]);
+                        let len = ans.len();
+
+                        let max1 = &nums1[nums1_idx.unwrap() + 1..];
+                        ans.extend(Self::max_number_dp(max1, nums2, k - 1, memory));
+
+                        let max2 = &nums2[nums2_idx.unwrap() + 1..];
+                        let nums = Self::max_number_dp(nums1, max2, k - 1, memory);
+
+                        if &ans[len..] < nums {
+                            // truncate keeps the capacity
+                            ans.truncate(len);
+                            ans.extend(nums);
                         }
+                        break;
                     }
                 }
             }
+            // store output in memory
             memory.entry(key).or_insert(ans)
         }
     }
