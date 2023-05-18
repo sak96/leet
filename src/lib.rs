@@ -10,6 +10,7 @@ pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
 pub mod min_node_reach_all_nodes;
+pub mod regex_match;
 pub mod reverse_node_k_groups;
 pub mod spiral_mat;
 pub mod swap_list_node;
