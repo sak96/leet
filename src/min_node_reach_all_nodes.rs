@@ -25,7 +25,7 @@ mod tests {
     fn case1() {
         let input = [[0, 1], [0, 2], [2, 5], [3, 4], [4, 2]];
         let output = [0, 3];
-        let input = input.iter().map(|x| x.iter().cloned().collect()).collect();
+        let input = input.iter().map(|x| x.to_vec()).collect();
         let output: Vec<_> = output.into();
         assert_eq!(Solution::find_smallest_set_of_vertices(6, input), output);
     }
@@ -34,7 +34,7 @@ mod tests {
     fn case2() {
         let input = [[0, 1], [2, 1], [3, 1], [1, 4], [2, 4]];
         let output = [0, 2, 3];
-        let input = input.iter().map(|x| x.iter().cloned().collect()).collect();
+        let input = input.iter().map(|x| x.to_vec()).collect();
         let output: Vec<_> = output.into();
         assert_eq!(Solution::find_smallest_set_of_vertices(5, input), output);
     }

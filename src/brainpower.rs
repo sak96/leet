@@ -19,10 +19,7 @@ mod tests {
     #[test]
     fn case1() {
         let questions = [[3, 2], [4, 3], [4, 4], [2, 5]];
-        let questions: Vec<Vec<_>> = questions
-            .iter()
-            .map(|v| v.iter().cloned().collect())
-            .collect();
+        let questions: Vec<Vec<_>> = questions.iter().map(|v| v.to_vec()).collect();
         let output = Solution::most_points(questions);
         assert_eq!(output, 5);
     }
@@ -30,10 +27,7 @@ mod tests {
     #[test]
     fn case2() {
         let questions = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]];
-        let questions: Vec<Vec<_>> = questions
-            .iter()
-            .map(|v| v.iter().cloned().collect())
-            .collect();
+        let questions: Vec<Vec<_>> = questions.iter().map(|v| v.to_vec()).collect();
         let output = Solution::most_points(questions);
         assert_eq!(output, 7);
     }
