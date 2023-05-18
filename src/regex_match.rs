@@ -5,41 +5,34 @@ pub struct RegexNode {
 }
 
 impl Solution {
-    pub fn matches(mut string: &[u8], mut pattern: &[RegexNode]) -> bool {
-        let mut state = if let Some((first, pat)) = pattern.split_first() {
-            pattern = pat;
-            first
+    pub fn matches(string: &[u8],pattern: &[RegexNode]) -> bool {
+        // get state
+        let (state, rest_pat) = if let Some((first, pat)) = pattern.split_first() {
+            (first, pat)
         } else {
-            // state empty  => string should be empty
+            // if there is not state the string should be exhausted
             return string.is_empty();
         };
-        while let Some((letter, rest)) = string.split_first() {
-            // if star check if the pattern matches skipping the state
-            if state.star && Self::matches(string, pattern) {
-                return true;
-            }
-
+        if state.star && Self::matches(string, rest_pat) {
+            // string matches with states skipped
+            true
+        } else if let Some((letter, rest)) = string.split_first() {
             let letter_match =
                 state.letter.is_none() || matches!(state.letter, Some(c)  if *letter == c);
-            // if letter does not match it would not match even for star as we checked above
-            if !letter_match {
-                return false;
-            }
-            // consume state if not star
-            if !state.star {
-                state = if let Some((first, pat)) = pattern.split_first() {
-                    pattern = pat;
-                    first
-                } else {
-                    // state empty  => string should be empty
-                    return rest.is_empty();
-                };
-            }
 
-            // consume the letter
-            string = rest;
+            if !letter_match {
+                // letter should match as star skip is already checked
+                false
+            } else if !state.star {
+                // if state is not start consume state
+                Self::matches(rest, rest_pat)
+            } else {
+                // if state is not start do not consume state
+                Self::matches(rest, pattern)
+            }
+        } else {
+            pattern.iter().all(|x| x.star)
         }
-        state.star && pattern.iter().all(|x| x.star)
     }
 
     pub fn is_match(s: String, p: String) -> bool {
@@ -55,6 +48,7 @@ impl Solution {
                 '*' => {
                     let mut last_char = pattern.pop().expect("* comes only after char");
                     last_char.star = true;
+                    // NOTE: a*a* => a*
                     if !matches!(pattern.last_mut(), Some(prev) if last_char.eq(prev)) {
                         pattern.push(last_char);
                     }
