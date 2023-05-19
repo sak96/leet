@@ -1,11 +1,13 @@
 impl Solution {
     #[inline]
-    pub fn find_group_id(groups: &[i32], value: i32) -> i32 {
-        let parent = groups[value as usize];
-        if parent == value {
-            value
-        } else {
-            Self::find_group_id(groups, parent)
+    pub fn find_group_id(groups: &[i32], mut value: i32) -> i32 {
+        let mut parent;
+        loop {
+            parent = groups[value as usize];
+            if value == parent {
+                break parent;
+            }
+            value = parent;
         }
     }
 
