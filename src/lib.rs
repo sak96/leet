@@ -21,4 +21,8 @@ pub mod spiral_mat;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
 pub mod uncrossed_lines;
+pub mod valid_number;
 pub mod vowel;
+
+#[cfg(test)]
+extern crate rstest;
