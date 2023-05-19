@@ -6,6 +6,7 @@ pub mod dota;
 pub mod find_min_rotate_2;
 pub mod find_path_exits;
 pub mod good_string_count;
+pub mod graph_bipartite;
 pub mod helpers;
 pub mod linked_list_twin_sum;
 pub mod longest_obstacle;
