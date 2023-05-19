@@ -4,6 +4,7 @@ pub mod bst_from_preorder;
 pub mod create_max_number;
 pub mod dota;
 pub mod find_min_rotate_2;
+pub mod find_path_exits;
 pub mod good_string_count;
 pub mod helpers;
 pub mod linked_list_twin_sum;
