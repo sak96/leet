@@ -2,3 +2,6 @@
 name = "leet"
 version = "0.1.0"
 rust-version = "1.58.1"
+
+[dev-dependencies]
+rstest = "0.12.0"
