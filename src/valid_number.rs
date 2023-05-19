@@ -1,8 +1,8 @@
 impl Solution {
-
     pub fn is_number(s: String) -> bool {
         let is_sign = |&x: &char| ['+', '-'].contains(&x);
         let is_exp = |&x: &char| ['e', 'E'].contains(&x);
+        let is_dot = |&x: &char| '.'.eq(&x);
         let mut chars = s.chars().peekable();
 
         // consume sign if present
@@ -15,7 +15,7 @@ impl Solution {
             chars.next();
         }
 
-        if chars.next_if(|x| x == &'.').is_some() {
+        if chars.next_if(is_dot).is_some() {
             // consume digits for decimal
             while matches!(chars.peek(), Some(x) if x.is_ascii_digit()) {
                 digits = true;
