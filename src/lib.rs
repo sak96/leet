@@ -12,6 +12,7 @@ pub mod linked_list_twin_sum;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
+pub mod merge_k_sorted_linked_list;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod regex_match;
