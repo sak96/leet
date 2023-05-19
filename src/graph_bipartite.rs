@@ -1,32 +1,33 @@
 impl Solution {
-    pub fn bipartite(
-        bipartite: &mut [Option<bool>],
-        graph: &mut [Vec<i32>],
-        idx: usize,
-        state: bool,
-    ) -> bool {
-        if let Some(b) = bipartite[idx] {
-            b == state
-        } else {
-            bipartite[idx] = Some(state);
-            while let Some(node) = graph[idx].pop() {
-                if !Self::bipartite(bipartite, graph, node as usize, !state) {
-                    return false;
-                }
+    #[inline]
+    pub fn find_group_id(groups: &[usize], mut value: usize) -> usize {
+        let mut parent;
+        loop {
+            parent = groups[value];
+            if value == parent {
+                break parent;
             }
-            true
+            value = parent;
         }
     }
 
-    pub fn is_bipartite(mut graph: Vec<Vec<i32>>) -> bool {
+    pub fn is_bipartite(graph: Vec<Vec<i32>>) -> bool {
         let len = graph.len();
-        let mut bipartite = vec![None; len].into_boxed_slice();
-        for idx in 0..len {
-            if bipartite[idx].is_some() {
-                continue;
-            }
-            if !Self::bipartite(&mut bipartite, &mut graph, idx, true) {
-                return false;
+        let mut groups: Vec<_> = (0..len).collect();
+        for (cur, dest_nodes) in graph.into_iter().enumerate() {
+            if let Some(dest_first) = dest_nodes.first() {
+                // join all destination to same group.
+                let parent_first = Self::find_group_id(&groups, *dest_first as usize);
+                let parent_cur = Self::find_group_id(&groups, cur);
+                for dest in dest_nodes {
+                    let dest_parent = Self::find_group_id(&groups, dest as usize);
+                    if dest_parent == parent_cur {
+                        // cur node and destination are in same group
+                        return false;
+                    }
+                    // Use the smallest one as parent
+                    groups[dest_parent] = parent_first;
+                }
             }
         }
 
