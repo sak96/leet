@@ -49,21 +49,16 @@ impl Solution {
             map.entry(b).or_insert_with(Vec::new).push((a, 1.0 / value));
             map.entry(a).or_insert_with(Vec::new).push((b, value));
         }
-
-        let map = map;
         let mut answer = Vec::with_capacity(queries.len());
         let mut seen = Vec::with_capacity(map.len());
         for mut query in queries {
             let a = query.pop().expect("queries[i].length == 2");
             let b = query.pop().expect("queries[i].length == 2");
-            let a = if let Some(pos) = node_ids.iter().position(|x| a.eq(x)) {
-                pos
-            } else {
-                answer.push(-1.0);
-                continue;
-            };
-            let b = if let Some(pos) = node_ids.iter().position(|x| b.eq(x)) {
-                pos
+            let (a, b) = if let (Some(a), Some(b)) = (
+                node_ids.iter().position(|x| a.eq(x)),
+                node_ids.iter().position(|x| b.eq(x)),
+            ) {
+                (a, b)
             } else {
                 answer.push(-1.0);
                 continue;
