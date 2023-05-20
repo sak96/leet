@@ -2,6 +2,7 @@ pub mod all_one;
 pub mod brainpower;
 pub mod bst_from_preorder;
 pub mod create_max_number;
+pub mod design_twitter;
 pub mod dota;
 pub mod evaluate_division;
 pub mod find_min_rotate_2;
