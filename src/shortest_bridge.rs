@@ -2,11 +2,6 @@ use std::collections::VecDeque;
 impl Solution {
     const NEIGHBOUR: [[isize; 2]; 4] = [[0, 1], [0, -1], [1, 0], [-1, 0]];
 
-    #[inline]
-    fn overflow_add_signed(u: usize, i: isize) -> Option<usize> {
-        (u != 0 || i >= 0).then(|| (u as isize + i) as usize)
-    }
-
     fn mark_island_as_2(
         grid: &mut [Vec<i32>],
         row: usize,
@@ -19,16 +14,11 @@ impl Solution {
         grid[row][col] = 2;
         let mut is_border = false;
         for n in Self::NEIGHBOUR {
-            let r = if let Some(r) = Self::overflow_add_signed(row, n[0]) {
-                r
-            } else {
+            if (row == 0 && n[0] < 0) || (col == 0 && n[1] < 0) {
                 continue;
-            };
-            let c = if let Some(c) = Self::overflow_add_signed(col, n[1]) {
-                c
-            } else {
-                continue;
-            };
+            }
+            let r = (row as isize + n[0]) as usize;
+            let c = (col as isize + n[1]) as usize;
             match grid.get(r).map(|x| x.get(c)).flatten() {
                 Some(&1) => Self::mark_island_as_2(grid, r, c, borders),
                 Some(&0) => is_border = true,
@@ -62,16 +52,11 @@ impl Solution {
             for _ in 0..len {
                 let (row, col) = borders.pop_front().expect("len = borders.len()");
                 for n in Self::NEIGHBOUR {
-                    let r = if let Some(r) = Self::overflow_add_signed(row, n[0]) {
-                        r
-                    } else {
+                    if (row == 0 && n[0] < 0) || (col == 0 && n[1] < 0) {
                         continue;
-                    };
-                    let c = if let Some(c) = Self::overflow_add_signed(col, n[1]) {
-                        c
-                    } else {
-                        continue;
-                    };
+                    }
+                    let r = (row as isize + n[0]) as usize;
+                    let c = (col as isize + n[1]) as usize;
                     match grid.get(r).map(|x| x.get(c)).flatten() {
                         Some(&1) => break 'outer step,
                         Some(&0) => {
