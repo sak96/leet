@@ -19,6 +19,7 @@ pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod regex_match;
 pub mod reverse_node_k_groups;
+pub mod shortest_bridge;
 pub mod spiral_mat;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
