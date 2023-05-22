@@ -23,6 +23,7 @@ pub mod shortest_bridge;
 pub mod spiral_mat;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
+pub mod top_k_frequent;
 pub mod uncrossed_lines;
 pub mod valid_number;
 pub mod vowel;
