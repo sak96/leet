@@ -6,13 +6,8 @@ impl Solution {
             *map.entry(n).or_insert(0) += 1;
         }
         let mut output: Vec<_> = map.into_iter().collect();
-        output.sort_unstable_by_key(|(_, c)| *c);
-        output
-            .iter()
-            .rev()
-            .map(|(n, _)| *n)
-            .take(k as usize)
-            .collect()
+        output.sort_unstable_by_key(|(_, c)| -*c);
+        output.iter().map(|(n, _)| *n).take(k as usize).collect()
     }
 }
 pub struct Solution;
