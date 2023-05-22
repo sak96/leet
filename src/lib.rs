@@ -11,6 +11,7 @@ pub mod good_string_count;
 pub mod graph_bipartite;
 pub mod helpers;
 pub mod linked_list_twin_sum;
+pub mod long_valid_parentheses;
 pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
