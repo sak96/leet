@@ -3,7 +3,6 @@ use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 struct KthLargest {
     nums: BinaryHeap<Reverse<i32>>,
-    k: usize,
 }
 
 impl KthLargest {
@@ -11,18 +10,19 @@ impl KthLargest {
         let k = k as usize;
         nums.sort_unstable_by(|a, b| b.cmp(a));
         nums.truncate(k);
+        if nums.len() < k {
+            nums.push(i32::MIN);
+        }
+        assert_eq!(nums.len(), k, "there will be at least k elements");
         Self {
             nums: nums.into_iter().map(Reverse).collect(),
-            k,
         }
     }
 
     fn add(&mut self, val: i32) -> i32 {
-        if Some(val) > self.nums.peek().as_ref().map(|x| x.0) || self.nums.len() != self.k {
+        if Some(val) > self.nums.peek().as_ref().map(|x| x.0) {
+            self.nums.pop();
             self.nums.push(Reverse(val));
-            if self.nums.len() > self.k {
-                self.nums.pop();
-            }
         }
         self.nums.peek().unwrap().0
     }
