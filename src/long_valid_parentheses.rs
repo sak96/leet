@@ -5,19 +5,13 @@ impl Solution {
         let mut stack = vec![];
         for c in s.chars() {
             if c == '(' {
-                if count != 0 {
-                    max = max.max(count);
-                    stack.push(count);
-                }
-                stack.push(0);
+                max = max.max(count);
+                stack.push(count);
                 count = 0;
             }
             if c == ')' {
-                if matches!(stack.pop(), Some(0)) {
-                    count += 2;
-                    if matches!(stack.last(), Some(x) if x != &0) {
-                        count += stack.pop().unwrap();
-                    }
+                if let Some(x) = stack.pop() {
+                    count += 2 + x;
                 } else {
                     max = max.max(count);
                     count = 0;
