@@ -23,6 +23,7 @@ pub mod regex_match;
 pub mod reverse_node_k_groups;
 pub mod shortest_bridge;
 pub mod spiral_mat;
+pub mod sudoko_solver;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
 pub mod top_k_frequent;
