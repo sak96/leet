@@ -29,6 +29,7 @@ pub mod swap_node_pairs;
 pub mod top_k_frequent;
 pub mod uncrossed_lines;
 pub mod valid_number;
+pub mod valid_sudoko;
 pub mod vowel;
 
 #[cfg(test)]
