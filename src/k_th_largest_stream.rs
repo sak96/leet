@@ -1,7 +1,9 @@
 #![allow(dead_code)]
+use std::cmp::Reverse;
+use std::collections::BinaryHeap;
 struct KthLargest {
-    nums: Vec<i32>,
-    last: usize,
+    nums: BinaryHeap<Reverse<i32>>,
+    k: usize,
 }
 
 impl KthLargest {
@@ -9,19 +11,22 @@ impl KthLargest {
         let k = k as usize;
         nums.sort_unstable_by(|a, b| b.cmp(a));
         nums.truncate(k);
-        Self { nums, last: k - 1 }
+        Self {
+            nums: nums.into_iter().map(Reverse).collect(),
+            k,
+        }
     }
 
     fn add(&mut self, val: i32) -> i32 {
-        if Some(&val) > self.nums.get(self.last) {
-            let idx = self.nums.partition_point(|&x| x > val);
-            self.nums.insert(idx, val);
-            self.nums.truncate(self.last + 1);
+        if Some(val) > self.nums.peek().as_ref().map(|x| x.0) || self.nums.len() != self.k {
+            self.nums.push(Reverse(val));
+            if self.nums.len() > self.k {
+                self.nums.pop();
+            }
         }
-        self.nums[self.last]
+        self.nums.peek().unwrap().0
     }
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -44,5 +49,15 @@ mod tests {
         assert_eq!(kth_largest.add(-4), -2);
         assert_eq!(kth_largest.add(0), 0);
         assert_eq!(kth_largest.add(4), 4);
+    }
+
+    #[test]
+    fn failed_one() {
+        let mut kth_largest = KthLargest::new(2, [0].to_vec());
+        assert_eq!(kth_largest.add(-1), -1);
+        assert_eq!(kth_largest.add(1), 0);
+        assert_eq!(kth_largest.add(-2), 0);
+        assert_eq!(kth_largest.add(-4), 0);
+        assert_eq!(kth_largest.add(3), 1);
     }
 }
