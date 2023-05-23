@@ -1,12 +1,11 @@
-#![allow(dead_code)]
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-struct KthLargest {
+pub struct KthLargest {
     nums: BinaryHeap<Reverse<i32>>,
 }
 
 impl KthLargest {
-    fn new(k: i32, mut nums: Vec<i32>) -> Self {
+    pub fn new(k: i32, mut nums: Vec<i32>) -> Self {
         let k = k as usize;
         nums.sort_unstable_by(|a, b| b.cmp(a));
         nums.truncate(k);
@@ -19,7 +18,7 @@ impl KthLargest {
         }
     }
 
-    fn add(&mut self, val: i32) -> i32 {
+    pub fn add(&mut self, val: i32) -> i32 {
         if Some(val) > self.nums.peek().as_ref().map(|x| x.0) {
             self.nums.pop();
             self.nums.push(Reverse(val));
