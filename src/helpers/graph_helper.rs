@@ -1,8 +1,29 @@
 /// Converts array of variable length array to vector of vector
 #[macro_export]
 macro_rules! graph_builder {
-    ( $( [ $( $x:expr ),* $(,)? ] ),* $(,)? ) => {
-        vec![ $(vec![$($x),*]),* ]
+    (
+        // outer array
+        $(
+            // inner array
+            [
+                $(
+                    // each element is expression (could have been literal)
+                    $x:expr
+                // ,* -> one or more comma separated repetition
+                ),*
+                // allow trailing comma
+                $(,)?
+            ]
+        // ,* -> one or more comma separated repetition
+        ),*
+        // allow trailing comma
+        $(,)?
+    ) => {
+        // outer array converted to vector of comma separated vector
+        vec![$(vec![
+            // inner array expression are put here comma separated
+            $($x),*
+        ]),*]
     };
 }
 #[cfg(test)]
