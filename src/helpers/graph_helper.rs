@@ -1,6 +1,7 @@
+/// Converts array of variable length array to vector of vector
 #[macro_export]
 macro_rules! graph_builder {
-    ( $( [ $( $x:expr ),* ] ),*) => {
+    ( $( [ $( $x:expr ),* $(,)? ] ),* $(,)? ) => {
         vec![ $(vec![$($x),*]),* ]
     };
 }
@@ -14,6 +15,14 @@ mod tests {
 
     #[test]
     fn multiple_graph() {
-        assert_eq!(vec![vec![()], vec![(),()]], graph_builder![[()], [(),()]]);
+        assert_eq!(vec![vec![()], vec![(), ()]], graph_builder![[()], [(), ()]]);
+    }
+
+    #[test]
+    fn multiple_graph_with_traling_comma() {
+        assert_eq!(
+            vec![vec![()], vec![(), ()]],
+            graph_builder![[(),], [(), (),],]
+        );
     }
 }
