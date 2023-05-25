@@ -20,6 +20,7 @@ pub mod max_sub_seq_score;
 pub mod merge_k_sorted_linked_list;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
+pub mod new_21_game;
 pub mod regex_match;
 pub mod reverse_node_k_groups;
 pub mod shortest_bridge;
