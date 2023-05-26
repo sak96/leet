@@ -3,33 +3,30 @@ impl Solution {
     pub fn stone_game_ii_(
         piles: &[i32],
         m: usize,
-        is_alice: bool,
-        memory: &mut HashMap<(usize, usize, bool), i32>,
+        memory: &mut HashMap<(usize, usize), i32>,
     ) -> i32 {
-        let key = (piles.len(), m, is_alice);
+        let sum: i32 = piles.iter().clone().sum();
+        let key = (piles.len(), m);
         let it = 1..=((2 * m).min(piles.len()));
         let value = if piles.is_empty() {
             0
         } else if memory.contains_key(&key) {
             return *memory.get(&key).expect("already checked");
-        } else if is_alice {
+        } else {
+            // pick move that maximizes final score
             it.map(|i| {
-                piles.iter().take(i).copied().sum::<i32>()
-                    + Self::stone_game_ii_(&piles[i..], i.max(m), !is_alice, memory)
+                // final score = current piles sum - opponents best move
+                sum - Self::stone_game_ii_(&piles[i..], i.max(m), memory)
             })
             .max()
             .unwrap()
-        } else {
-            it.map(|i| Self::stone_game_ii_(&piles[i..], i.max(m), !is_alice, memory))
-                .min()
-                .unwrap()
         };
         memory.insert(key, value);
         value
     }
 
     pub fn stone_game_ii(piles: Vec<i32>) -> i32 {
-        Self::stone_game_ii_(&piles, 1, true, &mut HashMap::new())
+        Self::stone_game_ii_(&piles, 1, &mut HashMap::new())
     }
 }
 
