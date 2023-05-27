@@ -1,21 +1,18 @@
 impl Solution {
     pub fn stone_game_iii(piles: Vec<i32>) -> String {
         let mut sum = 0;
-        let mut memory = std::collections::VecDeque::with_capacity(4);
-        memory.push_front(0);
-        memory.push_front(0);
-        memory.push_front(0);
+        let mut memory = std::collections::VecDeque::from(vec![0; 4]);
         for stone in piles.into_iter().rev() {
+            memory.pop_back();
             sum += stone;
             memory.push_front(memory.iter().map(|i| sum - i).max().unwrap());
-            memory.pop_back();
         }
         match (2 * memory.pop_front().unwrap_or(0)).cmp(&sum) {
             std::cmp::Ordering::Less => "Bob",
             std::cmp::Ordering::Equal => "Tie",
             std::cmp::Ordering::Greater => "Alice",
         }
-        .to_string()
+        .into()
     }
 }
 pub struct Solution;
