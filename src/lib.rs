@@ -31,6 +31,7 @@ pub mod stone_game_3;
 pub mod sudoko_solver;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
+pub mod three_sum_closest;
 pub mod top_k_frequent;
 pub mod uncrossed_lines;
 pub mod valid_number;
