@@ -1,13 +1,22 @@
 impl Solution {
     pub fn stone_game_iii(piles: Vec<i32>) -> String {
         let mut sum = 0;
-        let mut memory = std::collections::VecDeque::from(vec![0; 4]);
+        let mut last_3_tries = std::collections::VecDeque::from(vec![0; 4]);
         for stone in piles.into_iter().rev() {
-            memory.pop_back();
+            // drop 4th try
+            last_3_tries.pop_back();
             sum += stone;
-            memory.push_front(memory.iter().map(|i| sum - i).max().unwrap());
+            // maximize your score (sum - opponent_score)
+            last_3_tries.push_front(
+                last_3_tries
+                    .iter()
+                    .map(|opponent_score| sum - opponent_score)
+                    .max()
+                    .unwrap(),
+            );
         }
-        match (2 * memory.pop_front().unwrap_or(0)).cmp(&sum) {
+        // if Alice has more than half of total she wins
+        match (last_3_tries.pop_front().unwrap() * 2).cmp(&sum) {
             std::cmp::Ordering::Less => "Bob",
             std::cmp::Ordering::Equal => "Tie",
             std::cmp::Ordering::Greater => "Alice",
