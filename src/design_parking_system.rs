@@ -1,12 +1,23 @@
-pub struct ParkingSystem([i32; 3]);
+pub struct ParkingSystem {
+    big: i32,
+    medium: i32,
+    small: i32,
+}
 
 impl ParkingSystem {
     pub fn new(big: i32, medium: i32, small: i32) -> Self {
-        Self([big, medium, small])
+        Self { big, medium, small }
     }
 
     pub fn add_car(&mut self, car_type: i32) -> bool {
-        let space = &mut self.0[car_type as usize - 1];
+        let space = match car_type {
+            1 => &mut self.big,
+            2 => &mut self.medium,
+            3 => &mut self.small,
+            _ => {
+                return false;
+            }
+        };
         if *space > 0 {
             *space -= 1;
             true
