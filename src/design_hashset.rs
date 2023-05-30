@@ -1,26 +1,25 @@
-pub struct MyHashSet(Box<[bool]>);
+#[derive(Default)]
+pub struct MyHashSet(Vec<i32>);
 
 impl MyHashSet {
-    const MAX_LENGTH: usize = 1_000_001;
-
-    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        Self(vec![false; Self::MAX_LENGTH].into_boxed_slice())
+        Self::default()
     }
 
     pub fn add(&mut self, key: i32) {
-        debug_assert!((key as usize) < Self::MAX_LENGTH);
-        self.0[key as usize] = true;
+        if let Err(idx) = self.0.binary_search(&key) {
+            self.0.insert(idx, key);
+        }
     }
 
     pub fn remove(&mut self, key: i32) {
-        debug_assert!((key as usize) < Self::MAX_LENGTH);
-        self.0[key as usize] = false;
+        if let Ok(idx) = self.0.binary_search(&key) {
+            self.0.remove(idx);
+        }
     }
 
     pub fn contains(&self, key: i32) -> bool {
-        debug_assert!((key as usize) < Self::MAX_LENGTH);
-        self.0[key as usize]
+        self.0.binary_search(&key).is_ok()
     }
 }
 
