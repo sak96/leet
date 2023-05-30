@@ -26,6 +26,7 @@ pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod new_21_game;
 pub mod regex_match;
+pub mod remove_element;
 pub mod reverse_node_k_groups;
 pub mod shortest_bridge;
 pub mod spiral_mat;
