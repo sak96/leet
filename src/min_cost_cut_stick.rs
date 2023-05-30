@@ -1,36 +1,28 @@
-use std::collections::HashMap;
 impl Solution {
-    pub fn min_cost_(cut_marks: &[i32], memory: &mut HashMap<(i32, i32), i32>) -> i32 {
-        if cut_marks.len() <= 2 {
-            return 0;
-        }
-        // both value will be different : (len > 1) + all cuts are distinct
-        let key = (*cut_marks.first().unwrap(), *cut_marks.last().unwrap());
-        if let Some(value) = memory.get(&key) {
-            return *value;
-        }
-        let value = (1..(cut_marks.len() - 1))
-            .map(|cut_at| {
-                Self::min_cost_(&cut_marks[0..=cut_at], memory)
-                    + Self::min_cost_(&cut_marks[cut_at..], memory)
-            })
-            .min()
-            .unwrap_or(0)
-            + key.1
-            - key.0;
-        memory.insert(key, value);
-        value
-    }
-
     pub fn min_cost(n: i32, mut cuts: Vec<i32>) -> i32 {
+        cuts.push(n);
+        cuts.push(0);
         cuts.sort_unstable();
-        Self::min_cost_(
-            &std::iter::once(0)
-                .chain(cuts)
-                .chain(std::iter::once(n))
-                .collect::<Vec<_>>(),
-            &mut Default::default(),
-        )
+        let len = cuts.len();
+
+        // memory[x][y] => cost of cuts for stick 0..[x...y]..n
+        let mut memory = vec![vec![0; len]; len];
+
+        for peice in 2..len {
+            // join piece number of cuts together
+            for left in 0..len - peice {
+                let right = left + peice;
+                memory[left][right] = (left + 1..right)
+                    .map(|mid| {
+                        // cost of joining (left..mid + mid .. right) pieces (dp) + length of stick
+                        memory[left][mid] + memory[mid][right] + cuts[right] - cuts[left]
+                    })
+                    .min()
+                    .unwrap();
+            }
+        }
+        // [0..n]
+        memory[0][len - 1]
     }
 }
 pub struct Solution;
