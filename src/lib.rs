@@ -5,6 +5,7 @@ pub mod create_max_number;
 pub mod design_hashset;
 pub mod design_parking_system;
 pub mod design_twitter;
+pub mod divide_two_integer;
 pub mod dota;
 pub mod evaluate_division;
 pub mod find_index_first_occurrence_string;
