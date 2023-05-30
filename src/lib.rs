@@ -27,6 +27,7 @@ pub mod min_cost_cut_stick;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod new_21_game;
+pub mod next_permutation;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
@@ -43,7 +44,6 @@ pub mod uncrossed_lines;
 pub mod valid_number;
 pub mod valid_sudoko;
 pub mod vowel;
-pub mod next_permutation;
 
 #[cfg(test)]
 extern crate rstest;

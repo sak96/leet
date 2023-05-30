@@ -4,12 +4,12 @@ impl Solution {
             let i = nums.len() - 1 - i;
             let ith = nums[i - 1];
             nums[i..].sort_unstable();
-            // TODO: may be Use binary search
-            let p = nums[i..]
-                .iter()
-                .position(|x| x > &ith)
-                .expect("there should be some element")
-                + i;
+            let p = i + nums[i..]
+                .binary_search_by(|x| match x.cmp(&ith) {
+                    std::cmp::Ordering::Equal => std::cmp::Ordering::Less,
+                    x => x,
+                })
+                .unwrap_err();
             nums.swap(i - 1, p);
         } else {
             nums.sort_unstable();
