@@ -4,13 +4,13 @@ impl Solution {
             let i = nums.len() - 1 - i;
             let ith = nums[i - 1];
             nums[i..].sort_unstable();
+            // TODO: may be Use binary search
             let p = nums[i..]
                 .iter()
                 .position(|x| x > &ith)
                 .expect("there should be some element")
                 + i;
             nums.swap(i - 1, p);
-            nums[i..].sort_unstable();
         } else {
             nums.sort_unstable();
         }
@@ -27,6 +27,11 @@ mod tests {
     #[rstest]
     #[case(vec![1,2,3],vec![1,3,2])]
     #[case(vec![3,2,1],vec![1,2,3])]
+    #[case(vec![1,1,5],vec![1,5,1])]
+    #[case(vec![1,5,1],vec![5,1,1])]
+    #[case(vec![5,1,1],vec![1,1,5])]
+    #[case(vec![1,2,2],vec![2,1,2])]
+    #[case(vec![1,2,2],vec![2,1,2])]
     #[case(vec![1, 2, 3, 4],vec![1, 2, 4, 3])]
     #[case(vec![1, 2, 4, 3],vec![1, 3, 2, 4])]
     #[case(vec![1, 3, 2, 4],vec![1, 3, 4, 2])]
