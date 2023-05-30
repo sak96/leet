@@ -7,6 +7,7 @@ pub mod design_parking_system;
 pub mod design_twitter;
 pub mod dota;
 pub mod evaluate_division;
+pub mod find_index_first_occurrence_string;
 pub mod find_min_rotate_2;
 pub mod find_path_exits;
 pub mod generate_parentheses;
