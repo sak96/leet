@@ -43,6 +43,7 @@ pub mod uncrossed_lines;
 pub mod valid_number;
 pub mod valid_sudoko;
 pub mod vowel;
+pub mod next_permutation;
 
 #[cfg(test)]
 extern crate rstest;
