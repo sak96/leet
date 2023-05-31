@@ -1,13 +1,12 @@
 impl Solution {
     pub fn find_min(mut nums: Vec<i32>) -> i32 {
         let mut min = nums.pop().unwrap();
-        while let Some(other) = nums.pop() {
-            if other <= min {
-                min = other
-            } else {
-                break;
-            }
-        }
+        nums.binary_search_by(|x| {
+            let output = x.cmp(&min).reverse();
+            min = min.min(*x);
+            output
+        })
+        .unwrap_err();
         min
     }
 }
