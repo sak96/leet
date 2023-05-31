@@ -125,8 +125,9 @@ mod tests {
             .map(|eq| eq.iter().map(|s| s.to_string()).collect())
             .collect();
         let output = Solution::calc_equation(equations, values, queries);
+        assert_eq!(output.len(), expected.len(), "{output:?} != {expected:?}");
         for (pos, (l, r)) in output.iter().zip(expected.iter()).enumerate() {
-            assert_float_eq!(l, r, "{:?} != {:?} at pos {}", output, expected, pos)
+            assert_float_eq!(l, r, "{output:?} != {expected:?} at {pos}")
         }
     }
 }
