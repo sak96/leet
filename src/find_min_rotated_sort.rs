@@ -1,13 +1,8 @@
 impl Solution {
-    pub fn find_min(mut nums: Vec<i32>) -> i32 {
-        let mut min = nums.pop().unwrap();
-        nums.binary_search_by(|x| {
-            let output = min.cmp(x);
-            min = min.min(*x);
-            output
-        })
-        .unwrap_err();
-        min
+    pub fn find_min(nums: Vec<i32>) -> i32 {
+        let at = nums.partition_point(|x| x >= &nums[0]);
+        let (left, right) = nums.split_at(at);
+        *right.first().or_else(|| left.first()).unwrap()
     }
 }
 pub struct Solution;
