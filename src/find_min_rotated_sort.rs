@@ -2,7 +2,7 @@ impl Solution {
     pub fn find_min(mut nums: Vec<i32>) -> i32 {
         let mut min = nums.pop().unwrap();
         nums.binary_search_by(|x| {
-            let output = x.cmp(&min).reverse();
+            let output = min.cmp(x);
             min = min.min(*x);
             output
         })
