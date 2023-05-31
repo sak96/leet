@@ -4,7 +4,11 @@ impl Solution {
         nums.binary_search_by(|x| {
             let output = x.cmp(&min).reverse();
             min = min.min(*x);
-            output
+            if output == std::cmp::Ordering::Equal {
+                std::cmp::Ordering::Greater
+            } else {
+                output
+            }
         })
         .unwrap_err();
         min
