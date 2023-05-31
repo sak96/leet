@@ -1,30 +1,13 @@
 impl Solution {
     pub fn search(nums: Vec<i32>, target: i32) -> i32 {
-        let mut nums = nums.as_slice();
-        let mut pos = 0;
-        while !nums.is_empty() {
-            let mid_pos = nums.len() / 2;
-            let mid = nums[mid_pos];
-            // Note: it will either be or right or left or equal
-            let is_on_left = match target.cmp(&mid) {
-                std::cmp::Ordering::Equal => return (pos + mid_pos) as i32,
-                std::cmp::Ordering::Less => {
-                    // target < first and sorted on left => go to right (not left) else left
-                    !(Some(&target) < nums.first() && nums.first() <= Some(&mid))
-                }
-                std::cmp::Ordering::Greater => {
-                    // target > first and sorted on right => go to left else right
-                    Some(&target) > nums.last() && nums.last() >= Some(&mid)
-                }
-            };
-            if is_on_left {
-                nums = &nums[..mid_pos];
-            } else {
-                pos += mid_pos + 1;
-                nums = &nums[mid_pos + 1..];
-            }
+        let at = nums.partition_point(|x| x >= &nums[0]);
+        let (left, right) = nums.split_at(at);
+        if Some(&target) > right.last() {
+            left.binary_search(&target)
+        } else {
+            right.binary_search(&target).map(|x| x + at)
         }
-        -1
+        .map_or_else(|_| -1, |x| x as _)
     }
 }
 
