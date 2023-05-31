@@ -39,17 +39,15 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    use crate::assert_float_eq;
     use rstest::rstest;
+
     #[rstest]
     #[case::leet1(10, 1, 10, 1.0)]
     #[case::leet2(6, 1, 10, 0.6)]
     #[case::leet3(21, 17, 10, 0.73278)]
     #[case::leet3(5710, 5070, 8516, 0.13649)]
     fn case1(#[case] n: i32, #[case] k: i32, #[case] max_pts: i32, #[case] output: f64) {
-        assert_eq!(
-            (Solution::new21_game(n, k, max_pts) * 1e5).round() / 1e5,
-            output
-        );
+        assert_float_eq!(Solution::new21_game(n, k, max_pts), output);
     }
 }

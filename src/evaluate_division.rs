@@ -64,9 +64,7 @@ impl Solution {
                 continue;
             };
             seen.truncate(0);
-            let ans = Self::search(a, b, &map, &mut seen)
-                .map(|x| (1e5 * x).round() as f64 / 1e5)
-                .unwrap_or(-1.0);
+            let ans = Self::search(a, b, &map, &mut seen).unwrap_or(-1.0);
             answer.push(ans);
         }
         answer
@@ -78,6 +76,7 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::assert_float_eq;
     use rstest::rstest;
 
     #[rstest]
@@ -115,7 +114,7 @@ mod tests {
         #[case] equations: Vec<[&str; 2]>,
         #[case] values: Vec<f64>,
         #[case] queries: Vec<[&str; 2]>,
-        #[case] output: Vec<f64>,
+        #[case] expected: Vec<f64>,
     ) {
         let equations = equations
             .into_iter()
@@ -125,6 +124,9 @@ mod tests {
             .into_iter()
             .map(|eq| eq.iter().map(|s| s.to_string()).collect())
             .collect();
-        assert_eq!(Solution::calc_equation(equations, values, queries), output);
+        let output = Solution::calc_equation(equations, values, queries);
+        for (pos, (l, r)) in output.iter().zip(expected.iter()).enumerate() {
+            assert_float_eq!(l, r, "{:?} != {:?} at pos {}", output, expected, pos)
+        }
     }
 }
