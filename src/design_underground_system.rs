@@ -15,10 +15,7 @@ impl UndergroundSystem {
     }
 
     pub fn check_out(&mut self, id: i32, dest: String, t2: i32) {
-        let (src, t1) = self
-            .checked_in
-            .remove(&id)
-            .expect("all calls to the check_in and check_out methods are consistent");
+        let (src, t1) = self.checked_in.remove(&id).unwrap();
         let (sum, count) = &mut self.stats.entry((src, dest)).or_default();
         *sum += t2 - t1;
         *count += 1;
@@ -27,8 +24,7 @@ impl UndergroundSystem {
     pub fn get_average_time(&self, src: String, dest: String) -> f64 {
         self.stats
             .get(&(src, dest))
-            .as_ref()
-            .map(|&(sum, count)| *sum as f64 / *count as f64)
+            .map(|&(sum, count)| sum as f64 / count as f64)
             .unwrap()
     }
 }
@@ -47,6 +43,10 @@ mod tests {
         underground_system.check_out(45, "Waterloo".to_string(), 15);
         underground_system.check_out(27, "Waterloo".to_string(), 20);
         underground_system.check_out(32, "Cambridge".to_string(), 22);
+        assert_float_eq!(
+            underground_system.get_average_time("Paradise".to_string(), "Cambridge".to_string()),
+            14.00000
+        );
         assert_float_eq!(
             underground_system.get_average_time("Paradise".to_string(), "Cambridge".to_string()),
             14.00000
