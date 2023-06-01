@@ -5,7 +5,6 @@ impl Solution {
 }
 pub struct Solution;
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

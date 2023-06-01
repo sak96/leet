@@ -23,7 +23,7 @@ impl Twitter {
 
     /// Get Top 10 Tweets from user or his followee
     ///
-    /// - Get allow followees for user. (This includes user!)
+    /// - Get all followees for user. (This includes user!)
     /// - Iterate through stack
     /// - Filter tweets belonging to followees
     /// - Take 10 and put it as vector

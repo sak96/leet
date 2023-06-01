@@ -11,12 +11,12 @@ macro_rules! graph_builder {
                     $x:expr
                 // ,* -> one or more comma separated repetition
                 ),*
-                // allow trailing comma
+                // handle trailing comma
                 $(,)?
             ]
         // ,* -> one or more comma separated repetition
         ),*
-        // allow trailing comma
+        // handle trailing comma
         $(,)?
     ) => {
         // outer array converted to vector of comma separated vector
