@@ -33,6 +33,7 @@ pub mod next_permutation;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
+pub mod search_insert_pos;
 pub mod search_rotated_sort;
 pub mod shortest_bridge;
 pub mod shortest_path_binary_matrix;
