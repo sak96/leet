@@ -30,4 +30,11 @@ mod tests {
         let output = 0;
         assert_eq!(Solution::find_min(nums.into()), output)
     }
+
+    #[test]
+    fn case3() {
+        let nums = [3, 1, 3, 3];
+        let output = 1;
+        assert_eq!(Solution::find_min(nums.into()), output)
+    }
 }
