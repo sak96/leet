@@ -35,6 +35,7 @@ pub mod remove_element;
 pub mod reverse_node_k_groups;
 pub mod search_rotated_sort;
 pub mod shortest_bridge;
+pub mod shortest_path_binary_matrix;
 pub mod spiral_mat;
 pub mod stone_game_2;
 pub mod stone_game_3;
