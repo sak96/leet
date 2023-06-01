@@ -2,27 +2,26 @@ impl Solution {
     const EMPTY: char = '.';
 
     #[inline]
-    #[allow(clippy::needless_range_loop)]
-    pub fn is_valid(board: &[Vec<char>], row: usize, col: usize) -> bool {
-        let num = board[row][col];
-        //check col
-        for r in 0..9 {
-            if board[r][col] == num && r != row {
-                return false;
-            }
-        }
-        // check row
-        for c in 0..9 {
-            if board[row][c] == num && c != col {
+    pub fn is_valid(board: &[Vec<char>], x: usize, y: usize) -> bool {
+        let num = board[x][y];
+        // check col + row
+        for (r, row) in board.iter().enumerate() {
+            if r == x {
+                // check col if current row
+                for (c, cell) in row.iter().enumerate() {
+                    if cell == &num && c != y {
+                        return false;
+                    }
+                }
+            } else if row[y] == num {
+                // if other row
                 return false;
             }
         }
         // check square
-        let r = (row / 3) * 3;
-        for r in r..(r + 3) {
-            let c = (col / 3) * 3;
-            for c in c..(c + 3) {
-                if board[r][c] == num && c != col && r != row {
+        for (r, row) in board.iter().enumerate().skip((x / 3) * 3).take(3) {
+            for (c, cell) in row.iter().enumerate().skip((y / 3) * 3).take(3) {
+                if cell == &num && c != y && r != x {
                     return false;
                 }
             }
