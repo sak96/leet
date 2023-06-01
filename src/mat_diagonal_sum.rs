@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 impl Solution {
     pub fn diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
         let mut sum = 0;

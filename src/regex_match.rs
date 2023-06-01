@@ -5,7 +5,7 @@ pub struct RegexNode {
 }
 
 impl Solution {
-    pub fn matches(string: &[u8],pattern: &[RegexNode]) -> bool {
+    pub fn matches(string: &[u8], pattern: &[RegexNode]) -> bool {
         // get state
         let (state, rest_pat) = if let Some((first, pat)) = pattern.split_first() {
             (first, pat)

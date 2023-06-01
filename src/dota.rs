@@ -1,5 +1,4 @@
 impl Solution {
-    #![allow(dead_code)]
     pub fn predict_party_victory(mut senate: String) -> String {
         let bytes = unsafe { senate.as_mut_vec() };
         let mut cur_voters = 0;
@@ -38,7 +37,7 @@ impl Solution {
     }
 }
 
-struct Solution;
+pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;

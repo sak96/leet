@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 use std::{
     collections::{BTreeMap, HashMap, HashSet},
     rc::Rc,
@@ -9,17 +8,17 @@ type Word = Rc<String>;
 const NULL: Addr = 0;
 
 #[derive(Default, Debug)]
-struct AllOne {
+pub struct AllOne {
     list: BTreeMap<Addr, HashSet<Word>>,
     word_map: HashMap<Word, Addr>,
 }
 
 impl AllOne {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Default::default()
     }
 
-    fn inc(&mut self, key: String) {
+    pub fn inc(&mut self, key: String) {
         let (word, new_addr) = if let Some(cur_addr) = self.word_map.remove(&key) {
             let new_addr = cur_addr + 1;
             let cur_node = self
@@ -43,7 +42,7 @@ impl AllOne {
         self.word_map.insert(word, new_addr);
     }
 
-    fn dec(&mut self, key: String) {
+    pub fn dec(&mut self, key: String) {
         let cur_addr = self.word_map.remove(&key).expect("dec only occurs on key");
         let cur_node = self
             .list
@@ -64,7 +63,7 @@ impl AllOne {
         }
     }
 
-    fn get_max_key(&mut self) -> String {
+    pub fn get_max_key(&mut self) -> String {
         self.list
             .iter()
             .rev()
@@ -78,7 +77,7 @@ impl AllOne {
             .unwrap_or_default()
     }
 
-    fn get_min_key(&mut self) -> String {
+    pub fn get_min_key(&mut self) -> String {
         self.list
             .iter()
             .next()

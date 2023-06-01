@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 use std::collections::VecDeque;
 impl Solution {
     pub fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {

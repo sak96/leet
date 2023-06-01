@@ -3,9 +3,7 @@ impl Solution {
         matches!(c, b'a' | b'e' | b'i' | b'o' | b'u')
     }
 
-    #[allow(dead_code)]
     pub fn max_vowels(mut s: String, k: i32) -> i32 {
-        // dbg!(&s, &k);
         let k = k as usize;
         let s = unsafe { s.as_mut_vec() };
 
@@ -27,8 +25,8 @@ impl Solution {
         std::cmp::max(max_vowels, cur_vowels)
     }
 }
+pub struct Solution;
 
-struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
