@@ -9,6 +9,7 @@ pub mod design_underground_system;
 pub mod divide_two_integer;
 pub mod dota;
 pub mod evaluate_division;
+pub mod find_first_last_pos_ele_sort;
 pub mod find_index_first_occurrence_string;
 pub mod find_min_rotate_2;
 pub mod find_min_rotated_sort;
