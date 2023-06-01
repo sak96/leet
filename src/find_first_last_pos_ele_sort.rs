@@ -6,19 +6,19 @@ impl Solution {
                 std::cmp::Ordering::Equal => std::cmp::Ordering::Greater,
                 x => x,
             })
-            .unwrap_err() as i32;
+            .unwrap_err();
+        if nums.get(first) != Some(&target) {
+            return vec![-1, -1];
+        }
         // imagine target + 0.5 -> for equal case it gives less than
         let second = nums
             .binary_search_by(|probe| match probe.cmp(&target) {
                 std::cmp::Ordering::Equal => std::cmp::Ordering::Less,
                 x => x,
             })
-            .unwrap_err() as i32;
-        if first < second {
-            vec![first, second - 1]
-        } else {
-            vec![-1, -1]
-        }
+            .unwrap_err()
+            - 1;
+        vec![first as _, second as _]
     }
 }
 pub struct Solution;
