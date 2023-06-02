@@ -6,6 +6,7 @@ pub mod design_hashset;
 pub mod design_parking_system;
 pub mod design_twitter;
 pub mod design_underground_system;
+pub mod detonate_max_bombs;
 pub mod divide_two_integer;
 pub mod dota;
 pub mod evaluate_division;
