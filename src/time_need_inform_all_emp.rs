@@ -1,27 +1,22 @@
-use std::cmp::Reverse;
 impl Solution {
     pub fn num_of_minutes(_n: i32, head_id: i32, manager: Vec<i32>, inform_time: Vec<i32>) -> i32 {
-        let mut heap = std::collections::BinaryHeap::new();
+        let mut queue = vec![(0, head_id)];
         let mut manager_map = std::collections::HashMap::new();
         for (emp_id, mgr_id) in manager.into_iter().enumerate() {
-            if mgr_id == -1 {
-                continue;
+            if mgr_id != -1 {
+                manager_map
+                    .entry(mgr_id)
+                    .or_insert_with(Vec::new)
+                    .push(emp_id as i32);
             }
-            manager_map
-                .entry(mgr_id)
-                .or_insert_with(Vec::new)
-                .push(emp_id as i32);
         }
-        heap.push(Reverse((0, head_id)));
         let mut max = 0;
-        while let Some(Reverse((mut time, cur_id))) = heap.pop() {
-            if let Some(emp) = manager_map.remove(&cur_id) {
-                time += inform_time[cur_id as usize];
+        while let Some((mut time, parent_id)) = queue.pop() {
+            if let Some(emp) = manager_map.remove(&parent_id) {
+                time += inform_time[parent_id as usize];
                 max = max.max(time);
                 for emp_id in emp {
-                    if manager_map.contains_key(&emp_id) {
-                        heap.push(Reverse((time, emp_id)));
-                    }
+                    queue.push((time, emp_id));
                 }
             }
         }
