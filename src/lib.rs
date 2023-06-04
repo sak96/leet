@@ -32,6 +32,7 @@ pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod new_21_game;
 pub mod next_permutation;
+pub mod no_of_provinces;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
