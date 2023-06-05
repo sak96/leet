@@ -1,3 +1,4 @@
+use convert_case::{Case, Casing};
 use std::{
     error::Error,
     fs::{remove_file, OpenOptions},
@@ -13,7 +14,8 @@ fn update_lib(slug_snake: &str) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn write_file(slug_snake: &str, code_snippet: String) -> Result<(), Box<dyn Error>> {
+pub fn write_file(title_slug: &str, code_snippet: String) -> Result<(), Box<dyn Error>> {
+    let slug_snake = title_slug.to_case(Case::Snake);
     let path = PathBuf::from(format!(
         "{}/../src/{slug_snake}.rs",
         env!("CARGO_MANIFEST_DIR")
@@ -22,8 +24,11 @@ pub fn write_file(slug_snake: &str, code_snippet: String) -> Result<(), Box<dyn 
         .write(true)
         .create_new(true)
         .open(path.clone())?;
+    file.write_all(
+        format!("//! Solution for https://leetcode.com/problems/{title_slug}\n").as_bytes(),
+    )?;
     file.write_all(code_snippet.as_bytes())?;
-    let output = update_lib(slug_snake);
+    let output = update_lib(&slug_snake);
     if output.is_err() {
         // clean up
         remove_file(path)?;
