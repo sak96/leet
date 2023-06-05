@@ -5,7 +5,7 @@ Solution to leetcode daily challenges in rust.
 
 ## Usage.
 
-To pull challenge code snippets:
+To pull challenge code snippets (if slug is emit daily challenge is generated):
 ```bash
 cargo generate $slug
 ```
