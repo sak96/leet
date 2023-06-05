@@ -1,6 +1,7 @@
 pub mod all_one;
 pub mod brainpower;
 pub mod bst_from_preorder;
+pub mod check_is_straight_line;
 pub mod create_max_number;
 pub mod design_hashset;
 pub mod design_parking_system;
