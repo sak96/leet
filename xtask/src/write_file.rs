@@ -14,7 +14,7 @@ fn update_lib(slug_snake: &str) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn write_file(title_slug: &str, code_snippet: String) -> Result<(), Box<dyn Error>> {
+pub fn write_file(title_slug: &str, mut code_snippet: String) -> Result<(), Box<dyn Error>> {
     let slug_snake = title_slug.to_case(Case::Snake);
     let path = PathBuf::from(format!(
         "{}/../src/{slug_snake}.rs",
@@ -24,6 +24,9 @@ pub fn write_file(title_slug: &str, code_snippet: String) -> Result<(), Box<dyn 
         .write(true)
         .create_new(true)
         .open(path.clone())?;
+    if code_snippet.starts_with("impl Solution {") {
+        code_snippet.push_str("\npub struct Solution;\n")
+    }
     file.write_all(
         format!("//! Solution for https://leetcode.com/problems/{title_slug}\n").as_bytes(),
     )?;
