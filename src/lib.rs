@@ -1,3 +1,6 @@
+#[cfg(test)]
+extern crate rstest;
+
 pub mod all_one;
 pub mod brainpower;
 pub mod bst_from_preorder;
@@ -54,6 +57,3 @@ pub mod uncrossed_lines;
 pub mod valid_number;
 pub mod valid_sudoko;
 pub mod vowel;
-
-#[cfg(test)]
-extern crate rstest;
