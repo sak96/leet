@@ -1,7 +1,24 @@
+use std::collections::HashMap;
+
 impl Solution {
+    pub fn num_of_minutes_(
+        head_id: i32,
+        manager_map: &mut HashMap<i32, Vec<i32>>,
+        inform_time: &[i32],
+    ) -> i32 {
+        if let Some(emps) = manager_map.remove(&head_id) {
+            let time = inform_time[head_id as usize];
+            time + emps
+                .into_iter()
+                .map(|head_id| Self::num_of_minutes_(head_id, manager_map, inform_time))
+                .max()
+                .unwrap_or(0)
+        } else {
+            0
+        }
+    }
     pub fn num_of_minutes(_n: i32, head_id: i32, manager: Vec<i32>, inform_time: Vec<i32>) -> i32 {
-        let mut queue = vec![(0, head_id)];
-        let mut manager_map = std::collections::HashMap::new();
+        let mut manager_map = HashMap::new();
         for (emp_id, mgr_id) in manager.into_iter().enumerate() {
             if mgr_id != -1 {
                 manager_map
@@ -10,17 +27,7 @@ impl Solution {
                     .push(emp_id as i32);
             }
         }
-        let mut max = 0;
-        while let Some((mut time, parent_id)) = queue.pop() {
-            if let Some(emp) = manager_map.remove(&parent_id) {
-                time += inform_time[parent_id as usize];
-                max = max.max(time);
-                for emp_id in emp {
-                    queue.push((time, emp_id));
-                }
-            }
-        }
-        max
+        Self::num_of_minutes_(head_id, &mut manager_map, &inform_time)
     }
 }
 
