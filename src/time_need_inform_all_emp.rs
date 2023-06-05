@@ -1,33 +1,28 @@
-use std::collections::HashMap;
-
 impl Solution {
     pub fn num_of_minutes_(
-        head_id: i32,
-        manager_map: &mut HashMap<i32, Vec<i32>>,
+        emp_id: usize,
+        manager: &[i32],
         inform_time: &[i32],
+        memory: &mut [Option<i32>],
     ) -> i32 {
-        if let Some(emps) = manager_map.remove(&head_id) {
-            let time = inform_time[head_id as usize];
-            time + emps
-                .into_iter()
-                .map(|head_id| Self::num_of_minutes_(head_id, manager_map, inform_time))
-                .max()
-                .unwrap_or(0)
+        if let Some(time) = memory[emp_id] {
+            time
         } else {
-            0
+            let mgr_id = manager[emp_id] as usize;
+            let time =
+                inform_time[mgr_id] + Self::num_of_minutes_(mgr_id, manager, inform_time, memory);
+            memory[emp_id] = Some(time);
+            time
         }
     }
-    pub fn num_of_minutes(_n: i32, head_id: i32, manager: Vec<i32>, inform_time: Vec<i32>) -> i32 {
-        let mut manager_map = HashMap::new();
-        for (emp_id, mgr_id) in manager.into_iter().enumerate() {
-            if mgr_id != -1 {
-                manager_map
-                    .entry(mgr_id)
-                    .or_insert_with(Vec::new)
-                    .push(emp_id as i32);
-            }
-        }
-        Self::num_of_minutes_(head_id, &mut manager_map, &inform_time)
+    pub fn num_of_minutes(n: i32, head_id: i32, manager: Vec<i32>, inform_time: Vec<i32>) -> i32 {
+        let mut memory = vec![None; n as usize];
+        memory[head_id as usize] = Some(0);
+        (0..memory.len())
+            .into_iter()
+            .map(|emp_id| Self::num_of_minutes_(emp_id, &manager, &inform_time, &mut memory))
+            .max()
+            .expect("1 <= n")
     }
 }
 
