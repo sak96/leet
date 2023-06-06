@@ -6,6 +6,7 @@ pub mod brainpower;
 pub mod bst_from_preorder;
 pub mod can_make_arithmetic_progression_from_sequence;
 pub mod check_is_straight_line;
+pub mod count_and_say;
 pub mod create_max_number;
 pub mod design_hashset;
 pub mod design_parking_system;
