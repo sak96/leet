@@ -36,6 +36,7 @@ pub mod merge_k_sorted_linked_list;
 pub mod min_cost_cut_stick;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
+pub mod minimum_bit_flips_to_convert_number;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod new_21_game;
 pub mod next_permutation;
