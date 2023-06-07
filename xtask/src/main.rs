@@ -13,7 +13,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     } else {
         args.nth(1).unwrap()
     };
-    let code_snippet = code_snippet::get_code_snippet(&title_slug);
+    let code_snippet = code_snippet::generate_code_snippet(&title_slug);
     write_file::write_file(&title_slug, code_snippet)?;
     Ok(())
 }
