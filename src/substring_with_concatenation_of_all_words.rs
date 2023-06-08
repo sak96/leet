@@ -9,18 +9,17 @@ impl Solution {
             *word_map.entry(word.as_str()).or_default() += 1;
         }
         let mut indices = vec![];
-        let substring_len = word_count * word_len;
         let mut seen_words = std::collections::VecDeque::with_capacity(word_count);
         for offset in 0..word_len {
             if let Some(w) = seen_words.pop_front() {
                 *word_map.get_mut(w).unwrap() += 1;
             }
             let mut windows =
-                (offset..(s.len().saturating_sub(substring_len - 1))).step_by(word_len);
+                (offset..(s.len().saturating_sub(word_count * word_len - 1))).step_by(word_len);
             while let Some(index) = windows.next() {
-                let sub_string = &s[index..index + substring_len];
+                let sub_string = &s[index..];
                 let mut start = seen_words.len() * word_len;
-                while start < substring_len {
+                while seen_words.len() < word_count {
                     let word = &sub_string[start..start + word_len];
                     let count = if let Some(count) = word_map.get_mut(word) {
                         count
@@ -44,11 +43,11 @@ impl Solution {
                         break;
                     }
                 }
+                if seen_words.len() == word_count {
+                    indices.push(index as i32);
+                }
                 if let Some(w) = seen_words.pop_front() {
                     *word_map.get_mut(w).unwrap() += 1;
-                }
-                if start == substring_len {
-                    indices.push(index as i32);
                 }
             }
         }
