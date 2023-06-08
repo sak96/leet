@@ -17,10 +17,9 @@ impl Solution {
             let mut windows =
                 (offset..(s.len().saturating_sub(word_count * word_len - 1))).step_by(word_len);
             while let Some(index) = windows.next() {
-                let sub_string = &s[index..];
-                let mut start = seen_words.len() * word_len;
+                let mut head = index + seen_words.len() * word_len;
                 while seen_words.len() < word_count {
-                    let word = &sub_string[start..start + word_len];
+                    let word = &s[head..head + word_len];
                     let count = if let Some(count) = word_map.get_mut(word) {
                         count
                     } else {
@@ -29,7 +28,7 @@ impl Solution {
                     if *count > 0 {
                         seen_words.push_back(word);
                         *count -= 1;
-                        start += word_len;
+                        head += word_len;
                     } else {
                         // when you see more than you should!!
                         while let Some(w) = seen_words.pop_front() {
