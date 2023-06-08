@@ -52,6 +52,7 @@ pub mod shortest_path_binary_matrix;
 pub mod spiral_mat;
 pub mod stone_game_2;
 pub mod stone_game_3;
+pub mod substring_with_concatenation_of_all_words;
 pub mod sudoko_solver;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
