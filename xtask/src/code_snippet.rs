@@ -40,7 +40,7 @@ fn get_code_snippet_question(title_slug: &str) -> String {
 fn get_test_cases(_title_slug: &str, is_design: bool) -> String {
     let tests = if is_design {
         r#"
-            use rstest;
+            use rstest::rstest;
         "#
         .to_string()
     } else {
