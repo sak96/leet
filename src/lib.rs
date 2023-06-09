@@ -46,6 +46,7 @@ pub mod no_of_provinces;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
+pub mod same_tree;
 pub mod search_insert_pos;
 pub mod search_rotated_sort;
 pub mod shortest_bridge;
