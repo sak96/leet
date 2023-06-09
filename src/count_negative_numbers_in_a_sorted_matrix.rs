@@ -2,10 +2,11 @@
 impl Solution {
     pub fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
         let mut count = 0;
+        let mut index = 0;
         for row in grid.into_iter().rev() {
-            let diff = row.len() - row.as_slice().partition_point(|&x| x >= 0);
-            if diff > 0 {
-                count += diff;
+            index = index + row[index..].partition_point(|&x| x >= 0);
+            if row.len() - index > 0 {
+                count += row.len() - index;
             } else {
                 break;
             }
