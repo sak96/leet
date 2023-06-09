@@ -1,15 +1,16 @@
 //! Solution for https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix
 impl Solution {
-    pub fn count_negatives(mut grid: Vec<Vec<i32>>) -> i32 {
+    pub fn count_negatives(grid: Vec<Vec<i32>>) -> i32 {
         let mut count = 0;
-        while let Some(mut row) = grid.pop() {
-            while let Some(cell) = row.pop() {
-                if cell < 0 {
-                    count += 1;
-                }
+        for row in grid.into_iter().rev() {
+            let diff = row.len() - row.as_slice().partition_point(|&x| x >= 0);
+            if diff > 0 {
+                count += diff;
+            } else {
+                break;
             }
         }
-        count
+        count as _
     }
 }
 pub struct Solution;
