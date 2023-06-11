@@ -1,23 +1,25 @@
 //! Solution for https://leetcode.com/problems/snapshot-array
-use std::collections::HashMap;
-
-#[derive(Default)]
 pub struct SnapshotArray {
-    map: HashMap<i32, Vec<(i32, i32)>>,
+    /// Vec of Vec (snap_id, val)
+    map: Vec<Vec<(i32, i32)>>,
     snap_id: i32,
 }
 
 impl SnapshotArray {
-    pub fn new(_length: i32) -> Self {
-        Self::default()
+    pub fn new(length: i32) -> Self {
+        Self {
+            map: vec![vec![]; length as usize],
+            snap_id: 0,
+        }
     }
 
     pub fn set(&mut self, index: i32, val: i32) {
-        let vec = self.map.entry(index).or_default();
-        if matches!(vec.last(), Some((snap_id, _)) if self.snap_id.eq(snap_id)) {
-            vec.pop();
+        let vec = &mut self.map[index as usize];
+        if vec.last().map(|&(snap_id, _)| snap_id) == Some(self.snap_id) {
+            vec.last_mut().unwrap().1 = val
+        } else {
+            vec.push((self.snap_id, val));
         }
-        vec.push((self.snap_id, val));
     }
 
     pub fn snap(&mut self) -> i32 {
@@ -28,14 +30,11 @@ impl SnapshotArray {
 
     pub fn get(&self, index: i32, snap_id: i32) -> i32 {
         debug_assert!(snap_id < self.snap_id);
-        if let Some(vec) = self.map.get(&index) {
-            match vec.binary_search_by_key(&snap_id, |&(x, _)| x) {
-                Ok(i) => vec.get(i).unwrap().1,
-                Err(0) => 0,
-                Err(i) => vec.get(i - 1).unwrap().1,
-            }
-        } else {
-            0
+        let vec = &self.map[index as usize];
+        match vec.binary_search_by_key(&snap_id, |&(x, _)| x) {
+            Ok(i) => vec.get(i).unwrap().1,
+            Err(0) => 0,
+            Err(i) => vec.get(i - 1).unwrap().1,
         }
     }
 }
