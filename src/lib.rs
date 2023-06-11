@@ -52,6 +52,7 @@ pub mod search_insert_pos;
 pub mod search_rotated_sort;
 pub mod shortest_bridge;
 pub mod shortest_path_binary_matrix;
+pub mod snapshot_array;
 pub mod spiral_mat;
 pub mod stone_game_2;
 pub mod stone_game_3;
