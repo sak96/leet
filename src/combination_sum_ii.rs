@@ -1,18 +1,9 @@
 //! Solution for https://leetcode.com/problems/combination-sum-ii
-use std::collections::HashMap;
 impl Solution {
-    pub fn combination_sum2_(
-        candidates: &[i32],
-        start: usize,
-        target: i32,
-        memory: &mut HashMap<(usize, i32), Vec<Vec<i32>>>,
-    ) -> Vec<Vec<i32>> {
+    pub fn combination_sum2_(candidates: &[i32], target: i32) -> Vec<Vec<i32>> {
         let mut output = vec![];
-        let key = (start, target);
         if candidates.is_empty() || candidates[0] > target {
             return output;
-        } else if let Some(vec) = memory.get(&key) {
-            return vec.clone();
         } else if target == candidates[0] {
             output.push(vec![target]);
         } else {
@@ -21,7 +12,6 @@ impl Solution {
                 .iter()
                 .position(|x| (candidate).lt(x))
                 .unwrap_or(candidates.len());
-            let start = start + next_pos;
             let candidates = &candidates[next_pos..];
             for i in 0..=next_pos {
                 let target = target - i as i32 * candidate;
@@ -33,9 +23,9 @@ impl Solution {
                     break;
                 }
                 let including = match candidates.binary_search(&target) {
-                    Ok(i) => Self::combination_sum2_(&candidates[..=i], start, target, memory),
+                    Ok(i) => Self::combination_sum2_(&candidates[..=i], target),
                     Err(0) => vec![],
-                    Err(i) => Self::combination_sum2_(&candidates[..i], start, target, memory),
+                    Err(i) => Self::combination_sum2_(&candidates[..i], target),
                 };
                 for mut vec in including {
                     vec.extend(include.iter().cloned());
@@ -43,12 +33,11 @@ impl Solution {
                 }
             }
         }
-        memory.insert(key, output.clone());
         output
     }
     pub fn combination_sum2(mut candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         candidates.sort_unstable();
-        Self::combination_sum2_(&candidates, 0, target, &mut HashMap::new())
+        Self::combination_sum2_(&candidates, target)
     }
 }
 pub struct Solution;
