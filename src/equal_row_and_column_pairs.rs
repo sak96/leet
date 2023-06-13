@@ -1,5 +1,4 @@
 //! Solution for https://leetcode.com/problems/equal-row-and-column-pairs
-
 use std::collections::HashMap;
 
 impl Solution {
@@ -15,10 +14,7 @@ impl Solution {
         }
         let mut result = 0;
         for row in grid {
-            for cell in row {
-                vec.push(cell);
-            }
-            result += map.get(&vec).unwrap_or(&0);
+            result += map.get(&row).unwrap_or(&0);
             vec.clear();
         }
         result
