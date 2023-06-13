@@ -18,6 +18,7 @@ pub mod design_underground_system;
 pub mod detonate_max_bombs;
 pub mod divide_two_integer;
 pub mod dota;
+pub mod equal_row_and_column_pairs;
 pub mod evaluate_division;
 pub mod find_first_last_pos_ele_sort;
 pub mod find_index_first_occurrence_string;
