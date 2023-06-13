@@ -1,42 +1,27 @@
 //! Solution for https://leetcode.com/problems/equal-row-and-column-pairs
 
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
-#[derive(Default)]
-struct Trie(BTreeMap<i32, Trie>);
 impl Solution {
     pub fn equal_pairs(grid: Vec<Vec<i32>>) -> i32 {
-        let mut trie = Trie::default();
-        for row in &grid {
-            let mut set = &mut trie;
-            for &c in row {
-                let entry = set.0.entry(c).or_default();
-                set = entry;
-            }
-            if let Some(&key) = set.0.keys().next() {
-                let value = set.0.remove(&key).unwrap();
-                set.0.insert(key + 1, value);
-            } else {
-                set.0.insert(1, Trie::default());
-            }
-        }
-
-        let mut count = 0;
-        let trie = trie;
-        let n = grid.len();
-        'outer: for col in 0..n {
-            let mut set = &trie;
+        let mut map = HashMap::new();
+        let mut vec = Vec::with_capacity(grid.len());
+        for col in 0..grid.len() {
             for row in &grid {
-                if let Some(value) = set.0.get(&row[col]) {
-                    set = value
-                } else {
-                    continue 'outer;
-                }
+                vec.push(row[col]);
             }
-            count += set.0.keys().next().unwrap();
+            *map.entry(vec.clone()).or_default() += 1;
+            vec.clear();
         }
-
-        count
+        let mut result = 0;
+        for row in grid {
+            for cell in row {
+                vec.push(cell);
+            }
+            result += map.get(&vec).unwrap_or(&0);
+            vec.clear();
+        }
+        result
     }
 }
 pub struct Solution;
