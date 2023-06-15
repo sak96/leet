@@ -41,6 +41,7 @@ pub mod max_sub_seq_score;
 pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_value_at_a_given_index_in_a_bounded_array;
 pub mod merge_k_sorted_linked_list;
+pub mod merge_strings_alternately;
 pub mod min_cost_cut_stick;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
