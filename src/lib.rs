@@ -38,6 +38,7 @@ pub mod longest_obstacle;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
 pub mod max_sub_seq_score;
+pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_value_at_a_given_index_in_a_bounded_array;
 pub mod merge_k_sorted_linked_list;
 pub mod min_cost_cut_stick;
