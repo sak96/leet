@@ -24,7 +24,6 @@ impl Solution {
                     }
                 }
             }
-            dbg!(value, level);
             if value > max_value {
                 max_value = value;
                 max_level = level;
