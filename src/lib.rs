@@ -52,6 +52,7 @@ pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod new_21_game;
 pub mod next_permutation;
 pub mod no_of_provinces;
+pub mod number_of_ways_to_reorder_array_to_get_same_bst;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
