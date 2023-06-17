@@ -35,6 +35,7 @@ pub mod k_th_largest_stream;
 pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
 pub mod longest_obstacle;
+pub mod make_array_strictly_increasing;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
 pub mod max_sub_seq_score;
