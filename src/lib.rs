@@ -26,6 +26,7 @@ pub mod find_min_rotate_2;
 pub mod find_min_rotated_sort;
 pub mod find_path_exits;
 pub mod find_smallest_letter_greater_than_target;
+pub mod find_the_highest_altitude;
 pub mod first_missing_positive;
 pub mod generate_parentheses;
 pub mod good_string_count;
