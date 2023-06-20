@@ -32,6 +32,7 @@ pub mod generate_parentheses;
 pub mod good_string_count;
 pub mod graph_bipartite;
 pub mod helpers;
+pub mod k_radius_subarray_averages;
 pub mod k_th_largest_stream;
 pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
