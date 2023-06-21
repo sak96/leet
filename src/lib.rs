@@ -50,6 +50,7 @@ pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
 pub mod minimum_absolute_difference_in_bst;
 pub mod minimum_bit_flips_to_convert_number;
+pub mod minimum_cost_to_make_array_equal;
 pub mod minimum_distance_between_bst_nodes;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod new_21_game;
