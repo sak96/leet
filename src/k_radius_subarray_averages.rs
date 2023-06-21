@@ -31,10 +31,10 @@ mod tests {
     #[case::leet1([7,4,3,9,1,8,5,2,6],3,[-1,-1,-1,5,4,4,-1,-1,-1])]
     #[case::leet2([100000],0,[100000])]
     #[case::leet3([8],100000,[-1])]
-    #[case::leet3(vec![100000;100000],40000,{
-        let mut vec = vec![-1;3999];
-        vec.extend(vec![100000;100000 - 3999 - 3999]);
-        vec.extend(vec![-1;3999]);
+    #[case::leet3(vec![100000;100000],4000,{
+        let mut vec = vec![-1;4000];
+        vec.extend(vec![100000;100000 - 2 * 4000]);
+        vec.extend(vec![-1;4000]);
         vec
     })]
     fn test(#[case] nums: impl AsRef<[i32]>, #[case] k: i32, #[case] output: impl AsRef<[i32]>) {
