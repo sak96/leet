@@ -1,15 +1,16 @@
 //! Solution for https://leetcode.com/problems/longest-arithmetic-subsequence
 impl Solution {
     pub fn longest_arith_seq_length(nums: Vec<i32>) -> i32 {
-        let mut map = std::collections::HashMap::new();
+        let mut map = vec![vec![1; 1001]; nums.len()];
+        let mut max = 0;
         for i in 1..nums.len() {
             for j in 0..i {
-                let diff = nums[i] - nums[j];
-                let value = *map.get(&(j, diff)).unwrap_or(&1);
-                map.insert((i, diff), value + 1);
+                let diff = (nums[i] - nums[j] + 500) as usize;
+                map[i][diff] = map[j][diff] + 1;
+                max = max.max(map[i][diff]);
             }
         }
-        map.into_values().max().unwrap()
+        max
     }
 }
 pub struct Solution;
