@@ -2,15 +2,14 @@
 impl Solution {
     pub fn longest_arith_seq_length(nums: Vec<i32>) -> i32 {
         let max = *nums.iter().max().unwrap();
-        let min = *nums.iter().min().unwrap();
-        let diff = max - min;
-        let mut memory = vec![0; diff as usize + 1];
+        let diff = max - *nums.iter().min().unwrap();
+        let mut memory = vec![0; max as usize + 1];
         (-diff..=diff)
             .map(|diff| {
                 memory.iter_mut().for_each(|x| *x = 0);
                 for i in &nums {
-                    memory[(i - min) as usize] =
-                        memory[(i - min) as usize].max(memory.get((i - min - diff) as usize).unwrap_or(&0) + 1);
+                    memory[*i as usize] =
+                        memory[*i as usize].max(memory.get((i - diff) as usize).unwrap_or(&0) + 1);
                 }
                 *memory.iter().max().unwrap()
             })
