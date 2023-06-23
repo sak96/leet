@@ -65,6 +65,7 @@ pub mod number_of_ways_to_reorder_array_to_get_same_bst;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_node_k_groups;
+pub mod reverse_vowels_of_a_string;
 pub mod same_tree;
 pub mod search_insert_pos;
 pub mod search_rotated_sort;
