@@ -31,12 +31,11 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
     use rstest::rstest;
 
     #[rstest]
-    #[case::leet1(graph_builder![[1,1,0],[1,1,0],[0,0,1]], 2)]
-    #[case::leet2(graph_builder![[1,0,0],[0,1,0],[0,0,1]], 3)]
+    #[case::leet1(vec![vec![1,1,0],vec![1,1,0],vec![0,0,1]], 2)]
+    #[case::leet2(vec![vec![1,0,0],vec![0,1,0],vec![0,0,1]], 3)]
     pub fn test(#[case] is_connected: Vec<Vec<i32>>, #[case] expected: i32) {
         assert_eq!(Solution::find_circle_num(is_connected), expected);
     }

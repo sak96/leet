@@ -45,21 +45,20 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
 
     use rstest::rstest;
     #[rstest]
-    #[case::leet1(vec![10,1,2,7,6,1,5],8,graph_builder![
-        [1,1,6],
-        [1,2,5],
-        [1,7],
-        [2,6]
+    #[case::leet1(vec![10,1,2,7,6,1,5],8,vec![
+        vec![1,1,6],
+        vec![1,2,5],
+        vec![1,7],
+        vec![2,6]
     ])]
-    #[case::leet2(vec![2,5,2,1,2],5,graph_builder![
-        [1,2,2],
-        [5]
+    #[case::leet2(vec![2,5,2,1,2],5,vec![
+        vec![1,2,2],
+        vec![5]
     ])]
-    #[case::leet3(vec![4,4,2,1,4,2,2,1,3],6,graph_builder![[1,1,2,2],[1,1,4],[1,2,3],[2,2,2],[2,4]])]
+    #[case::leet3(vec![4,4,2,1,4,2,2,1,3],6,vec![vec![1,1,2,2],vec![1,1,4],vec![1,2,3],vec![2,2,2],vec![2,4]])]
     fn test(#[case] candidates: Vec<i32>, #[case] target: i32, #[case] expected: Vec<Vec<i32>>) {
         let mut output = Solution::combination_sum2(candidates, target);
         for el in &mut output {

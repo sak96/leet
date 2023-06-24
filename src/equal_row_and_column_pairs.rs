@@ -25,13 +25,12 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
 
     use rstest::rstest;
 
     #[rstest]
-    #[case::leet1(graph_builder![[3,2,1],[1,7,6],[2,7,7]],1)]
-    #[case::leet2(graph_builder![[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]],3)]
+    #[case::leet1(vec![vec![3,2,1],vec![1,7,6],vec![2,7,7]],1)]
+    #[case::leet2(vec![vec![3,1,2,2],vec![1,4,4,5],vec![2,4,2,2],vec![2,4,2,2]],3)]
     fn test(#[case] grid: Vec<Vec<i32>>, #[case] output: i32) {
         assert_eq!(Solution::equal_pairs(grid), output);
     }

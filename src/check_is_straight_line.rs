@@ -23,13 +23,12 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
     use rstest::rstest;
 
     #[rstest]
-    #[case::leet1(graph_builder![[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]], true)]
-    #[case::leet2(graph_builder![[1,1],[2,2],[3,4],[4,5],[5,6],[7,7]], false)]
-    #[case::leet3(graph_builder![[1,2],[2,3],[3,5]], false)]
+    #[case::leet1(vec![vec![1,2],vec![2,3],vec![3,4],vec![4,5],vec![5,6],vec![6,7]], true)]
+    #[case::leet2(vec![vec![1,1],vec![2,2],vec![3,4],vec![4,5],vec![5,6],vec![7,7]], false)]
+    #[case::leet3(vec![vec![1,2],vec![2,3],vec![3,5]], false)]
     fn test(#[case] coordinates: Vec<Vec<i32>>, #[case] straight: bool) {
         assert_eq!(Solution::check_straight_line(coordinates), straight);
     }

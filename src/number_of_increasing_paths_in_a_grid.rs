@@ -42,12 +42,11 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
     use rstest::rstest;
 
     #[rstest]
-    #[case(graph_builder![[1,1],[3,4]],8)]
-    #[case(graph_builder![[1],[2]],3)]
+    #[case(vec![vec![1,1],vec![3,4]],8)]
+    #[case(vec![vec![1],vec![2]],3)]
     fn case(#[case] grid: Vec<Vec<i32>>, #[case] output: i32) {
         assert_eq!(Solution::count_paths(grid), output);
     }

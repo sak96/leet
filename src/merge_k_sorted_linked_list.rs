@@ -34,11 +34,10 @@ use crate::helpers::list_nodes::ListNode;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
 
     #[test]
     fn case1() {
-        let lists: Vec<Vec<i32>> = graph_builder![[1, 4, 5], [1, 3, 4], [2, 6]];
+        let lists: Vec<Vec<i32>> = vec![vec![1, 4, 5], vec![1, 3, 4], vec![2, 6]];
         let output = [1, 1, 2, 3, 4, 4, 5, 6];
         let output = ListNode::create_list(output.into());
         let lists = lists
@@ -50,7 +49,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let lists: Vec<Vec<i32>> = graph_builder![];
+        let lists: Vec<Vec<i32>> = vec![];
         let output = [];
         let output = ListNode::create_list(output.into());
         let lists = lists
@@ -62,7 +61,7 @@ mod tests {
 
     #[test]
     fn case3() {
-        let lists: Vec<Vec<i32>> = graph_builder![[]];
+        let lists: Vec<Vec<i32>> = vec![vec![]];
         let output = [];
         let output = ListNode::create_list(output.into());
         let lists = lists

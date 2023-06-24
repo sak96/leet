@@ -76,13 +76,12 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
     use rstest::rstest;
 
     #[rstest]
-    #[case(graph_builder![[0,1],[1,0]],1)]
-    #[case(graph_builder![[0,1,0],[0,0,0],[0,0,1]],2)]
-    #[case(graph_builder![[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]],1)]
+    #[case(vec![vec![0,1],vec![1,0]],1)]
+    #[case(vec![vec![0,1,0],vec![0,0,0],vec![0,0,1]],2)]
+    #[case(vec![vec![1,1,1,1,1],vec![1,0,0,0,1],vec![1,0,1,0,1],vec![1,0,0,0,1],vec![1,1,1,1,1]],1)]
     fn case(#[case] grid: Vec<Vec<i32>>, #[case] output: i32) {
         assert_eq!(Solution::shortest_bridge(grid), output);
     }

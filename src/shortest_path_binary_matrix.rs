@@ -50,17 +50,16 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
     use rstest::rstest;
 
     #[rstest]
-    #[case::leet1(graph_builder![[0,1],[1,0]], 2)]
-    #[case::leet2(graph_builder![[0,0,0],[1,1,0],[1,1,0]], 4)]
-    #[case::leet_neg1(graph_builder![[1,0,0],[1,1,0],[1,1,0]], -1)]
-    #[case::my_neg1(graph_builder![[1,1],[1,0]], -1)]
-    #[case::my_neg2(graph_builder![[0,1],[1,1]], -1)]
-    #[case::my_neg3(graph_builder![[1,1],[1,1]], -1)]
-    #[case::my_neg3(graph_builder![[0]], 1)]
+    #[case::leet1(vec![vec![0,1],vec![1,0]], 2)]
+    #[case::leet2(vec![vec![0,0,0],vec![1,1,0],vec![1,1,0]], 4)]
+    #[case::leet_neg1(vec![vec![1,0,0],vec![1,1,0],vec![1,1,0]], -1)]
+    #[case::my_neg1(vec![vec![1,1],vec![1,0]], -1)]
+    #[case::my_neg2(vec![vec![0,1],vec![1,1]], -1)]
+    #[case::my_neg3(vec![vec![1,1],vec![1,1]], -1)]
+    #[case::my_neg3(vec![vec![0]], 1)]
     fn test(#[case] grid: Vec<Vec<i32>>, #[case] output: i32) {
         assert_eq!(Solution::shortest_path_binary_matrix(grid), output);
     }

@@ -37,17 +37,16 @@ pub struct Solution;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::graph_builder;
 
     #[test]
     fn case1() {
-        let graph = graph_builder![[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]];
+        let graph = vec![vec![1, 2, 3], vec![0, 2], vec![0, 1, 3], vec![0, 2]];
         assert_eq!(Solution::is_bipartite(graph), false);
     }
 
     #[test]
     fn case2() {
-        let graph = graph_builder![[1, 3], [0, 2], [1, 3], [0, 2]];
+        let graph = vec![vec![1, 3], vec![0, 2], vec![1, 3], vec![0, 2]];
         assert_eq!(Solution::is_bipartite(graph), true);
     }
 }
