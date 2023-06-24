@@ -3,8 +3,8 @@ name = "leet"
 version = "0.1.0"
 rust-version = "1.58.1"
 
+[dependencies]
+cargo-leet = { path = "../cargo-leet", default-features=false, featuers=["leet_env"]}
+
 [dev-dependencies]
 rstest = "0.12.0"
-
-[workspace]
-members = ["xtask"]
