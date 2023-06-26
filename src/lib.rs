@@ -8,6 +8,7 @@ pub mod best_time_to_buy_and_sell_stock_with_transaction_fee;
 pub mod brainpower;
 pub mod bst_from_preorder;
 pub mod can_make_arithmetic_progression_from_sequence;
+pub mod can_place_flowers;
 pub mod check_is_straight_line;
 pub mod combination_sum;
 pub mod combination_sum_ii;
