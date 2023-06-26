@@ -86,6 +86,7 @@ pub mod tallest_billboard;
 pub mod three_sum_closest;
 pub mod time_need_inform_all_emp;
 pub mod top_k_frequent;
+pub mod total_cost_to_hire_k_workers;
 pub mod uncrossed_lines;
 pub mod valid_number;
 pub mod valid_sudoko;
