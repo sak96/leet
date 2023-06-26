@@ -2,7 +2,7 @@
 //! 2462. Total Cost to Hire K Workers
 
 impl Solution {
-    pub fn total_cost(costs: Vec<i32>, mut k: i32, candidates: i32) -> i64 {
+    pub fn total_cost(costs: Vec<i32>, k: i32, candidates: i32) -> i64 {
         let mut total_cost = 0i64;
         let mut costs = std::collections::VecDeque::from(costs);
         let mut heap = std::collections::BinaryHeap::with_capacity(candidates as usize * 2);
@@ -14,10 +14,9 @@ impl Solution {
                 heap.push((-cost, false));
             }
         }
-        while k > 0 {
+        for _ in 0..k {
             let (cost, first_session) = heap.pop().unwrap();
             total_cost -= cost as i64;
-            k -= 1;
             let next_candidate = if first_session {
                 costs.pop_front()
             } else {
