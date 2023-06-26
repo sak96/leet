@@ -40,6 +40,7 @@ pub mod greatest_common_divisor_of_strings;
 pub mod helpers;
 pub mod k_radius_subarray_averages;
 pub mod k_th_largest_stream;
+pub mod kids_with_the_greatest_number_of_candies;
 pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
 pub mod longest_arithmetic_subsequence;
