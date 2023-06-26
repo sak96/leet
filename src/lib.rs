@@ -11,6 +11,7 @@ pub mod can_make_arithmetic_progression_from_sequence;
 pub mod check_is_straight_line;
 pub mod combination_sum;
 pub mod combination_sum_ii;
+pub mod count_all_possible_routes;
 pub mod count_and_say;
 pub mod count_negative_numbers_in_a_sorted_matrix;
 pub mod create_max_number;
