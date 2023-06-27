@@ -3,7 +3,11 @@
 
 impl Solution {
     pub fn find_poisoned_duration(time_series: Vec<i32>, duration: i32) -> i32 {
-        time_series.windows(2).map(|x| (x[1] - x[0]).min(duration)).sum::<i32>() + duration
+        time_series
+            .windows(2)
+            .map(|x| (x[1] - x[0]).min(duration))
+            .sum::<i32>()
+            + duration
     }
 }
 
