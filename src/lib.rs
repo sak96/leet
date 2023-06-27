@@ -27,6 +27,7 @@ pub mod equal_row_and_column_pairs;
 pub mod evaluate_division;
 pub mod find_first_last_pos_ele_sort;
 pub mod find_index_first_occurrence_string;
+pub mod find_k_pairs_with_smallest_sums;
 pub mod find_min_rotate_2;
 pub mod find_min_rotated_sort;
 pub mod find_path_exits;
