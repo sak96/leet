@@ -6,6 +6,7 @@ struct Number(f64);
 
 impl Eq for Number {}
 
+#[allow(clippy::derive_ord_xor_partial_ord)]
 impl Ord for Number {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.partial_cmp(other).unwrap()
