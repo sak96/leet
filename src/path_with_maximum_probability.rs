@@ -20,8 +20,14 @@ impl Solution {
         start: i32,
         end: i32,
     ) -> f64 {
+        let n = n as usize;
         let mut new_paths = std::collections::BinaryHeap::new();
-        let mut prob_map = vec![0.0; n as usize];
+        let mut prob_map = vec![0.0; n];
+        let mut adj_prob = vec![vec![]; n];
+        for (path, path_prob) in edges.iter().zip(succ_prob) {
+            adj_prob[path[0] as usize].push((path[1] as usize, path_prob));
+            adj_prob[path[1] as usize].push((path[0] as usize, path_prob));
+        }
         new_paths.push((Number(1.0), start as usize));
         prob_map[start as usize] = 1.0;
         while let Some((Number(p), node)) = new_paths.pop() {
@@ -30,17 +36,10 @@ impl Solution {
                 return prob;
             }
             if prob > p {
-                continue;
+                continue; // already seen
             }
-            for (dest, path_prob) in edges.iter().zip(&succ_prob).filter_map(|(e, p)| {
-                if e[0] as usize == node {
-                    Some((e[1] as usize, p))
-                } else if e[1] as usize == node {
-                    Some((e[0] as usize, p))
-                } else {
-                    None
-                }
-            }) {
+            for (dest, path_prob) in &adj_prob[node] {
+                let dest = *dest;
                 if prob_map[dest] < prob * path_prob {
                     prob_map[dest] = prob * path_prob;
                     new_paths.push((Number(prob * path_prob), dest as usize));
