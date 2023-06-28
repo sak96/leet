@@ -23,28 +23,23 @@ impl Solution {
     ) -> f64 {
         let n = n as usize;
         let mut new_paths = std::collections::BinaryHeap::new();
-        let mut prob_map = vec![0.0; n];
+        let mut visited = vec![false; n];
         let mut adj_prob = vec![vec![]; n];
         for (path, path_prob) in edges.iter().zip(succ_prob) {
             adj_prob[path[0] as usize].push((path[1] as usize, path_prob));
             adj_prob[path[1] as usize].push((path[0] as usize, path_prob));
         }
         new_paths.push((Number(1.0), start as usize));
-        prob_map[start as usize] = 1.0;
-        while let Some((Number(p), node)) = new_paths.pop() {
-            let prob = prob_map[node];
+        while let Some((Number(prob), node)) = new_paths.pop() {
             if node == end as usize {
                 return prob;
             }
-            if prob > p {
+            if visited[node] {
                 continue; // already seen
             }
+            visited[node] = true;
             for (dest, path_prob) in &adj_prob[node] {
-                let dest = *dest;
-                if prob_map[dest] < prob * path_prob {
-                    prob_map[dest] = prob * path_prob;
-                    new_paths.push((Number(prob * path_prob), dest as usize));
-                }
+                new_paths.push((Number(prob * path_prob), *dest as usize));
             }
         }
         0.0
