@@ -7,7 +7,7 @@ impl Solution {
                 if a != b {
                     match (i1, i2) {
                         (None, None) => i1 = Some((a, b)),
-                        (Some(_), None) => i2 = Some((a, b)),
+                        (Some((a1, b1)), None) if a1 == b && b1 == a => i2 = Some((a, b)),
                         _ => return false,
                     }
                 } else {
@@ -15,7 +15,7 @@ impl Solution {
                 }
             }
             return match (i1, i2) {
-                (Some((a1, b1)), Some((a2, b2))) => a1 == b2 && b1 == a2,
+                (Some(_), Some(_)) => true,
                 (None, None) => seen.iter().any(|x| x >= &2),
                 _ => false,
             };
