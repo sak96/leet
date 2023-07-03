@@ -2,7 +2,7 @@
 //! 864. Shortest Path to Get All Keys
 
 impl Solution {
-    const NEIGHBOUR: &'static [[isize; 2]] = &[[0, 1], [0, -1], [1, 0], [-1, 0]];
+    const NEIGHBOUR: &'static [[usize; 2]] = &[[0, 1], [0, usize::MAX], [1, 0], [usize::MAX, 0]];
     pub fn shortest_path_all_keys(grid: Vec<String>) -> i32 {
         let grid: Vec<_> = grid.into_iter().map(|s| s.into_bytes()).collect();
         let mut keys = 0u32;
@@ -29,11 +29,8 @@ impl Solution {
             for _ in 0..queue.len() {
                 let (row, col, keys) = queue.pop_back().unwrap();
                 for [r, c] in Self::NEIGHBOUR {
-                    if (row == 0 && r.is_negative()) || (col == 0 && c.is_negative()) {
-                        continue;
-                    }
-                    let r = (row as isize + r) as usize;
-                    let c = (col as isize + c) as usize;
+                    let r = row.wrapping_add(*r);
+                    let c = col.wrapping_add(*c);
                     if let Some(value) = grid.get(r).map(|x| x.get(c)).flatten() {
                         let keys = match value {
                             b'#' => {
