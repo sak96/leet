@@ -1,18 +1,15 @@
 //! Solution for https://leetcode.com/problems/number-of-increasing-paths-in-a-grid
 impl Solution {
     const MOD: i32 = 1e9 as i32 + 7;
-    const NEIGHBOUR: &'static [[isize; 2]] = &[[0, 1], [0, -1], [1, 0], [-1, 0]];
+    const NEIGHBOUR: &'static [[usize; 2]] = &[[0, 1], [0, usize::MAX], [1, 0], [usize::MAX, 0]];
     pub fn count_paths_for_cell(row: usize, col: usize, grid: &[Vec<i32>], dp: &mut Vec<Vec<i32>>) {
         if dp[row][col] > 0 {
             return;
         }
         let mut count = 1;
         for [r, c] in Self::NEIGHBOUR {
-            if (row == 0 && r.is_negative()) || (col == 0 && c.is_negative()) {
-                continue;
-            }
-            let r = (row as isize + r) as usize;
-            let c = (col as isize + c) as usize;
+            let r = row.wrapping_add(*r);
+            let c = col.wrapping_add(*c);
             if let Some(value) = grid.get(r).map(|x| x.get(c)).flatten() {
                 if value > &grid[row][col] {
                     Self::count_paths_for_cell(r, c, grid, dp);

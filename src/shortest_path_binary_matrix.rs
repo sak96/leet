@@ -1,11 +1,11 @@
 impl Solution {
-    const NEIGHBOUR: [[isize; 2]; 8] = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
+    const NEIGHBOUR: &'static [[usize; 2]] = &[
+        [usize::MAX, usize::MAX],
+        [usize::MAX, 0],
+        [usize::MAX, 1],
+        [0, usize::MAX],
         [0, 1],
-        [1, -1],
+        [1, usize::MAX],
         [1, 0],
         [1, 1],
     ];
@@ -20,17 +20,14 @@ impl Solution {
 
         let mut step = 1;
         let mut borders = std::collections::VecDeque::new();
-        borders.push_front((0, 0));
+        borders.push_front((0usize, 0usize));
         while !borders.is_empty() {
             let len = borders.len();
             for _ in 0..len {
                 let (row, col) = borders.pop_front().expect("len = borders.len()");
                 for n in Self::NEIGHBOUR {
-                    if (row == 0 && n[0] < 0) || (col == 0 && n[1] < 0) {
-                        continue;
-                    }
-                    let r = (row as isize + n[0]) as usize;
-                    let c = (col as isize + n[1]) as usize;
+                    let r = row.wrapping_add(n[0]);
+                    let c = col.wrapping_add(n[1]);
                     if r == last && c == last {
                         return step + 1;
                     }

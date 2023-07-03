@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 impl Solution {
-    const NEIGHBOUR: [[isize; 2]; 4] = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+    const NEIGHBOUR: &'static [[usize; 2]; 4] = &[[0, 1], [0, usize::MAX], [1, 0], [usize::MAX, 0]];
 
     fn mark_island_as_2(
         grid: &mut [Vec<i32>],
@@ -14,11 +14,8 @@ impl Solution {
         grid[row][col] = 2;
         let mut is_border = false;
         for n in Self::NEIGHBOUR {
-            if (row == 0 && n[0] < 0) || (col == 0 && n[1] < 0) {
-                continue;
-            }
-            let r = (row as isize + n[0]) as usize;
-            let c = (col as isize + n[1]) as usize;
+            let r = row.wrapping_add(n[0]);
+            let c = col.wrapping_add(n[1]);
             match grid.get(r).map(|x| x.get(c)).flatten() {
                 Some(&1) => Self::mark_island_as_2(grid, r, c, borders),
                 Some(&0) => is_border = true,
@@ -52,11 +49,8 @@ impl Solution {
             for _ in 0..len {
                 let (row, col) = borders.pop_front().expect("len = borders.len()");
                 for n in Self::NEIGHBOUR {
-                    if (row == 0 && n[0] < 0) || (col == 0 && n[1] < 0) {
-                        continue;
-                    }
-                    let r = (row as isize + n[0]) as usize;
-                    let c = (col as isize + n[1]) as usize;
+                    let r = row.wrapping_add(n[0]);
+                    let c = col.wrapping_add(n[1]);
                     match grid.get(r).map(|x| x.get(c)).flatten() {
                         Some(&1) => break 'outer step,
                         Some(&0) => {
