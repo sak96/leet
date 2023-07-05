@@ -49,6 +49,7 @@ pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
 pub mod longest_arithmetic_subsequence;
 pub mod longest_obstacle;
+pub mod longest_subarray_of_1_s_after_deleting_one_element;
 pub mod make_array_strictly_increasing;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
