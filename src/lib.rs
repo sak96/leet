@@ -67,6 +67,7 @@ pub mod minimum_bit_flips_to_convert_number;
 pub mod minimum_cost_to_make_array_equal;
 pub mod minimum_distance_between_bst_nodes;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
+pub mod minimum_size_subarray_sum;
 pub mod new_21_game;
 pub mod next_permutation;
 pub mod no_of_provinces;
