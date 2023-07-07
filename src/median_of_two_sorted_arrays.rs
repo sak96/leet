@@ -2,20 +2,24 @@
 //! 4. Median of Two Sorted Arrays
 
 impl Solution {
-    pub fn get_kth_element(nums1: &[i32], nums2: &[i32], k: usize) -> i32 {
-        if nums1.len() > nums2.len() {
-            Self::get_kth_element(nums2, nums1, k)
-        } else if nums1.is_empty() {
-            nums2[k - 1]
-        } else if k == 1 {
-            nums1[0].min(nums2[0])
-        } else {
-            let idx1 = nums1.len().min(k / 2) - 1;
-            let idx2 = nums2.len().min(k / 2) - 1;
-            if nums1[idx1] <= nums2[idx2] {
-                Self::get_kth_element(&nums1[idx1 + 1..], nums2, k - idx1 - 1)
+    pub fn get_kth_element<'a>(mut nums1: &'a [i32], mut nums2: &'a [i32], mut k: usize) -> i32 {
+        loop {
+            if nums1.len() > nums2.len() {
+                std::mem::swap(&mut nums1, &mut nums2);
+            } else if nums1.is_empty() {
+                break nums2[k - 1];
+            } else if k == 1 {
+                break nums1[0].min(nums2[0]);
             } else {
-                Self::get_kth_element(&nums2[idx2 + 1..], nums1, k - idx2 - 1)
+                let idx1 = nums1.len().min(k / 2) - 1;
+                let idx2 = nums2.len().min(k / 2) - 1;
+                if nums1[idx1] <= nums2[idx2] {
+                    nums1 = &nums1[idx1 + 1..];
+                    k -= idx1 + 1;
+                } else {
+                    nums2 = &nums2[idx2 + 1..];
+                    k -= idx2 + 1;
+                }
             }
         }
     }
