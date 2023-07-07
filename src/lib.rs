@@ -59,6 +59,7 @@ pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_number_of_achievable_transfer_requests;
 pub mod maximum_subarray;
 pub mod maximum_value_at_a_given_index_in_a_bounded_array;
+pub mod median_of_two_sorted_arrays;
 pub mod merge_k_sorted_linked_list;
 pub mod merge_strings_alternately;
 pub mod min_cost_cut_stick;
