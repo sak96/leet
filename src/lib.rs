@@ -54,6 +54,7 @@ pub mod make_array_strictly_increasing;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
 pub mod max_sub_seq_score;
+pub mod maximize_the_confusion_of_an_exam;
 pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_number_of_achievable_transfer_requests;
 pub mod maximum_subarray;
