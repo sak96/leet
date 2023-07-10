@@ -95,6 +95,7 @@ pub mod spiral_mat;
 pub mod stone_game_2;
 pub mod stone_game_3;
 pub mod substring_with_concatenation_of_all_words;
+pub mod substring_with_largest_variance;
 pub mod sudoko_solver;
 pub mod summary_ranges;
 pub mod swap_list_node;
