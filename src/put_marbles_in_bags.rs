@@ -11,7 +11,11 @@ impl Solution {
         }
         weights.sort_unstable();
         let mut answer = 0i64;
-        for (min, max) in weights.iter().zip(weights.iter().rev()).take(k as usize - 1) {
+        for (min, max) in weights
+            .iter()
+            .zip(weights.iter().rev())
+            .take(k as usize - 1)
+        {
             answer += (max - min) as i64
         }
         answer
