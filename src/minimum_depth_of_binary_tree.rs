@@ -67,7 +67,6 @@ mod tests {
     #[case(TreeRoot::from("[3,9,20,null,null,15,7]").into(), 2)]
     #[case(TreeRoot::from("[2,null,3,null,4,null,5,null,6]").into(), 5)]
     fn case(#[case] root: Option<Rc<RefCell<TreeNode>>>, #[case] expected: i32) {
-        dbg!(&root);
         let actual = Solution::min_depth(root);
         assert_eq!(actual, expected);
     }
