@@ -1,0 +1,38 @@
+{
+  "configurations": {
+    "launch": {
+      "adapter": "CodeLLDB",
+      "variables": {
+        "rustc_commit": {
+          "shell": [
+            "bash",
+            "-c",
+            "rustc -Vv | grep -Poi 'commit-hash: \\K(.*)'"
+          ]
+        },
+        "rust_std": {
+          "shell": [ "rustc", "--print", "sysroot" ]
+        },
+        "test_exe": {
+          "shell": [
+            "bash",
+            "-c",
+            "cargo test --no-run --message-format=json -q | grep -Poi 'executable\":\"\\K([^\"]*)(?=\")'"
+          ]
+        }
+      },
+      "configuration": {
+        "sourceMap#json": "{\"/rustc/${rustc_commit}/\" : \"${rust_std}/lib/rustlib/src/rust/\"}",
+        "request": "launch",
+        "program": "${test_exe}"
+      },
+      "args": [ "*${args}" ],
+      "breakpoints": {
+        "exception": {
+          "cpp_throw": "",
+          "cpp_catch": ""
+        }
+      }
+    }
+  }
+}
