@@ -84,7 +84,21 @@ mod tests {
         #[case] k: i32,
         #[case] mut expected: Vec<i32>,
     ) {
-        let target = Some(Rc::new(RefCell::new(TreeNode::new(target))));
+        let mut queue = std::collections::VecDeque::new();
+        queue.push_front(root.clone());
+        let target = loop {
+            let node = queue.pop_back().unwrap().unwrap();
+            let node_brw = node.borrow();
+            if node_brw.val == target {
+                break Some(node.clone());
+            }
+            if node_brw.left.is_some() {
+                queue.push_front(node_brw.left.clone());
+            }
+            if node_brw.right.is_some() {
+                queue.push_front(node_brw.right.clone());
+            }
+        };
         let mut output = Solution::distance_k(root, target, k);
         output.sort_unstable();
         expected.sort_unstable();
