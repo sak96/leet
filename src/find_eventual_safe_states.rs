@@ -16,15 +16,11 @@ impl Solution {
             is_safe[i] = Some(false);
             false
         } else {
-            let mut safe = true;
             is_visted[i] = true;
-            for &i in &graph[i] {
-                if !Self::is_safe(i as usize, graph, is_safe, is_visted) {
-                    // by definition safe node all path should be to safe nodes.
-                    safe = false;
-                    break;
-                }
-            }
+            // safe = all path must lead to safe nodes.
+            let safe = graph[i]
+                .iter()
+                .all(|&i| Self::is_safe(i as usize, graph, is_safe, is_visted));
             is_visted[i] = false;
             is_safe[i] = Some(safe);
             safe
