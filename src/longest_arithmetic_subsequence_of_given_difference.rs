@@ -3,11 +3,15 @@
 
 impl Solution {
     pub fn longest_subsequence(arr: Vec<i32>, difference: i32) -> i32 {
-        let mut previous_seq = std::collections::HashMap::new();
+        let mut previous_seq = vec![0; 20001];
         arr.into_iter()
             .map(|i| {
-                let new_seq_len = previous_seq.get(&(i - difference)).copied().unwrap_or(0) + 1;
-                previous_seq.insert(i, new_seq_len);
+                let new_seq_len = previous_seq
+                    .get((i + 10000).wrapping_sub(difference) as usize)
+                    .copied()
+                    .unwrap_or(0)
+                    + 1;
+                previous_seq[i as usize + 10000] = new_seq_len;
                 new_seq_len
             })
             .max()
