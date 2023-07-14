@@ -4,14 +4,16 @@
 impl Solution {
     pub fn longest_subsequence(arr: Vec<i32>, difference: i32) -> i32 {
         let mut previous_seq = vec![0; 20001];
+        let difference = difference as usize;
         arr.into_iter()
             .map(|i| {
+                let i = i as usize + 1e4 as usize;
                 let new_seq_len = previous_seq
-                    .get((i + 10000).wrapping_sub(difference) as usize)
+                    .get(i.wrapping_sub(difference))
                     .copied()
                     .unwrap_or(0)
                     + 1;
-                previous_seq[i as usize + 10000] = new_seq_len;
+                previous_seq[i] = new_seq_len;
                 new_seq_len
             })
             .max()
