@@ -17,6 +17,7 @@ pub mod combination_sum_ii;
 pub mod count_all_possible_routes;
 pub mod count_and_say;
 pub mod count_negative_numbers_in_a_sorted_matrix;
+pub mod course_schedule;
 pub mod create_max_number;
 pub mod design_hashset;
 pub mod design_parking_system;
