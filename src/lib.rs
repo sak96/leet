@@ -51,6 +51,7 @@ pub mod last_day_where_you_can_still_cross;
 pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
 pub mod longest_arithmetic_subsequence;
+pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_obstacle;
 pub mod longest_subarray_of_1_s_after_deleting_one_element;
 pub mod make_array_strictly_increasing;
