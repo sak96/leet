@@ -96,6 +96,7 @@ pub mod shortest_bridge;
 pub mod shortest_path_binary_matrix;
 pub mod shortest_path_to_get_all_keys;
 pub mod single_number_ii;
+pub mod smallest_sufficient_team;
 pub mod snapshot_array;
 pub mod spiral_mat;
 pub mod stone_game_2;
