@@ -55,6 +55,7 @@ pub mod longest_arithmetic_subsequence;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_obstacle;
 pub mod longest_subarray_of_1_s_after_deleting_one_element;
+pub mod lru_cache;
 pub mod make_array_strictly_increasing;
 pub mod mat_diagonal_sum;
 pub mod max_depth_binary_tree;
