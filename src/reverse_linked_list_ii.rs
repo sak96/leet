@@ -19,20 +19,18 @@
 // }
 impl Solution {
     pub fn reverse_between(
-        head: Option<Box<ListNode>>,
+        mut head: Option<Box<ListNode>>,
         left: i32,
         right: i32,
     ) -> Option<Box<ListNode>> {
         if left == right {
             return head;
         }
-        let mut fake_head = ListNode::new(0);
-        fake_head.next = head;
-        let mut left_ptr = &mut fake_head;
+        let mut left_ptr = &mut head;
         for _ in 1..left {
-            left_ptr = left_ptr.next.as_mut().expect("left <= n");
+            left_ptr = &mut left_ptr.as_mut().expect("left <= n").next;
         }
-        let mut left_node = left_ptr.next.take();
+        let mut left_node = left_ptr.take();
         let mut right_ptr = left_node.as_mut().expect("left != right && right <=n");
         for _ in left..right {
             right_ptr = right_ptr.next.as_mut().expect("right <= n");
@@ -43,8 +41,8 @@ impl Solution {
             node.next = right_node;
             right_node = Some(node);
         }
-        left_ptr.next = right_node;
-        fake_head.next.take()
+        *left_ptr = right_node;
+        head
     }
 }
 
