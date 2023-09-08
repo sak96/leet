@@ -23,9 +23,6 @@ impl Solution {
         left: i32,
         right: i32,
     ) -> Option<Box<ListNode>> {
-        if left == right {
-            return head;
-        }
         let mut left_ptr = &mut head;
         for _ in 1..left {
             left_ptr = &mut left_ptr.as_mut().expect("left <= n").next;
