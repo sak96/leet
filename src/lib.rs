@@ -13,6 +13,7 @@ pub mod buddy_strings;
 pub mod can_make_arithmetic_progression_from_sequence;
 pub mod can_place_flowers;
 pub mod check_is_straight_line;
+pub mod coin_change_ii;
 pub mod combination_sum;
 pub mod combination_sum_ii;
 pub mod count_all_possible_routes;
