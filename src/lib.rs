@@ -90,6 +90,7 @@ pub mod product_of_array_except_self;
 pub mod put_marbles_in_bags;
 pub mod regex_match;
 pub mod remove_element;
+pub mod reverse_linked_list_ii;
 pub mod reverse_node_k_groups;
 pub mod reverse_vowels_of_a_string;
 pub mod same_tree;
