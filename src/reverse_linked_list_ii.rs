@@ -28,7 +28,7 @@ impl Solution {
             left_ptr = &mut left_ptr.as_mut().expect("left <= n").next;
         }
         let mut left_node = left_ptr.take();
-        let mut right_ptr = left_node.as_mut().expect("left != right && right <=n");
+        let mut right_ptr = left_node.as_mut().expect("left <=n");
         for _ in left..right {
             right_ptr = right_ptr.next.as_mut().expect("right <= n");
         }
