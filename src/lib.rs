@@ -103,6 +103,7 @@ pub mod single_number_ii;
 pub mod smallest_sufficient_team;
 pub mod snapshot_array;
 pub mod spiral_mat;
+pub mod split_linked_list_in_parts;
 pub mod stone_game_2;
 pub mod stone_game_3;
 pub mod substring_with_concatenation_of_all_words;
