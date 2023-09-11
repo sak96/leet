@@ -120,6 +120,7 @@ pub mod top_k_frequent;
 pub mod total_cost_to_hire_k_workers;
 pub mod ugly_number_ii;
 pub mod uncrossed_lines;
+pub mod unique_paths_ii;
 pub mod valid_number;
 pub mod valid_sudoko;
 pub mod vowel;
