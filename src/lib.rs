@@ -5,6 +5,7 @@ extern crate rstest;
 pub mod add_two_numbers_ii;
 pub mod all_nodes_distance_k_in_binary_tree;
 pub mod all_one;
+pub mod backspace_string_compare;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod best_time_to_buy_and_sell_stock_with_transaction_fee;
 pub mod brainpower;
