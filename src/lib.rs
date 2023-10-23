@@ -42,6 +42,7 @@ pub mod find_path_exits;
 pub mod find_smallest_letter_greater_than_target;
 pub mod find_the_highest_altitude;
 pub mod first_missing_positive;
+pub mod flatten_nested_list_iterator;
 pub mod generate_parentheses;
 pub mod good_string_count;
 pub mod graph_bipartite;
