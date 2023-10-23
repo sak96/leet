@@ -90,6 +90,7 @@ pub mod no_of_provinces;
 pub mod number_of_increasing_paths_in_a_grid;
 pub mod number_of_ways_to_reorder_array_to_get_same_bst;
 pub mod path_with_maximum_probability;
+pub mod power_of_four;
 pub mod product_of_array_except_self;
 pub mod put_marbles_in_bags;
 pub mod regex_match;
