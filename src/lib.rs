@@ -93,6 +93,7 @@ pub mod path_with_maximum_probability;
 pub mod power_of_four;
 pub mod product_of_array_except_self;
 pub mod put_marbles_in_bags;
+pub mod range_sum_of_bst;
 pub mod regex_match;
 pub mod remove_element;
 pub mod reverse_linked_list_ii;
