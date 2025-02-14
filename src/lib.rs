@@ -133,3 +133,4 @@ pub mod valid_number;
 pub mod valid_sudoko;
 pub mod vowel;
 pub mod zigzag_conversion;
+pub mod product_of_the_last_k_numbers;
