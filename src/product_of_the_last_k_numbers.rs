@@ -1,11 +1,7 @@
 //! Solution for https://leetcode.com/problems/product-of-the-last-k-numbers
 //! 1352. Product of the Last K Numbers
 
-pub struct ProductOfNumbers {
-    product: i32,
-    stream: Vec<i32>,
-    max_zero_index: i32,
-}
+pub struct ProductOfNumbers(Vec<i32>);
 
 /**
  * `&self` means the method takes an immutable reference.
@@ -13,30 +9,24 @@ pub struct ProductOfNumbers {
  */
 impl ProductOfNumbers {
     pub fn new() -> Self {
-        Self {
-            product: 1,
-            stream: vec![1],
-            max_zero_index: 0,
-        }
+        Self(vec![1])
     }
 
     pub fn add(&mut self, num: i32) {
         if num == 0 {
-            self.max_zero_index = 0;
-            self.stream.push(1);
-            self.product = 1;
+            self.0.truncate(1);
         } else {
-            self.product *= num;
-            self.max_zero_index += 1;
-            self.stream.push(self.product);
+            match self.0.last() {
+                None => self.0.push(num),
+                Some(&x) => self.0.push(x * num),
+            }
         }
     }
 
     pub fn get_product(&self, k: i32) -> i32 {
-        if k > self.max_zero_index {
-            0
-        } else {
-            self.product / self.stream[self.stream.len() - k as usize - 1]
+        match self.0.len().checked_sub(k as usize + 1) {
+            None => 0,
+            Some(x) => self.0.last().unwrap() / self.0[x],
         }
     }
 }
