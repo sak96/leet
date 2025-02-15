@@ -127,6 +127,7 @@ pub mod three_sum_closest;
 pub mod time_need_inform_all_emp;
 pub mod top_k_frequent;
 pub mod total_cost_to_hire_k_workers;
+pub mod two_sum;
 pub mod ugly_number_ii;
 pub mod uncrossed_lines;
 pub mod unique_paths_ii;
