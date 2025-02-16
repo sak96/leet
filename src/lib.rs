@@ -105,6 +105,7 @@ pub mod remove_element;
 pub mod reverse_linked_list_ii;
 pub mod reverse_node_k_groups;
 pub mod reverse_vowels_of_a_string;
+pub mod roman_to_integer;
 pub mod rotting_oranges;
 pub mod same_tree;
 pub mod search_insert_pos;
