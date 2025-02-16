@@ -118,6 +118,7 @@ pub mod spiral_mat;
 pub mod split_linked_list_in_parts;
 pub mod stone_game_2;
 pub mod stone_game_3;
+pub mod string_to_integer_atoi;
 pub mod substring_with_concatenation_of_all_words;
 pub mod substring_with_largest_variance;
 pub mod sudoko_solver;
