@@ -1,7 +1,8 @@
 [package]
 name = "leet"
 version = "0.1.0"
-rust-version = "1.58.1"
+rust-version = "1.79.0"
+edition = '2021'
 
 [dependencies]
 cargo-leet = { path = "../cargo-leet" }

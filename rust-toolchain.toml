@@ -3,4 +3,5 @@
 # https://github.com/rust-lang/rust-analyzer/releases/download/2022-01-24/rust-analyzer-x86_64-unknown-linux-gnu.gz
 # then rename it to rust analyzer and copy below folder
 # ~/.rustup/toolchains/1.58.1-x86_64-unknown-linux-gnu/bin
-channel = "1.58.1"
+# https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages
+channel = "1.79.0"
