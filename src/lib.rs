@@ -136,5 +136,6 @@ pub mod uncrossed_lines;
 pub mod unique_paths_ii;
 pub mod valid_number;
 pub mod valid_sudoko;
+pub mod vertical_order_traversal_of_a_binary_tree;
 pub mod vowel;
 pub mod zigzag_conversion;
