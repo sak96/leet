@@ -2,16 +2,9 @@
 //! 994. Rotting Oranges
 
 impl Solution {
-    pub fn check_rot(grid: &mut Vec<Vec<i32>>, x: usize, y: usize) -> Option<(usize, usize)> {
-        if (&grid.get(x).and_then(|row| row.get(y))) == &Some(&1) {
-            grid[x][y] = 2;
-            Some((x, y))
-        } else {
-            None
-        }
-    }
-
     pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
+        let m = grid.len();
+        let n = grid[0].len();
         let mut rotten = vec![];
         let mut fresh = 0;
         for (x, row) in grid.iter().enumerate() {
@@ -27,25 +20,21 @@ impl Solution {
         let mut iteration = -1;
         while !rotten.is_empty() {
             for (x, y) in rotten.drain(..) {
-                if let Some(p) = Self::check_rot(&mut grid, x + 1, y) {
-                    next_rotten.push(p);
-                    fresh -= 1;
-                }
-                if x != 0 {
-                    if let Some(p) = Self::check_rot(&mut grid, x - 1, y) {
-                        next_rotten.push(p);
-                        fresh -= 1;
+                for (i, j) in [(0, 1), (0, -1), (1, 0), (-1, 0)] {
+                    let Some(r) = x.checked_add_signed(i) else {
+                        continue;
+                    };
+                    let Some(c) = y.checked_add_signed(j) else {
+                        continue;
+                    };
+                    if r >= m || c >= n {
+                        continue;
                     }
-                }
-                if y != 0 {
-                    if let Some(p) = Self::check_rot(&mut grid, x, y - 1) {
-                        next_rotten.push(p);
+                    if grid[r][c] == 1 {
+                        grid[r][c] = 2;
                         fresh -= 1;
+                        next_rotten.push((r, c));
                     }
-                }
-                if let Some(p) = Self::check_rot(&mut grid, x, y + 1) {
-                    next_rotten.push(p);
-                    fresh -= 1;
                 }
             }
             iteration += 1;
