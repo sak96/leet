@@ -105,6 +105,7 @@ pub mod put_marbles_in_bags;
 pub mod range_sum_of_bst;
 pub mod regex_match;
 pub mod remove_element;
+pub mod remove_nth_node_from_end_of_list;
 pub mod reverse_linked_list_ii;
 pub mod reverse_node_k_groups;
 pub mod reverse_vowels_of_a_string;
