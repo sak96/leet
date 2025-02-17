@@ -109,6 +109,7 @@ pub mod remove_element;
 pub mod remove_nth_node_from_end_of_list;
 pub mod reverse_linked_list_ii;
 pub mod reverse_node_k_groups;
+pub mod reverse_nodes_in_k_group;
 pub mod reverse_vowels_of_a_string;
 pub mod roman_to_integer;
 pub mod rotting_oranges;
