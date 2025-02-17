@@ -80,6 +80,7 @@ pub mod maximum_value_at_a_given_index_in_a_bounded_array;
 pub mod median_of_two_sorted_arrays;
 pub mod merge_k_sorted_linked_list;
 pub mod merge_strings_alternately;
+pub mod merge_two_sorted_lists;
 pub mod min_cost_cut_stick;
 pub mod min_move_complementary;
 pub mod min_node_reach_all_nodes;
