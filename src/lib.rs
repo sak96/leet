@@ -136,6 +136,7 @@ pub mod swap_list_node;
 pub mod swap_node_pairs;
 pub mod tallest_billboard;
 pub mod teemo_attacking;
+pub mod the_k_th_lexicographical_string_of_all_happy_strings_of_length_n;
 pub mod three_sum_closest;
 pub mod time_need_inform_all_emp;
 pub mod top_k_frequent;
