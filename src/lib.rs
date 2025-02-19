@@ -18,6 +18,7 @@ pub mod check_is_straight_line;
 pub mod coin_change_ii;
 pub mod combination_sum;
 pub mod combination_sum_ii;
+pub mod construct_smallest_number_from_di_string;
 pub mod construct_the_lexicographically_largest_valid_sequence;
 pub mod count_all_possible_routes;
 pub mod count_and_say;
