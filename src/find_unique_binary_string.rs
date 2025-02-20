@@ -3,19 +3,11 @@
 
 impl Solution {
     pub fn find_different_binary_string(nums: Vec<String>) -> String {
-        let mut nums: Vec<_> = nums
-            .into_iter()
-            .map(|n| u16::from_str_radix(&n, 2).unwrap())
-            .collect();
-        nums.sort();
-        let mut value = nums.len();
-        for i in 0..nums.len() {
-            if nums[i] != i as u16 {
-                value = i;
-                break;
-            }
+        let mut output = String::with_capacity(nums.len());
+        for (i, n) in nums.iter().enumerate() {
+            output.push(if n.as_bytes()[i] == b'0' { '1' } else { '0' })
         }
-        format!("{:0align$b}", value, align = nums.len())
+        output
     }
 }
 
@@ -30,11 +22,11 @@ mod tests {
     use rstest::rstest;
 
     #[rstest]
-    #[case(vec!["01".into(),"10".into()], "00")]
-    #[case(vec!["00".into(),"01".into()], "10")]
-    #[case(vec!["111".into(),"011".into(),"001".into()], "000")]
-    fn case(#[case] nums: Vec<String>, #[case] expected: String) {
-        let actual = Solution::find_different_binary_string(nums);
-        assert_eq!(actual, expected);
+    #[case(vec!["01".into(),"10".into()])]
+    #[case(vec!["00".into(),"01".into()])]
+    #[case(vec!["111".into(),"011".into(),"001".into()])]
+    fn case(#[case] nums: Vec<String>) {
+        let actual = Solution::find_different_binary_string(nums.clone());
+        assert!(!nums.contains(&actual));
     }
 }
