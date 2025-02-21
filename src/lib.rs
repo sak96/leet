@@ -35,6 +35,7 @@ pub mod dota;
 pub mod equal_row_and_column_pairs;
 pub mod evaluate_division;
 pub mod fair_distribution_of_cookies;
+pub mod find_elements_in_a_contaminated_binary_tree;
 pub mod find_eventual_safe_states;
 pub mod find_first_last_pos_ele_sort;
 pub mod find_index_first_occurrence_string;
@@ -152,3 +153,4 @@ pub mod valid_sudoko;
 pub mod vertical_order_traversal_of_a_binary_tree;
 pub mod vowel;
 pub mod zigzag_conversion;
+
