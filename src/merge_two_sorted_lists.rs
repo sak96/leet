@@ -49,9 +49,9 @@ mod tests {
     use rstest::rstest;
 
     #[rstest]
-    #[case(ListHead::from(vec![1,2,4]).into(), ListHead::from(vec![1,3,4]).into(), todo!("Expected Result"))]
-    #[case(ListHead::from(vec![]).into(), ListHead::from(vec![]).into(), todo!("Expected Result"))]
-    #[case(ListHead::from(vec![]).into(), ListHead::from(vec![0]).into(), todo!("Expected Result"))]
+    #[case(ListHead::from(vec![1,2,4]).into(), ListHead::from(vec![1,3,4]).into(),ListHead::from(vec![1,1,2,3,4,4]).into())]
+    #[case(ListHead::from(vec![]).into(), ListHead::from(vec![]).into(), ListHead::from(vec![]).into())]
+    #[case(ListHead::from(vec![]).into(), ListHead::from(vec![0]).into(), ListHead::from(vec![0]).into())]
     fn case(
         #[case] list1: Option<Box<ListNode>>,
         #[case] list2: Option<Box<ListNode>>,
