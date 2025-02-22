@@ -30,6 +30,7 @@ pub mod design_parking_system;
 pub mod design_twitter;
 pub mod design_underground_system;
 pub mod detonate_max_bombs;
+pub mod diameter_of_binary_tree;
 pub mod divide_two_integer;
 pub mod dota;
 pub mod equal_row_and_column_pairs;
