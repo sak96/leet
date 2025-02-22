@@ -107,6 +107,7 @@ pub mod product_of_array_except_self;
 pub mod product_of_the_last_k_numbers;
 pub mod put_marbles_in_bags;
 pub mod range_sum_of_bst;
+pub mod recover_a_tree_from_preorder_traversal;
 pub mod regex_match;
 pub mod remove_element;
 pub mod remove_nth_node_from_end_of_list;
@@ -153,4 +154,3 @@ pub mod valid_sudoko;
 pub mod vertical_order_traversal_of_a_binary_tree;
 pub mod vowel;
 pub mod zigzag_conversion;
-
