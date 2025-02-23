@@ -50,6 +50,7 @@ pub mod find_the_highest_altitude;
 pub mod find_unique_binary_string;
 pub mod first_missing_positive;
 pub mod flatten_nested_list_iterator;
+pub mod four_sum;
 pub mod generate_parentheses;
 pub mod good_string_count;
 pub mod graph_bipartite;
