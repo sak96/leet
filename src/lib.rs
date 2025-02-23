@@ -1,7 +1,3 @@
-extern crate cargo_leet;
-#[cfg(test)]
-extern crate rstest;
-
 pub mod add_two_numbers;
 pub mod add_two_numbers_ii;
 pub mod all_nodes_distance_k_in_binary_tree;
