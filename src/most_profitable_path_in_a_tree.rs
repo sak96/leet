@@ -4,7 +4,7 @@
 impl Solution {
     fn dfs_bob(
         amount: &mut [Option<i32>],
-        graph: &Vec<Vec<usize>>,
+        graph: &[Vec<usize>],
         node: usize,
         depth: usize,
     ) -> Vec<usize> {
@@ -29,7 +29,7 @@ impl Solution {
     }
     fn dfs_alice(
         amount: &mut [Option<i32>],
-        graph: &Vec<Vec<usize>>,
+        graph: &[Vec<usize>],
         node: usize,
         bob_path: &mut Vec<usize>,
     ) -> i32 {
@@ -68,7 +68,7 @@ impl Solution {
     }
 
     pub fn most_profitable_path(edges: Vec<Vec<i32>>, bob: i32, amount: Vec<i32>) -> i32 {
-        let mut amount = amount.into_iter().map(|x| Some(x)).collect::<Vec<_>>();
+        let mut amount = amount.into_iter().map(Some).collect::<Vec<_>>();
         let mut amount = amount.as_mut_slice();
         let mut graph = vec![vec![]; amount.len()];
         for edge in edges {
