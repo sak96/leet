@@ -2,18 +2,13 @@
 //! 2467. Most Profitable Path in a Tree
 
 impl Solution {
-    fn dfs_bob(
-        amount: &mut [Option<i32>],
-        graph: &[Vec<usize>],
-        node: usize,
-        depth: usize,
-    ) -> Vec<usize> {
+    fn dfs_bob(amount: &mut [Option<i32>], graph: &[Vec<usize>], node: usize) -> Vec<usize> {
         if node == 0 {
             vec![node]
         } else if let Some(node_cost) = amount[node].take() {
             for &i in graph[node].iter() {
                 if amount[i].is_some() {
-                    let mut result = Self::dfs_bob(amount, graph, i, depth + 1);
+                    let mut result = Self::dfs_bob(amount, graph, i);
                     if !result.is_empty() {
                         amount[node].replace(node_cost);
                         result.push(node);
@@ -39,7 +34,7 @@ impl Solution {
             let mut cost = node_cost;
             let bob_cost = match bob_path.get(depth).copied() {
                 Some(x) if x == node => {
-                    cost = cost / 2;
+                    cost /= 2;
                     None
                 }
                 Some(x) if amount[x].is_some() => amount[x].replace(0),
@@ -68,16 +63,16 @@ impl Solution {
 
     pub fn most_profitable_path(edges: Vec<Vec<i32>>, bob: i32, amount: Vec<i32>) -> i32 {
         let mut amount = amount.into_iter().map(Some).collect::<Vec<_>>();
-        let mut amount = amount.as_mut_slice();
+        let amount = amount.as_mut_slice();
         let mut graph = vec![vec![]; amount.len()];
         for edge in edges {
             let (x, y) = (edge[0] as usize, edge[1] as usize);
             graph[x].push(y);
             graph[y].push(x);
         }
-        let mut bob_path = Self::dfs_bob(&mut amount, &graph, bob as usize, 0);
+        let mut bob_path = Self::dfs_bob(amount, &graph, bob as usize);
         bob_path.reverse();
-        Self::dfs_alice(&mut amount, &graph, 0, &mut bob_path, 0)
+        Self::dfs_alice(amount, &graph, 0, &mut bob_path, 0)
     }
 }
 
