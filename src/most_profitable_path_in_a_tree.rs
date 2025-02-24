@@ -31,13 +31,13 @@ impl Solution {
         amount: &mut [Option<i32>],
         graph: &[Vec<usize>],
         node: usize,
-        bob_path: &mut Vec<usize>,
+        bob_path: &mut [usize],
+        depth: usize,
     ) -> i32 {
         if let Some(node_cost) = amount[node].take() {
             let mut leaf_node = true;
             let mut cost = node_cost;
-            let bob_index = bob_path.pop();
-            let bob_cost = match bob_index {
+            let bob_cost = match bob_path.get(depth).copied() {
                 Some(x) if x == node => {
                     cost = cost / 2;
                     None
@@ -49,11 +49,10 @@ impl Solution {
             for &i in graph[node].iter() {
                 if amount[i].is_some() {
                     leaf_node = false;
-                    max_cost = max_cost.max(Self::dfs_alice(amount, graph, i, bob_path));
+                    max_cost = max_cost.max(Self::dfs_alice(amount, graph, i, bob_path, depth + 1));
                 }
             }
-            if let Some(bob) = bob_index {
-                bob_path.push(bob);
+            if let Some(&bob) = bob_path.get(depth) {
                 amount[bob] = bob_cost;
             }
             amount[node].replace(node_cost);
@@ -77,7 +76,8 @@ impl Solution {
             graph[y].push(x);
         }
         let mut bob_path = Self::dfs_bob(&mut amount, &graph, bob as usize, 0);
-        Self::dfs_alice(&mut amount, &graph, 0, &mut bob_path)
+        bob_path.reverse();
+        Self::dfs_alice(&mut amount, &graph, 0, &mut bob_path, 0)
     }
 }
 
