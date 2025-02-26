@@ -3,7 +3,7 @@
 
 impl Solution {
     pub fn largest_variance(s: String) -> i32 {
-        let mut map = vec![0; 26];
+        let mut map = [0; 26];
         for i in s.bytes() {
             map[(i - b'a') as usize] += 1;
         }
@@ -11,12 +11,14 @@ impl Solution {
         for major in map
             .iter()
             .enumerate()
-            .filter_map(|(i, &v)| (v > 0).then(|| (i as u8 + b'a')))
+            .filter(|&(_, &v)| (v > 0))
+            .map(|(i, &_)| (i as u8 + b'a'))
         {
             for (minor, mut remain_minor) in map
                 .iter()
                 .enumerate()
-                .filter_map(|(i, &v)| (v > 0).then(|| (i as u8 + b'a', v)))
+                .filter(|&(_, &v)| (v > 0))
+                .map(|(i, &v)| (i as u8 + b'a', v))
             {
                 if major == minor {
                     continue;

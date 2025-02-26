@@ -32,7 +32,9 @@ impl Solution {
         let mut is_visited = vec![false; graph.len()];
 
         (0..graph.len())
-            .filter_map(|i| Self::is_safe(i, &graph, &mut is_safe, &mut is_visited).then(|| i as _))
+            .filter_map(|i| {
+                Self::is_safe(i, &graph, &mut is_safe, &mut is_visited).then_some(i as _)
+            })
             .collect()
     }
 }

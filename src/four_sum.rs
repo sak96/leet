@@ -38,17 +38,16 @@ impl Solution {
         let mut nums = nums.as_slice();
         while let Some((&first, mut first_rest)) = nums.split_first() {
             while let Some((&second, second_rest)) = first_rest.split_first() {
-                if second_rest.len() < 2 {
-                    break;
-                } else if second_rest[0]
-                    .saturating_add(second_rest[1])
-                    .saturating_add(first)
-                    .saturating_add(second)
-                    > target
+                if second_rest.len() < 2
+                    || (second_rest[0]
+                        .saturating_add(second_rest[1])
+                        .saturating_add(first)
+                        .saturating_add(second)
+                        > target)
                 {
                     break;
                 }
-                Self::two_sum(&mut output, &second_rest, first, second, target);
+                Self::two_sum(&mut output, second_rest, first, second, target);
                 let pos = first_rest.partition_point(|&n| n == second);
                 first_rest = &first_rest[pos..];
             }

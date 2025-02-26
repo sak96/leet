@@ -13,8 +13,7 @@ impl Solution {
                 // add 1 to it
                 let count = obstacle_map
                     .range(..=obstacle)
-                    .rev()
-                    .next()
+                    .next_back()
                     .map(|(_, count)| *count)
                     .unwrap_or(0)
                     + 1;

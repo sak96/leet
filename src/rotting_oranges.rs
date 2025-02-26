@@ -38,7 +38,7 @@ impl Solution {
                 }
             }
             iteration += 1;
-            rotten = next_rotten.drain(..).collect();
+            rotten = std::mem::take(&mut next_rotten);
         }
         if fresh > 0 {
             -1

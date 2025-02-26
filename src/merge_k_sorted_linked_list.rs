@@ -1,13 +1,15 @@
-impl PartialOrd for ListNode {
+#[derive(Eq, PartialEq)]
+struct CmpListNode(Box<ListNode>);
+
+impl PartialOrd for CmpListNode {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        // NOTE: reverse to use min heap
-        Some(self.val.cmp(&other.val).reverse())
+        Some(self.cmp(other))
     }
 }
 
-impl Ord for ListNode {
+impl Ord for CmpListNode {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.partial_cmp(other).unwrap()
+        other.0.val.cmp(&self.0.val)
     }
 }
 
@@ -15,12 +17,15 @@ impl Solution {
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         let mut head = ListNode::new(0);
         let mut ptr = &mut head;
-        let mut heap: std::collections::BinaryHeap<_> = lists.into();
+        let mut heap: std::collections::BinaryHeap<CmpListNode> = lists
+            .into_iter()
+            .filter_map(|x| x.map(CmpListNode))
+            .collect();
         while let Some(list) = heap.pop() {
-            ptr.next = list;
+            ptr.next = Some(list.0);
             if let Some(ref mut node) = ptr.next {
                 if let Some(rest) = node.next.take() {
-                    heap.push(Some(rest))
+                    heap.push(CmpListNode(rest))
                 }
                 ptr = node;
             }

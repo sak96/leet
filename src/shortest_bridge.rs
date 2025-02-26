@@ -16,7 +16,7 @@ impl Solution {
         for n in Self::NEIGHBOUR {
             let r = row.wrapping_add(n[0]);
             let c = col.wrapping_add(n[1]);
-            match grid.get(r).map(|x| x.get(c)).flatten() {
+            match grid.get(r).and_then(|x| x.get(c)) {
                 Some(&1) => Self::mark_island_as_2(grid, r, c, borders),
                 Some(&0) => is_border = true,
                 _ => {}
@@ -35,7 +35,7 @@ impl Solution {
             .flat_map(|(i, x)| {
                 x.iter()
                     .enumerate()
-                    .find_map(|(j, y)| (y == &1).then(|| (i, j)))
+                    .find_map(|(j, y)| (y == &1).then_some((i, j)))
             })
             .next()
             .expect("There are exactly two islands in grid");
@@ -51,7 +51,7 @@ impl Solution {
                 for n in Self::NEIGHBOUR {
                     let r = row.wrapping_add(n[0]);
                     let c = col.wrapping_add(n[1]);
-                    match grid.get(r).map(|x| x.get(c)).flatten() {
+                    match grid.get(r).and_then(|x| x.get(c)) {
                         Some(&1) => break 'outer step,
                         Some(&0) => {
                             grid[r][c] = 2;

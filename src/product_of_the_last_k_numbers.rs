@@ -7,6 +7,12 @@ pub struct ProductOfNumbers(Vec<i32>);
  * `&self` means the method takes an immutable reference.
  * If you need a mutable reference, change it to `&mut self` instead.
  */
+impl Default for ProductOfNumbers {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ProductOfNumbers {
     pub fn new() -> Self {
         Self(vec![1])

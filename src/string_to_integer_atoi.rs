@@ -17,8 +17,8 @@ impl Solution {
             _ => 1,
         };
         let mut num = 0i32;
-        while let Some(a) = it.next() {
-            if (b'0'..=b'9').contains(a) {
+        for a in it {
+            if a.is_ascii_digit() {
                 num = num
                     .saturating_mul(10)
                     .saturating_add((a - b'0') as i32 * sign);

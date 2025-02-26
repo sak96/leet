@@ -20,13 +20,13 @@ impl Solution {
                     height = left;
                     depth = left - 1;
                     // target on left side so dfs on right side;
-                    node = root_brw.right.clone();
+                    node.clone_from(&root_brw.right);
                 } else {
                     let right = Self::distance_k_(root_brw.right.clone(), val, k, output);
                     if right >= 0 {
                         height = right;
                         depth = height - 1;
-                        node = root_brw.left.clone();
+                        node.clone_from(&root_brw.left);
                     }
                 }
             }

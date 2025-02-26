@@ -31,7 +31,7 @@ impl Solution {
                     if r == last && c == last {
                         return step + 1;
                     }
-                    if matches!(grid.get(r).map(|x| x.get(c)).flatten(), Some(&0)) {
+                    if matches!(grid.get(r).and_then(|x| x.get(c)), Some(&0)) {
                         grid[r][c] = 1;
                         borders.push_back((r, c));
                     }

@@ -11,7 +11,7 @@ impl Solution {
         node_reachable
             .into_iter()
             .enumerate()
-            .filter_map(|(node, reachable)| (!reachable).then(|| node as i32))
+            .filter_map(|(node, reachable)| (!reachable).then_some(node as i32))
             .collect()
     }
 }

@@ -54,7 +54,7 @@ impl Solution {
     ) -> Option<Rc<RefCell<TreeNode>>> {
         let (_, preorder) = preorder.split_first().unwrap();
         let (&n, postorder) = postorder.split_last().unwrap();
-        Self::construct_from_pre_post_(n, &preorder, &postorder)
+        Self::construct_from_pre_post_(n, preorder, postorder)
     }
 }
 

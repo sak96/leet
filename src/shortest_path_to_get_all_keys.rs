@@ -31,7 +31,7 @@ impl Solution {
                 for [r, c] in Self::NEIGHBOUR {
                     let r = row.wrapping_add(*r);
                     let c = col.wrapping_add(*c);
-                    if let Some(value) = grid.get(r).map(|x| x.get(c)).flatten() {
+                    if let Some(value) = grid.get(r).and_then(|x| x.get(c)) {
                         let keys = match value {
                             b'#' => {
                                 // ignore wall

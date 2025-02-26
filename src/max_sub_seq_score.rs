@@ -1,7 +1,7 @@
 use std::cmp::Reverse;
 impl Solution {
     pub fn max_score(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> i64 {
-        let mut nums: Vec<_> = nums1.into_iter().zip(nums2.into_iter()).collect();
+        let mut nums: Vec<_> = nums1.into_iter().zip(nums2).collect();
         nums.sort_unstable_by_key(|&(_, b)| b);
         let mut binary_heap = std::collections::BinaryHeap::new();
         let mut ans = 0i64;

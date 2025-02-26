@@ -3,7 +3,7 @@ impl Solution {
     pub fn next_greatest_letter(letters: Vec<char>, target: char) -> char {
         let index = letters
             .binary_search(&((target as u8 + 1) as _))
-            .map_or_else(|x| x, |x| x)
+            .unwrap_or_else(|x| x)
             % letters.len();
         letters[index]
     }

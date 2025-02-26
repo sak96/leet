@@ -7,7 +7,6 @@ impl Solution {
         combinations.push(vec![1]);
         for n in 1..len {
             let vec = (0..=n / 2)
-                .into_iter()
                 .map(|r| {
                     if r == 0 {
                         1

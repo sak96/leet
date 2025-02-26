@@ -7,7 +7,7 @@ impl Solution {
         let mut output = String::new();
         let mut index = 2_i32.pow((n - 1) as u32);
 
-        k = k - 1;
+        k -= 1;
         let mut prev_char = 'z';
         for _ in 0..n {
             let mut char_index = k / index;

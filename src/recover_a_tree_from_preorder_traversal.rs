@@ -46,7 +46,7 @@ impl Solution {
                 depth += 1;
             }
             let mut num = 0i32;
-            while let Some(digit) = chars.next_if(|&c| c.is_digit(10)) {
+            while let Some(digit) = chars.next_if(|&c| c.is_ascii_digit()) {
                 num *= 10;
                 num += digit.to_digit(10).unwrap() as i32;
             }

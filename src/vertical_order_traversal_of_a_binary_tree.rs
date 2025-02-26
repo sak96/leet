@@ -45,7 +45,7 @@ impl Solution {
         let mut idx = output.first().unwrap().0;
         for (i, _, v) in output.into_iter() {
             if i != idx {
-                result.push(current.drain(..).collect());
+                result.push(std::mem::take(&mut current));
                 idx += 1;
             }
             current.push(v);

@@ -5,7 +5,7 @@ impl Solution {
     pub fn min_operations(nums: Vec<i32>, k: i32) -> i32 {
         let mut heap = nums
             .into_iter()
-            .filter_map(|x| (x < k).then(|| std::cmp::Reverse(x)))
+            .filter_map(|x| (x < k).then_some(std::cmp::Reverse(x)))
             .collect::<std::collections::BinaryHeap<_>>();
         let mut ops = 0;
         loop {

@@ -13,7 +13,7 @@ impl Solution {
                     if i == j {
                         continue;
                     }
-                    let fuel_consumed = (locations[i] - locations[j]).abs() as usize;
+                    let fuel_consumed = (locations[i] - locations[j]).unsigned_abs() as usize;
                     if fuel_consumed <= fuel_left {
                         dp[i][fuel_left] += dp[j][fuel_left - fuel_consumed];
                         dp[i][fuel_left] %= Self::MOD;

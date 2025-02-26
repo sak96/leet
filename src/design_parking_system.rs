@@ -24,9 +24,9 @@ mod tests {
     #[test]
     fn leet1() {
         let mut car_park = ParkingSystem::new(1, 1, 0);
-        assert_eq!(car_park.add_car(1), true, "space present for big");
-        assert_eq!(car_park.add_car(2), true, "space present for medium");
-        assert_eq!(car_park.add_car(3), false, "no space for small");
-        assert_eq!(car_park.add_car(1), false, "all space parked for big");
+        assert!(car_park.add_car(1), "space present for big");
+        assert!(car_park.add_car(2), "space present for medium");
+        assert!(!car_park.add_car(3), "no space for small");
+        assert!(!car_park.add_car(1), "all space parked for big");
     }
 }

@@ -36,7 +36,7 @@ impl Twitter {
         self.tweets
             .iter()
             .rev()
-            .filter_map(|(u_id, t_id)| followees.contains(u_id).then(|| *t_id))
+            .filter_map(|(u_id, t_id)| followees.contains(u_id).then_some(*t_id))
             .take(10)
             .collect()
     }

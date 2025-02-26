@@ -66,8 +66,7 @@ impl AllOne {
     pub fn get_max_key(&mut self) -> String {
         self.list
             .iter()
-            .rev()
-            .next()
+            .next_back()
             .map(|(_, node)| {
                 node.iter()
                     .next()

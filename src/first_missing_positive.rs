@@ -20,7 +20,7 @@ impl Solution {
         }
         nums.into_iter()
             .enumerate()
-            .find_map(|(i, x)| 0.eq(&x).then(|| i))
+            .find_map(|(i, x)| 0.eq(&x).then_some(i))
             .unwrap_or(positives) as i32
             + 1
     }

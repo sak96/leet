@@ -39,7 +39,7 @@ impl Solution {
             }
             visited[node] = true;
             for (dest, path_prob) in &adj_prob[node] {
-                new_paths.push((Number(prob * path_prob), *dest as usize));
+                new_paths.push((Number(prob * path_prob), { *dest }));
             }
         }
         0.0

@@ -19,7 +19,6 @@ impl Solution {
         let mut memory = vec![None; n as usize];
         memory[head_id as usize] = Some(0);
         (0..memory.len())
-            .into_iter()
             .map(|emp_id| Self::num_of_minutes_(emp_id, &manager, &inform_time, &mut memory))
             .max()
             .expect("1 <= n")

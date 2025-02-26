@@ -21,7 +21,7 @@ mod tests {
 
         let expected = expected as usize;
         assert!(nums.len() >= expected);
-        nums[0..expected as usize].as_mut().sort_unstable();
+        nums[0..expected].as_mut().sort_unstable();
         input.sort_unstable();
         let mut j = 0;
         for x in input.into_iter() {
