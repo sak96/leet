@@ -3,35 +3,21 @@
 
 impl Solution {
     const MOD: i32 = 10i32.pow(9) + 7;
-    pub fn num_of_subarrays(arr: Vec<i32>) -> i32 {
-        let mut is_change = false;
-        let mut odds = 0;
-        let arr: Vec<_> = arr
-            .into_iter()
-            .map(|v| {
-                let is_odd = v % 2 == 1;
-                is_change ^= is_odd;
-                if is_change {
-                    odds += 1;
-                }
-                is_odd
-            })
-            .collect();
-        let mut evens = arr.len() as i32 - odds;
-        let mut sum = 0;
-        let mut slice = arr.as_slice();
-        while let Some((&is_odd, rest)) = slice.split_first() {
-            sum += odds;
-            if is_odd {
-                odds -= 1;
-                std::mem::swap(&mut odds, &mut evens);
+    pub fn num_of_subarrays(mut arr: Vec<i32>) -> i32 {
+        let (mut output, mut odds, mut evens) = (0, 0, 1);
+        let mut is_sum_odd = false;
+        while let Some(value) = arr.pop() {
+            is_sum_odd ^= value & 1 == 1;
+            if is_sum_odd {
+                odds += 1;
+                output += evens
             } else {
-                evens -= 1;
+                evens += 1;
+                output += odds
             }
-            sum %= Self::MOD;
-            slice = rest;
+            output %= Self::MOD
         }
-        sum
+        output
     }
 }
 
