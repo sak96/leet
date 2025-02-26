@@ -100,6 +100,7 @@ pub mod new_21_game;
 pub mod next_permutation;
 pub mod no_of_provinces;
 pub mod number_of_increasing_paths_in_a_grid;
+pub mod number_of_sub_arrays_with_odd_sum;
 pub mod number_of_ways_to_reorder_array_to_get_same_bst;
 pub mod path_with_maximum_probability;
 pub mod power_of_four;
