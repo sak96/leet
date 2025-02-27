@@ -57,6 +57,7 @@ pub mod k_th_largest_stream;
 pub mod kids_with_the_greatest_number_of_candies;
 pub mod kth_largest_element_in_an_array;
 pub mod last_day_where_you_can_still_cross;
+pub mod length_of_longest_fibonacci_subsequence;
 pub mod letter_tile_possibilities;
 pub mod linked_list_twin_sum;
 pub mod long_valid_parentheses;
