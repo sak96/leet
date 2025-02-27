@@ -1,44 +1,25 @@
 //! Solution for https://leetcode.com/problems/length-of-longest-fibonacci-subsequence
 //! 873. Length of Longest Fibonacci Subsequence
 
-use std::cmp::Reverse;
-
 impl Solution {
-    pub fn len_longest_fib_subseq(mut arr: Vec<i32>) -> i32 {
-        let mut heap = std::collections::BinaryHeap::<Reverse<(i32, i32, i32)>>::new();
-        arr.reverse();
-        let mut done = vec![];
+    pub fn len_longest_fib_subseq(arr: Vec<i32>) -> i32 {
+        let mut dp = std::collections::BTreeMap::new();
+        let mut set: std::collections::BTreeSet<i32> = arr.iter().cloned().collect();
         let mut length = 0;
-
-        while let Some(n) = arr.pop() {
-            for &i in &done {
-                heap.push(Reverse((i + n, n, 2)));
-            }
-            while let Some(Reverse((c, b, l))) = heap.pop() {
-                match c.cmp(&n) {
-                    std::cmp::Ordering::Less => {
-                        length = length.max(l);
-                    }
-                    std::cmp::Ordering::Equal => {
-                        length = length.max(l + 1);
-                        heap.push(Reverse((c + b, c, l + 1)));
-                    }
-                    std::cmp::Ordering::Greater => {
-                        heap.push(Reverse((c, b, l)));
-                        break;
-                    }
+        let arr = arr.as_slice();
+        for i in 0..arr.len() {
+            let (prev, rest) = arr.split_at(i);
+            let z = rest[0];
+            for &y in prev {
+                let x = z - y;
+                if x < y && set.contains(&x) {
+                    let len = dp.get(&(y, x)).unwrap_or(&2) + 1;
+                    length = length.max(len);
+                    dp.insert((z, y), len);
                 }
             }
-            done.push(n);
         }
-        while let Some(Reverse((_, _, l))) = heap.pop() {
-            length = length.max(l);
-        }
-        if length > 2 {
-            length
-        } else {
-            0
-        }
+        length
     }
 }
 
