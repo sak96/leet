@@ -4,7 +4,7 @@
 impl Solution {
     pub fn len_longest_fib_subseq(arr: Vec<i32>) -> i32 {
         let mut dp = std::collections::BTreeMap::new();
-        let mut set: std::collections::BTreeSet<i32> = arr.iter().cloned().collect();
+        let set: std::collections::BTreeSet<i32> = arr.iter().cloned().collect();
         let mut length = 0;
         let arr = arr.as_slice();
         for i in 0..arr.len() {
