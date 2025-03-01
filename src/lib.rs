@@ -124,6 +124,7 @@ pub mod same_tree;
 pub mod search_insert_pos;
 pub mod search_rotated_sort;
 pub mod shortest_bridge;
+pub mod shortest_common_supersequence;
 pub mod shortest_path_binary_matrix;
 pub mod shortest_path_to_get_all_keys;
 pub mod single_number_ii;
