@@ -106,6 +106,7 @@ pub mod no_of_provinces;
 pub mod number_of_increasing_paths_in_a_grid;
 pub mod number_of_sub_arrays_with_odd_sum;
 pub mod number_of_ways_to_reorder_array_to_get_same_bst;
+pub mod partition_array_according_to_given_pivot;
 pub mod path_with_maximum_probability;
 pub mod power_of_four;
 pub mod product_of_array_except_self;
