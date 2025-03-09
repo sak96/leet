@@ -20,7 +20,7 @@ impl Solution {
         let mut last_prime = None;
         let mut prev_diff = i32::MAX;
         if left % 2 == 0 {
-            left = left + 1;
+            left += 1;
         }
         for i in (left..=right).step_by(2) {
             if Self::is_prime(i) {

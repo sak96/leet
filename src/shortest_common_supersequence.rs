@@ -7,12 +7,8 @@ impl Solution {
         let (mut len1, mut len2) = (str1.len(), str2.len());
         let mut mem = vec![vec![0; bytes2.len() + 1]; bytes1.len() + 1];
 
-        for i in 1..=len1 {
-            mem[i][0] = i;
-        }
-        for i in 0..=len2 {
-            mem[0][i] = i;
-        }
+        (1..=len1).for_each(|i| mem[i][0] = i);
+        (0..=len2).for_each(|i| mem[0][i] = i);
         for i in 1..=len1 {
             for j in 1..=len2 {
                 mem[i][j] = if bytes1[i - 1] == bytes2[j - 1] {
