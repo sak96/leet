@@ -8,8 +8,8 @@ impl Solution {
         let n = (grid.len() * grid.len()) as i64;
         for r in grid {
             for c in r {
-                sq_sum += (c * c) as _;
-                sum += (c) as _;
+                sq_sum += (c * c) as i64;
+                sum += (c) as i64;
             }
         }
         let expected_sq_sum = (2 * n + 1) * (n + 1) * n / 6;
