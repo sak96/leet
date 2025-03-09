@@ -103,6 +103,7 @@ pub mod minimum_distance_between_bst_nodes;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod minimum_operations_to_exceed_threshold_value_ii;
 pub mod minimum_path_sum;
+pub mod minimum_recolors_to_get_k_consecutive_black_blocks;
 pub mod minimum_size_subarray_sum;
 pub mod most_profitable_path_in_a_tree;
 pub mod new_21_game;
