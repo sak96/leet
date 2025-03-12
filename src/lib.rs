@@ -25,6 +25,7 @@ pub mod construct_the_lexicographically_largest_valid_sequence;
 pub mod count_all_possible_routes;
 pub mod count_and_say;
 pub mod count_negative_numbers_in_a_sorted_matrix;
+pub mod count_of_substrings_containing_every_vowel_and_k_consonants_ii;
 pub mod count_total_number_of_colored_cells;
 pub mod course_schedule;
 pub mod create_max_number;
