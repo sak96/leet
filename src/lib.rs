@@ -79,6 +79,7 @@ pub mod longest_substring_without_repeating_characters;
 pub mod lru_cache;
 pub mod make_array_strictly_increasing;
 pub mod mat_diagonal_sum;
+pub mod max_consecutive_ones_iii;
 pub mod max_depth_binary_tree;
 pub mod max_sub_seq_score;
 pub mod max_sum_of_a_pair_with_equal_sum_of_digits;
