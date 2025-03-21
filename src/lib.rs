@@ -40,6 +40,7 @@ pub mod dota;
 pub mod equal_row_and_column_pairs;
 pub mod evaluate_division;
 pub mod fair_distribution_of_cookies;
+pub mod find_all_possible_recipes_from_given_supplies;
 pub mod find_elements_in_a_contaminated_binary_tree;
 pub mod find_eventual_safe_states;
 pub mod find_first_last_pos_ele_sort;
