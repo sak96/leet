@@ -3,7 +3,7 @@
 
 use std::cmp::Reverse;
 impl Solution {
-    const MOD: u32 = 1e9 as u32  + 7;
+    const MOD: u32 = 1e9 as u32 + 7;
     pub fn count_paths(n: i32, roads: Vec<Vec<i32>>) -> i32 {
         let n = n as usize;
         let mut road_map = vec![vec![]; n];
@@ -30,7 +30,7 @@ impl Solution {
                         heap.push(Reverse((time[n], n)));
                     }
                     std::cmp::Ordering::Equal => {
-                        count[n] = (count[n] + count[m] ) % Self::MOD ;
+                        count[n] = (count[n] + count[m]) % Self::MOD;
                     }
                     std::cmp::Ordering::Greater => {}
                 }
