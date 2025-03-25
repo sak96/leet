@@ -4,21 +4,19 @@
 impl Solution {
     pub fn check_valid_cuts(_n: i32, mut rectangles: Vec<Vec<i32>>) -> bool {
         for (start, end) in [(0, 2), (1, 3)] {
-            {
-                rectangles.sort_unstable_by_key(|n| n[start]);
-                let mut last_rectangle_end = -1;
-                let mut gaps = -1;
-                let mut rectangles = rectangles.as_slice();
-                while let Some((rectangle, rest)) = rectangles.split_first() {
-                    rectangles = rest;
-                    if last_rectangle_end <= rectangle[start] {
-                        gaps += 1;
-                        if gaps == 2 {
-                            return true;
-                        }
+            rectangles.sort_unstable_by_key(|n| n[start]);
+            let mut last_rectangle_end = -1;
+            let mut gaps = -1;
+            let mut rectangles = rectangles.as_slice();
+            while let Some((rectangle, rest)) = rectangles.split_first() {
+                rectangles = rest;
+                if last_rectangle_end <= rectangle[start] {
+                    gaps += 1;
+                    if gaps == 2 {
+                        return true;
                     }
-                    last_rectangle_end = last_rectangle_end.max(rectangle[end])
                 }
+                last_rectangle_end = last_rectangle_end.max(rectangle[end])
             }
         }
         false
