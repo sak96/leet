@@ -24,6 +24,7 @@ pub mod construct_smallest_number_from_di_string;
 pub mod construct_the_lexicographically_largest_valid_sequence;
 pub mod count_all_possible_routes;
 pub mod count_and_say;
+pub mod count_days_without_meetings;
 pub mod count_negative_numbers_in_a_sorted_matrix;
 pub mod count_of_substrings_containing_every_vowel_and_k_consonants_ii;
 pub mod count_the_number_of_complete_components;
