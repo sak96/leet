@@ -11,12 +11,11 @@ impl Solution {
                 if h1 >= h2 {
                     water_count += (h2 - prev_min_height) * ((d1 - d2) as i32);
                     prev_min_height = h2;
-                } else if h1 >= prev_min_height {
-                    water_count += (h1 - prev_min_height) * ((d1 - d2) as i32);
-                    blocks.push((d2, h2));
-                    prev_min_height = h1;
-                    break;
                 } else {
+                    if h1 >= prev_min_height {
+                        water_count += (h1 - prev_min_height) * ((d1 - d2) as i32);
+                        prev_min_height = h1;
+                    }
                     blocks.push((d2, h2));
                     break;
                 }
