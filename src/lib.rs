@@ -110,6 +110,7 @@ pub mod minimum_depth_of_binary_tree;
 pub mod minimum_distance_between_bst_nodes;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod minimum_operations_to_exceed_threshold_value_ii;
+pub mod minimum_operations_to_make_a_uni_value_grid;
 pub mod minimum_operations_to_make_binary_array_elements_equal_to_one_i;
 pub mod minimum_path_sum;
 pub mod minimum_recolors_to_get_k_consecutive_black_blocks;
