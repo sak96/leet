@@ -137,6 +137,7 @@ pub mod recover_a_tree_from_preorder_traversal;
 pub mod regex_match;
 pub mod remove_element;
 pub mod remove_nth_node_from_end_of_list;
+pub mod reverse_integer;
 pub mod reverse_linked_list_ii;
 pub mod reverse_node_k_groups;
 pub mod reverse_nodes_in_k_group;
