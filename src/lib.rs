@@ -154,6 +154,7 @@ pub mod shortest_path_binary_matrix;
 pub mod shortest_path_to_get_all_keys;
 pub mod single_number;
 pub mod single_number_ii;
+pub mod sliding_window_median;
 pub mod smallest_sufficient_team;
 pub mod snapshot_array;
 pub mod spiral_mat;
