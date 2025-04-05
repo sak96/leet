@@ -2,22 +2,38 @@
 //! 128. Longest Consecutive Sequence
 
 impl Solution {
-    pub fn longest_consecutive(nums: Vec<i32>) -> i32 {
-        let mut map = std::collections::HashMap::<i32, (i32, i32)>::new();
+    pub fn longest_consecutive(mut nums: Vec<i32>) -> i32 {
+        nums.sort_unstable();
+        let mut longest_seq = 0;
+        let mut current_seq = 1;
+        let mut prev_num = nums[0];
         for num in nums {
-            let max = map.get(&(num + 1)).map(|z| z.1).unwrap_or(num);
-            let min = map.get(&(num - 1)).map(|z| z.0).unwrap_or(num);
-
-            let tmp = map.entry(max).or_insert((min, max));
-            tmp.0 = tmp.0.min(min);
-
-            let tmp = map.entry(min).or_insert((min, max));
-            tmp.1 = tmp.1.max(max);
+            match num.cmp(&(prev_num + 1)) {
+                std::cmp::Ordering::Less => {}
+                std::cmp::Ordering::Equal => current_seq += 1,
+                std::cmp::Ordering::Greater => {
+                    longest_seq = longest_seq.max(current_seq);
+                    current_seq = 1
+                }
+            }
+            prev_num = num;
         }
-        map.into_values()
-            .map(|(min, max)| max - min + 1)
-            .max()
-            .unwrap_or(0)
+        longest_seq.max(current_seq)
+        // let mut map = std::collections::HashMap::<i32, (i32, i32)>::new();
+        // for num in nums {
+        //     let max = map.get(&(num + 1)).map(|z| z.1).unwrap_or(num);
+        //     let min = map.get(&(num - 1)).map(|z| z.0).unwrap_or(num);
+        //
+        //     let tmp = map.entry(max).or_insert((min, max));
+        //     tmp.0 = tmp.0.min(min);
+        //
+        //     let tmp = map.entry(min).or_insert((min, max));
+        //     tmp.1 = tmp.1.max(max);
+        // }
+        // map.into_values()
+        //     .map(|(min, max)| max - min + 1)
+        //     .max()
+        //     .unwrap_or(0)
     }
 }
 
