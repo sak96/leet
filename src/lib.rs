@@ -163,6 +163,7 @@ pub mod string_to_integer_atoi;
 pub mod substring_with_concatenation_of_all_words;
 pub mod substring_with_largest_variance;
 pub mod sudoko_solver;
+pub mod sum_of_all_subset_xor_totals;
 pub mod summary_ranges;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
