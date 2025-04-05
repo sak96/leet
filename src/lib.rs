@@ -64,6 +64,7 @@ pub mod generate_parentheses;
 pub mod good_string_count;
 pub mod graph_bipartite;
 pub mod greatest_common_divisor_of_strings;
+pub mod group_anagrams;
 pub mod helpers;
 pub mod k_radius_subarray_averages;
 pub mod k_th_largest_stream;
