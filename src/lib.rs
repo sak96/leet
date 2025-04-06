@@ -96,6 +96,7 @@ pub mod max_sub_seq_score;
 pub mod max_sum_of_a_pair_with_equal_sum_of_digits;
 pub mod maximize_the_confusion_of_an_exam;
 pub mod maximum_absolute_sum_of_any_subarray;
+pub mod maximum_candies_allocated_to_k_children;
 pub mod maximum_count_of_positive_integer_and_negative_integer;
 pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_number_of_achievable_transfer_requests;
