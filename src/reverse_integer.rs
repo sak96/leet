@@ -8,7 +8,7 @@ impl Solution {
         let mut output = 0;
         while x > 0 {
             output = 10i32.checked_mul(output)?.checked_add(x % 10)?;
-            x = x / 10;
+            x /= 10;
         }
         sign.checked_mul(output)
     }
