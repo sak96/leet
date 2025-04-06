@@ -8,6 +8,7 @@ pub mod backspace_string_compare;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod best_time_to_buy_and_sell_stock_with_transaction_fee;
 pub mod binary_tree_inorder_traversal;
+pub mod binary_tree_right_side_view;
 pub mod brainpower;
 pub mod bst_from_preorder;
 pub mod buddy_strings;
