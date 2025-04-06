@@ -33,6 +33,7 @@ pub mod count_total_number_of_colored_cells;
 pub mod counting_bits;
 pub mod course_schedule;
 pub mod create_max_number;
+pub mod design_hashmap;
 pub mod design_hashset;
 pub mod design_parking_system;
 pub mod design_twitter;
