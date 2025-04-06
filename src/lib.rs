@@ -136,6 +136,7 @@ pub mod number_of_ways_to_reorder_array_to_get_same_bst;
 pub mod partition_array_according_to_given_pivot;
 pub mod partition_labels;
 pub mod path_with_maximum_probability;
+pub mod permutation_in_string;
 pub mod power_of_four;
 pub mod product_of_array_except_self;
 pub mod product_of_the_last_k_numbers;
