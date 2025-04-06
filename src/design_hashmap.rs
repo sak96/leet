@@ -1,6 +1,7 @@
 //! Solution for https://leetcode.com/problems/design-hashmap
 //! 706. Design HashMap
 
+#[derive(Default)]
 pub struct MyHashMap(Vec<i32>);
 // pub struct MyHashMap([i32; 1_000_000 + 1]);
 
