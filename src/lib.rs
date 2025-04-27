@@ -31,6 +31,7 @@ pub mod count_days_without_meetings;
 pub mod count_good_numbers;
 pub mod count_negative_numbers_in_a_sorted_matrix;
 pub mod count_of_substrings_containing_every_vowel_and_k_consonants_ii;
+pub mod count_subarrays_of_length_three_with_a_condition;
 pub mod count_subarrays_with_fixed_bounds;
 pub mod count_the_number_of_complete_components;
 pub mod count_total_number_of_colored_cells;
