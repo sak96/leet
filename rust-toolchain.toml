@@ -1,4 +1,0 @@
-[toolchain]
-# download and extract and make executable from
-# https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages
-channel = "1.79.0"
