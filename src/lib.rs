@@ -187,6 +187,7 @@ pub mod sum_of_all_subset_xor_totals;
 pub mod summary_ranges;
 pub mod swap_list_node;
 pub mod swap_node_pairs;
+pub mod symmetric_tree;
 pub mod tallest_billboard;
 pub mod teemo_attacking;
 pub mod the_k_th_lexicographical_string_of_all_happy_strings_of_length_n;
