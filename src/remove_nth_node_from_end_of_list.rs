@@ -20,7 +20,7 @@
 impl Solution {
     fn len_in_reverse(head: &mut Option<Box<ListNode>>, n: i32) -> i32 {
         match head {
-            Some(ref mut node) => {
+            Some(node) => {
                 let length = Self::len_in_reverse(&mut node.next, n) + 1;
                 if length == n {
                     let next = node.next.take();

@@ -3,7 +3,7 @@
 
 impl Solution {
     pub fn is_valid(s: String) -> bool {
-        let mut memory = Vec::with_capacity((s.len() + 1) / 2);
+        let mut memory = Vec::with_capacity(s.len().div_ceil(2));
         for ch in s.chars() {
             match ch {
                 '{' | '(' | '[' => {

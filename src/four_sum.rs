@@ -3,8 +3,8 @@
 
 impl Solution {
     pub fn two_sum(result: &mut Vec<Vec<i32>>, mut nums: &[i32], x: i32, y: i32, target: i32) {
-        if let Some((&a, rest)) = nums.split_first() {
-            if let Some((&b, _)) = rest.split_last() {
+        if let Some((&a, rest)) = nums.split_first()
+            && let Some((&b, _)) = rest.split_last() {
                 let (mut low, mut high) = (true, true);
                 match (target
                     .saturating_sub(x)
@@ -30,7 +30,6 @@ impl Solution {
                 }
                 Self::two_sum(result, nums, x, y, target);
             }
-        }
     }
     pub fn four_sum(mut nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         nums.sort_unstable();

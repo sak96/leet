@@ -4,7 +4,7 @@
 impl Solution {
     pub fn median_sliding_window(nums: Vec<i32>, k: i32) -> Vec<f64> {
         let k = k as usize;
-        let (a, b) = if k % 2 == 0 {
+        let (a, b) = if k.is_multiple_of(2) {
             (k / 2, (k / 2) - 1)
         } else {
             (k / 2, k / 2)

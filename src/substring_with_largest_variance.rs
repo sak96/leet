@@ -11,13 +11,13 @@ impl Solution {
         for major in map
             .iter()
             .enumerate()
-            .filter(|&(_, &v)| (v > 0))
-            .map(|(i, &_)| (i as u8 + b'a'))
+            .filter(|&(_, &v)| v > 0)
+            .map(|(i, &_)| i as u8 + b'a')
         {
             for (minor, mut remain_minor) in map
                 .iter()
                 .enumerate()
-                .filter(|&(_, &v)| (v > 0))
+                .filter(|&(_, v)| *v > 0)
                 .map(|(i, &v)| (i as u8 + b'a', v))
             {
                 if major == minor {

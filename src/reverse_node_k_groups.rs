@@ -23,7 +23,7 @@ impl Solution {
             }
 
             // break the node after k
-            let next_head = if let Some(ref mut node) = ptr {
+            let next_head = if let Some(node) = ptr {
                 node.next.take()
             } else {
                 last_ptr.next = head;

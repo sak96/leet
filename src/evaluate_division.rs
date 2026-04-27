@@ -31,7 +31,7 @@ impl Solution {
     ) -> Vec<f64> {
         let mut map = BTreeMap::new();
         let mut node_ids = Vec::with_capacity(equations.len() * 2);
-        for (mut equation, value) in equations.into_iter().zip(values.into_iter()) {
+        for (mut equation, value) in equations.into_iter().zip(values) {
             let a = equation.pop().expect("equations[i].length == 2");
             let b = equation.pop().expect("equations[i].length == 2");
             let a = if let Some(pos) = node_ids.iter().position(|x| a.eq(x)) {

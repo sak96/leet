@@ -16,7 +16,7 @@ impl Solution {
     fn get_max_index(nums: &[i32]) -> Option<usize> {
         nums.iter()
             .enumerate()
-            .min_by_key(|(idx, &value)| (-value, *idx))
+            .min_by_key(|&(idx, value)| (-value, idx))
             .map(|(idx, _)| idx)
     }
 
@@ -31,7 +31,7 @@ impl Solution {
             // Dynamic programming 101
             // NOTE: entry API has some issue with lifetime
             //       hence using contains_key and get
-            return memory.get(&key).unwrap();
+            memory.get(&key).unwrap()
         } else {
             let mut ans = Vec::with_capacity(k);
 

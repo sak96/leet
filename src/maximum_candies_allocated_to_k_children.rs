@@ -7,7 +7,7 @@ impl Solution {
         let mut min = 0;
         while max > min {
             let middle = (max + min + 1) / 2;
-            if candies.iter().map(|&c| (c as i64 / middle)).sum::<i64>() >= k {
+            if candies.iter().map(|&c| c as i64 / middle).sum::<i64>() >= k {
                 min = middle;
             } else {
                 max = middle - 1;

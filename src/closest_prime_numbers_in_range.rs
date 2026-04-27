@@ -24,8 +24,8 @@ impl Solution {
         }
         for i in (left..=right).step_by(2) {
             if Self::is_prime(i) {
-                if let Some(last_prime) = last_prime {
-                    if i - last_prime < prev_diff {
+                if let Some(last_prime) = last_prime
+                    && i - last_prime < prev_diff {
                         result = [last_prime, i];
                         prev_diff = i - last_prime;
                         if prev_diff == 2 {
@@ -33,7 +33,6 @@ impl Solution {
                             break;
                         }
                     }
-                }
                 last_prime = Some(i);
             }
         }

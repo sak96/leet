@@ -1,6 +1,6 @@
 //! Solution for https://leetcode.com/problems/reverse-vowels-of-a-string
 impl Solution {
-    const VOWELS: &'static [u8] = &[b'a', b'e', b'i', b'o', b'u', b'A', b'E', b'I', b'O', b'U'];
+    const VOWELS: &'static [u8] = b"aeiouAEIOU";
     pub fn reverse_vowels(mut s: String) -> String {
         let vec = unsafe { s.as_mut_vec() };
         let mut end = vec.len() - 1;
