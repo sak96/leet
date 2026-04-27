@@ -40,11 +40,7 @@ impl Solution {
             iteration += 1;
             rotten = std::mem::take(&mut next_rotten);
         }
-        if fresh > 0 {
-            -1
-        } else {
-            iteration.max(0)
-        }
+        if fresh > 0 { -1 } else { iteration.max(0) }
     }
 }
 

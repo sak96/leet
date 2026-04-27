@@ -4,32 +4,33 @@
 impl Solution {
     pub fn two_sum(result: &mut Vec<Vec<i32>>, mut nums: &[i32], x: i32, y: i32, target: i32) {
         if let Some((&a, rest)) = nums.split_first()
-            && let Some((&b, _)) = rest.split_last() {
-                let (mut low, mut high) = (true, true);
-                match (target
-                    .saturating_sub(x)
-                    .saturating_sub(y)
-                    .saturating_sub(a)
-                    .saturating_sub(b))
-                .signum()
-                {
-                    1 => high = false,
-                    0 => result.push(vec![x, y, a, b]),
-                    -1 => low = false,
-                    _ => unreachable!(),
-                }
-                if low {
-                    while nums.first() == Some(&a) {
-                        nums = &nums[1..];
-                    }
-                }
-                if high {
-                    while nums.last() == Some(&b) {
-                        nums = nums.split_last().unwrap().1;
-                    }
-                }
-                Self::two_sum(result, nums, x, y, target);
+            && let Some((&b, _)) = rest.split_last()
+        {
+            let (mut low, mut high) = (true, true);
+            match (target
+                .saturating_sub(x)
+                .saturating_sub(y)
+                .saturating_sub(a)
+                .saturating_sub(b))
+            .signum()
+            {
+                1 => high = false,
+                0 => result.push(vec![x, y, a, b]),
+                -1 => low = false,
+                _ => unreachable!(),
             }
+            if low {
+                while nums.first() == Some(&a) {
+                    nums = &nums[1..];
+                }
+            }
+            if high {
+                while nums.last() == Some(&b) {
+                    nums = nums.split_last().unwrap().1;
+                }
+            }
+            Self::two_sum(result, nums, x, y, target);
+        }
     }
     pub fn four_sum(mut nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         nums.sort_unstable();

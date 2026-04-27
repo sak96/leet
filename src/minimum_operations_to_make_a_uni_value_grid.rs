@@ -19,13 +19,15 @@ impl Solution {
         let (mut count, mut ops) = (1, 0);
         while !queue.is_empty() {
             if let Some(d1) = queue.pop_front()
-                && let Some(d2) = queue.front() {
-                    ops += ((d2 - d1) / x) * count;
-                }
+                && let Some(d2) = queue.front()
+            {
+                ops += ((d2 - d1) / x) * count;
+            }
             if let Some(d1) = queue.pop_back()
-                && let Some(d2) = queue.back() {
-                    ops += ((d1 - d2) / x) * count;
-                }
+                && let Some(d2) = queue.back()
+            {
+                ops += ((d1 - d2) / x) * count;
+            }
             count += 1;
         }
 

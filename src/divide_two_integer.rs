@@ -26,11 +26,7 @@ impl Solution {
             product = product.checked_shr(1).unwrap();
         }
         if quotient > (i32::MAX as u32) {
-            if neg {
-                i32::MIN
-            } else {
-                i32::MAX
-            }
+            if neg { i32::MIN } else { i32::MAX }
         } else if neg {
             -(quotient as i32)
         } else {

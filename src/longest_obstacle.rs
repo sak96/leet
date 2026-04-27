@@ -1,7 +1,7 @@
 type Obstacle = i32;
 type Count = i32;
 
-use std::collections::{hash_map::Entry, BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, hash_map::Entry};
 impl Solution {
     pub fn longest_obstacle_course_at_each_position(obstacles: Vec<Obstacle>) -> Vec<Count> {
         let mut obstacle_map = BTreeMap::<Obstacle, Count>::new();

@@ -12,11 +12,7 @@ impl Solution {
                 left += 1;
             }
         }
-        if len > nums.len() {
-            0
-        } else {
-            len as _
-        }
+        if len > nums.len() { 0 } else { len as _ }
     }
 }
 
