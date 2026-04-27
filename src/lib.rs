@@ -16,6 +16,7 @@ pub mod can_make_arithmetic_progression_from_sequence;
 pub mod can_place_flowers;
 pub mod check_if_grid_can_be_cut_into_sections;
 pub mod check_if_number_is_a_sum_of_powers_of_three;
+pub mod check_if_there_is_a_valid_path_in_a_grid;
 pub mod check_is_straight_line;
 pub mod closest_prime_numbers_in_range;
 pub mod coin_change_ii;
