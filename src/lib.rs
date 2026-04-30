@@ -107,6 +107,7 @@ pub mod maximum_level_sum_of_a_binary_tree;
 pub mod maximum_number_of_achievable_transfer_requests;
 pub mod maximum_number_of_events_that_can_be_attended_ii;
 pub mod maximum_number_of_points_from_grid_queries;
+pub mod maximum_score_from_grid_operations;
 pub mod maximum_subarray;
 pub mod maximum_value_at_a_given_index_in_a_bounded_array;
 pub mod median_of_two_sorted_arrays;
