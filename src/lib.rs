@@ -162,6 +162,7 @@ pub mod reverse_nodes_in_k_group;
 pub mod reverse_vowels_of_a_string;
 pub mod reverse_words_in_a_string;
 pub mod roman_to_integer;
+pub mod rotate_function;
 pub mod rotting_oranges;
 pub mod same_tree;
 pub mod search_insert_pos;
