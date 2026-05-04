@@ -163,6 +163,7 @@ pub mod reverse_vowels_of_a_string;
 pub mod reverse_words_in_a_string;
 pub mod roman_to_integer;
 pub mod rotate_function;
+pub mod rotate_image;
 pub mod rotate_string;
 pub mod rotated_digits;
 pub mod rotting_oranges;
