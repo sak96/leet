@@ -2,21 +2,26 @@
 //! 3225. Maximum Score From Grid Operations
 
 impl Solution {
-    pub fn maximum_score_(grid: &[Vec<i64>], col: usize, h: &mut [usize], n: usize) -> i64 {
+    pub fn maximum_score_(
+        grid: &[Vec<i64>],
+        col: usize,
+        prev_prev: usize,
+        prev: usize,
+        n: usize,
+    ) -> i64 {
         if col == n {
             0
         } else {
             let mut max = 0;
             for i in 0..=n {
-                h[col + 2] = i;
-                let val = if h[col + 1] >= i {
-                    grid[h[col + 1]][col + 1] - grid[i][col + 1]
-                } else if h[col] < i {
-                    grid[i][col] - grid[h[col].max(h[col + 1])][col]
+                let val = if prev >= i {
+                    grid[prev][col + 1] - grid[i][col + 1]
+                } else if prev_prev < i {
+                    grid[i][col] - grid[prev_prev.max(prev)][col]
                 } else {
                     0
                 };
-                max = max.max(val + Self::maximum_score_(grid, col + 1, h, n))
+                max = max.max(val + Self::maximum_score_(grid, col + 1, prev, i, n))
             }
             max
         }
@@ -24,7 +29,6 @@ impl Solution {
 
     pub fn maximum_score(grid: Vec<Vec<i32>>) -> i64 {
         let n = grid.len();
-        let mut h = vec![0; n + 2];
         let mut new_grid = vec![vec![0; n + 1]; n + 1];
         for i in 0..n {
             let mut sum = 0;
@@ -34,7 +38,7 @@ impl Solution {
             }
         }
         std::mem::drop(grid);
-        Self::maximum_score_(&new_grid, 0, &mut h, n)
+        Self::maximum_score_(&new_grid, 0, 0, 0, n)
     }
 }
 
