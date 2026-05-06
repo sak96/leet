@@ -2,27 +2,21 @@
 //! 3225. Maximum Score From Grid Operations
 
 impl Solution {
-    pub fn compute_score(grid: &[Vec<i64>], h: &[usize]) -> i64 {
-        let mut score = 0i64;
-        for (i, h) in h.windows(3).enumerate() {
-            let h_max_side = h[0].max(h[2]);
-            let y = if h_max_side > h[1] {
-                grid[h_max_side][i + 1] - grid[h[1]][i + 1]
-            } else {
-                0
-            };
-            score += y;
-        }
-        score
-    }
     pub fn maximum_score_(grid: &[Vec<i64>], col: usize, h: &mut [usize], n: usize) -> i64 {
         if col == n {
-            Self::compute_score(grid, h)
+            0
         } else {
             let mut max = 0;
             for i in 0..=n {
-                h[col + 1] = i;
-                max = max.max(Self::maximum_score_(grid, col + 1, h, n))
+                h[col + 2] = i;
+                let val = if h[col + 1] >= i {
+                    grid[h[col + 1]][col + 1] - grid[i][col + 1]
+                } else if h[col] < i {
+                    grid[i][col] - grid[h[col].max(h[col + 1])][col]
+                } else {
+                    0
+                };
+                max = max.max(val + Self::maximum_score_(grid, col + 1, h, n))
             }
             max
         }
