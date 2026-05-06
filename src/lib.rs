@@ -167,6 +167,7 @@ pub mod rotate_image;
 pub mod rotate_list;
 pub mod rotate_string;
 pub mod rotated_digits;
+pub mod rotating_the_box;
 pub mod rotting_oranges;
 pub mod same_tree;
 pub mod search_insert_pos;
