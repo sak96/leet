@@ -13,12 +13,16 @@ impl Solution {
                 match v {
                     '#' => stones += 1,
                     '*' => {
-                        for i in fill_index..y - stones {
-                            rotated_box[i].push('.');
-                        }
-                        for i in y - stones..y {
-                            rotated_box[i].push('#');
-                        }
+                        rotated_box
+                            .iter_mut()
+                            .skip(fill_index)
+                            .take(y - stones - fill_index)
+                            .for_each(|v| v.push('.'));
+                        rotated_box
+                            .iter_mut()
+                            .skip(y - stones)
+                            .take(stones)
+                            .for_each(|v| v.push('#'));
                         rotated_box[y].push('*');
                         fill_index = y + 1;
                         stones = 0;
@@ -27,12 +31,16 @@ impl Solution {
                     _ => unreachable!(),
                 };
             }
-            for i in fill_index..n - stones {
-                rotated_box[i].push('.');
-            }
-            for i in n - stones..n {
-                rotated_box[i].push('#');
-            }
+            rotated_box
+                .iter_mut()
+                .skip(fill_index)
+                .take(n - stones - fill_index)
+                .for_each(|v| v.push('.'));
+            rotated_box
+                .iter_mut()
+                .skip(n - stones)
+                .take(stones)
+                .for_each(|v| v.push('#'));
         }
         rotated_box
     }
