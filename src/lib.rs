@@ -176,6 +176,7 @@ pub mod rotting_oranges;
 pub mod same_tree;
 pub mod search_insert_pos;
 pub mod search_rotated_sort;
+pub mod separate_the_digits_in_an_array;
 pub mod shortest_bridge;
 pub mod shortest_common_supersequence;
 pub mod shortest_path_binary_matrix;
