@@ -129,6 +129,7 @@ pub mod minimum_distance_between_bst_nodes;
 pub mod minimum_flips_to_make_a_or_b_equal_to_c;
 pub mod minimum_initial_energy_to_finish_tasks;
 pub mod minimum_jumps_to_reach_end_via_prime_teleportation;
+pub mod minimum_moves_to_make_array_complementary;
 pub mod minimum_number_of_operations_to_make_elements_in_array_distinct;
 pub mod minimum_operations_to_exceed_threshold_value_ii;
 pub mod minimum_operations_to_make_a_uni_value_grid;
