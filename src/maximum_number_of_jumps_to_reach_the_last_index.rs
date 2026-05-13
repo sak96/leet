@@ -9,7 +9,7 @@ impl Solution {
         for (i, n1) in nums.iter().enumerate().skip(1) {
             for (j, n2) in nums.iter().enumerate().take(i) {
                 if dp[j] < 1 {
-                    continue
+                    continue;
                 }
                 if (n1 - n2).abs() <= target {
                     dp[i] = dp[i].max(dp[j] + 1);
