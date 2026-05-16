@@ -62,6 +62,7 @@ pub mod find_k_pairs_with_smallest_sums;
 pub mod find_min_rotate_2;
 pub mod find_min_rotated_sort;
 pub mod find_minimum_in_rotated_sorted_array;
+pub mod find_minimum_in_rotated_sorted_array_ii;
 pub mod find_missing_and_repeated_values;
 pub mod find_path_exits;
 pub mod find_smallest_letter_greater_than_target;
