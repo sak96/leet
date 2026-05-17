@@ -77,6 +77,7 @@ pub mod graph_bipartite;
 pub mod greatest_common_divisor_of_strings;
 pub mod group_anagrams;
 pub mod helpers;
+pub mod jump_game_iii;
 pub mod jump_game_ix;
 pub mod k_radius_subarray_averages;
 pub mod k_th_largest_stream;
