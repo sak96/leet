@@ -25,8 +25,10 @@ impl Solution {
                 if let Some(v) = map.remove(&(val as usize)) {
                     next.extend(v)
                 }
-                next.push(idx + 1);
-                if idx != 0 {
+                if idx < len && !seen[idx + 1] {
+                    next.push(idx + 1);
+                }
+                if idx != 0 && !seen[idx - 1] {
                     next.push(idx - 1);
                 }
             }
