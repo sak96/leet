@@ -2,38 +2,22 @@
 //! 3043. Find the Length of the Longest Common Prefix
 
 impl Solution {
-    const POWERS: [i32; 9] = [
-        1,
-        10,
-        100,
-        1000,
-        1_0000,
-        10_0000,
-        100_0000,
-        1000_0000,
-        1_0000_0000,
-    ];
     pub fn longest_common_prefix(arr1: Vec<i32>, arr2: Vec<i32>) -> i32 {
         let mut prefix = std::collections::BTreeSet::new();
-        for i in arr1 {
-            for j in Self::POWERS.iter() {
-                let m = i / j;
-                if m == 0 {
-                    break;
-                }
-                prefix.insert(m);
+        for mut i in arr1 {
+            while i > 0 {
+                prefix.insert(i);
+                i /= 10;
             }
         }
         let mut output = 0;
-        for i in arr2 {
-            let mut zero = 0;
-            for (k, j) in Self::POWERS.iter().enumerate().rev() {
-                let m = i / j;
-                if m == 0 {
-                    zero += 1;
-                } else if prefix.contains(&m) {
-                    output = output.max(9 - k - zero);
+        for mut i in arr2 {
+            while i > 0 {
+                if prefix.contains(&i) {
+                    output = output.max(i.ilog10() + 1);
+                    break;
                 }
+                i /= 10;
             }
         }
         output as i32
