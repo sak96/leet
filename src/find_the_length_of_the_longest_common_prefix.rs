@@ -3,7 +3,7 @@
 
 impl Solution {
     pub fn longest_common_prefix(arr1: Vec<i32>, arr2: Vec<i32>) -> i32 {
-        let mut prefix = std::collections::BTreeSet::new();
+        let mut prefix = std::collections::HashSet::new();
         for mut i in arr1 {
             while i > 0 {
                 prefix.insert(i);
