@@ -185,6 +185,7 @@ pub mod rotated_digits;
 pub mod rotating_the_box;
 pub mod rotting_oranges;
 pub mod same_tree;
+pub mod search_in_rotated_sorted_array;
 pub mod search_insert_pos;
 pub mod search_rotated_sort;
 pub mod separate_the_digits_in_an_array;
