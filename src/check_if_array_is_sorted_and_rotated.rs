@@ -3,23 +3,11 @@
 
 impl Solution {
     pub fn check(nums: Vec<i32>) -> bool {
-        let mut idx = 0;
-        while idx + 1 < nums.len() && nums[idx] <= nums[idx + 1] {
-            idx += 1
-        }
-        if idx + 1 < nums.len() {
-            if nums[nums.len() - 1] <= nums[0] {
-                idx += 1;
-                while idx + 1 < nums.len() && nums[idx] <= nums[idx + 1] {
-                    idx += 1
-                }
-                idx + 1 == nums.len()
-            } else {
-                false
-            }
-        } else {
-            true
-        }
+        nums.iter()
+            .zip(nums.iter().skip(1).chain(nums.iter().take(1)))
+            .filter(|(a, b)| a > b)
+            .count()
+            <= 1
     }
 }
 
