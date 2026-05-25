@@ -85,6 +85,7 @@ pub mod jump_game_iii;
 pub mod jump_game_iv;
 pub mod jump_game_ix;
 pub mod jump_game_v;
+pub mod jump_game_vii;
 pub mod k_radius_subarray_averages;
 pub mod k_th_largest_stream;
 pub mod kids_with_the_greatest_number_of_candies;
