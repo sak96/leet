@@ -94,6 +94,7 @@ pub mod kids_with_the_greatest_number_of_candies;
 pub mod kth_largest_element_in_an_array;
 pub mod largest_divisible_subset;
 pub mod last_day_where_you_can_still_cross;
+pub mod length_of_last_word;
 pub mod length_of_longest_fibonacci_subsequence;
 pub mod letter_tile_possibilities;
 pub mod linked_list_twin_sum;
