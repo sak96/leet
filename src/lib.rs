@@ -102,6 +102,7 @@ pub mod long_valid_parentheses;
 pub mod longest_arithmetic_subsequence;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_prefix;
+pub mod longest_common_suffix_queries;
 pub mod longest_consecutive_sequence;
 pub mod longest_obstacle;
 pub mod longest_palindromic_substring;
