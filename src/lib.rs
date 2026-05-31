@@ -50,6 +50,7 @@ pub mod design_hashset;
 pub mod design_parking_system;
 pub mod design_twitter;
 pub mod design_underground_system;
+pub mod destroying_asteroids;
 pub mod detect_cycles_in_2_d_grid;
 pub mod detonate_max_bombs;
 pub mod diameter_of_binary_tree;
