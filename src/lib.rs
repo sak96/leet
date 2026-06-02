@@ -56,6 +56,7 @@ pub mod detonate_max_bombs;
 pub mod diameter_of_binary_tree;
 pub mod divide_two_integer;
 pub mod dota;
+pub mod earliest_finish_time_for_land_and_water_rides_i;
 pub mod equal_row_and_column_pairs;
 pub mod evaluate_division;
 pub mod fair_distribution_of_cookies;
