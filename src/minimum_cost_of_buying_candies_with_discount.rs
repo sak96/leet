@@ -8,7 +8,7 @@ impl Solution {
         let mut total = 0;
         for (c, &i) in cost.into_iter().zip([2, 1, 0].iter().cycle()) {
             if i == 0 {
-                continue
+                continue;
             }
             total += c;
         }
