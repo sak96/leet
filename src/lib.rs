@@ -43,6 +43,7 @@ pub mod count_the_number_of_special_characters_ii;
 pub mod count_total_number_of_colored_cells;
 pub mod counting_bits;
 pub mod course_schedule;
+pub mod create_binary_tree_from_descriptions;
 pub mod create_max_number;
 pub mod cyclically_rotating_a_grid;
 pub mod design_hashmap;
