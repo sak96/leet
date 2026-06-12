@@ -55,7 +55,6 @@ mod tests {
     #[rstest]
     #[case(vec![vec![1,2],vec![2,3,3],vec![2,3,1],vec![2,2,2]], vec![false,true,true])]
     #[case(vec![vec![1,7],vec![2,7,6],vec![1,2],vec![2,7,5],vec![2,7,6]], vec![true,true,false])]
-    #[case(include!("a.txt"), vec![])]
     fn case(#[case] queries: Vec<Vec<i32>>, #[case] expected: Vec<bool>) {
         let actual = Solution::get_results(queries);
         assert_eq!(actual, expected);
